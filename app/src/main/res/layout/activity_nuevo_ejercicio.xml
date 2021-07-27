@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="18dp"
+    tools:context=".ui.home.InsertarNuevoEjercicio">
+
+    <TextView
+        android:id="@+id/textView_insert_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/nuevo_ejercicio"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewInsert_Nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/nombre"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView_insert_titulo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_insert_titulo" />
+
+    <EditText
+        android:id="@+id/editTextNombre_Ejercicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre_del_ejercicio"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/textViewInsert_Nombre"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInsert_Nombre" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/n_mero_de_series"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/editTextNombre_Ejercicio"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombre_Ejercicio" />
+
+    <EditText
+        android:id="@+id/editTextTNum_Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/n_mero_de_sets"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textViewRepeticiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/n_mero_de_repeticiones"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/editTextTNum_Set"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTNum_Set" />
+
+    <EditText
+        android:id="@+id/editTextRepeticiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/repeticiones"
+        app:layout_constraintStart_toStartOf="@+id/textViewRepeticiones"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRepeticiones" />
+
+    <TextView
+        android:id="@+id/textViewRPEEjercicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/rpe_del_ejercicio"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/editTextRepeticiones"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeticiones" />
+
+    <EditText
+        android:id="@+id/editTextRPEEjercicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/rpe"
+        app:layout_constraintStart_toStartOf="@+id/textViewRPEEjercicio"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRPEEjercicio" />
+
+    <Button
+        android:id="@+id/buttonguardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.MaterialComponents.Button"/>
+
+    <Button
+        android:id="@+id/button_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:text="@string/cancelar"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonguardar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonguardar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.apprpe.VistaEjercicioActivity">
+    <!---
+    <item
+        android:id="@+id/action_settings_vista"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:visible="true"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_settings_24"/>
+    -->
+    <item
+        android:title="@string/insertar_ejercicio"
+        android:id="@+id/menu_insertar_ejercicio"
+        android:visible="true">
+    </item>
+
+    <item
+        android:title="@string/eliminar_sesion"
+        android:id="@+id/menu_eliminar_sesion"
+        android:visible="true">
+    </item>
+
+</menu>

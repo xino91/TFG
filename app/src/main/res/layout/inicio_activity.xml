@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="inicio_activity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+                <TextView
+                    android:id="@+id/textView_inicio_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/pantalla_configuraci_n"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/nombre_inicio"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/Edit_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="@string/escriba_su_nombre"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_nombre" />
+
+                <TextView
+                    android:id="@+id/textView2_genero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/g_nero"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/Edit_nombre"
+                    app:layout_constraintTop_toBottomOf="@+id/Edit_nombre" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="@+id/textView2_genero"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2_genero">
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/masculino" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/femenino" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/textView4_estatura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/estatura"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/radioGroup"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+                <EditText
+                    android:id="@+id/Edit_estatura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/estatura_en_cm"
+                    android:inputType="number"
+                    app:layout_constraintStart_toStartOf="@+id/textView4_estatura"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4_estatura" />
+
+                <TextView
+                    android:id="@+id/textView4_peso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/peso"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView4_estatura"
+                    app:layout_constraintTop_toBottomOf="@+id/Edit_estatura" />
+
+                <EditText
+                    android:id="@+id/Edit_peso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/peso_en_kg"
+                    android:inputType="number"
+                    app:layout_constraintStart_toStartOf="@+id/textView4_peso"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4_peso" />
+
+                <TextView
+                    android:id="@+id/textView2_fechanacimiento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/fecha_nacimiento"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/Edit_peso"
+                    app:layout_constraintTop_toBottomOf="@+id/Edit_peso" />
+
+                <TextView
+                    android:id="@+id/textView4_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView2_fechanacimiento"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2_fechanacimiento"
+                    tools:layout_editor_absoluteX="12dp"
+                    tools:layout_editor_absoluteY="440dp" />
+
+                <EditText
+                    android:id="@+id/Edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintStart_toStartOf="@+id/textView4_email"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4_email" />
+
+                <TextView
+                    android:id="@+id/textView_tipo_actividad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tipo Actividad"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView4_email"
+                    app:layout_constraintTop_toBottomOf="@+id/Edit_email" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleX="1.2"
+                    android:scrollX="3dp"
+                    android:scrollY="3dp"
+                    android:scrollbarSize="5dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView_tipo_actividad"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_tipo_actividad" />
+
+                <Button
+                    android:id="@+id/button_avanzar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/siguiente"
+                    android:textColor="@color/black"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

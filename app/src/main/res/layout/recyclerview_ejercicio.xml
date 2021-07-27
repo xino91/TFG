@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CardView_Ejercicio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:elevation="8dp"
+    android:focusable="true"
+    android:padding="4sp"
+    card_view:cardBackgroundColor="#D5D5D5"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:layout_constraintEnd_toEndOf="parent"
+    card_view:layout_constraintStart_toStartOf="parent"
+    card_view:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/textView_nombre_ejercicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/nombre"
+            android:textSize="18sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nombre_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/titulo_"
+            android:textSize="18sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/textView_nombre_ejercicio"
+            card_view:layout_constraintStart_toEndOf="@+id/textView_nombre_ejercicio"
+            card_view:layout_constraintTop_toTopOf="@+id/textView_nombre_ejercicio" />
+
+        <TextView
+            android:id="@+id/numero_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/set"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="@+id/textView_nombre_ejercicio"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView_nombre_ejercicio" />
+
+        <TextView
+            android:id="@+id/TextView_Sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/sets"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/numero_sets"
+            card_view:layout_constraintStart_toEndOf="@+id/numero_sets"
+            card_view:layout_constraintTop_toTopOf="@+id/numero_sets" />
+
+        <TextView
+            android:id="@+id/id_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/de"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/numero_sets"
+            card_view:layout_constraintStart_toEndOf="@+id/TextView_Sets"
+            card_view:layout_constraintTop_toTopOf="@+id/numero_sets"
+            card_view:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/numero_repeticiones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/rep"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/id_de"
+            card_view:layout_constraintStart_toEndOf="@+id/id_de"
+            card_view:layout_constraintTop_toTopOf="@+id/id_de" />
+
+        <TextView
+            android:id="@+id/textView_Repeticiones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/repeticiones"
+            card_view:layout_constraintBottom_toBottomOf="@+id/numero_repeticiones"
+            card_view:layout_constraintStart_toEndOf="@+id/numero_repeticiones"
+            card_view:layout_constraintTop_toTopOf="@+id/numero_repeticiones" />
+
+        <TextView
+            android:id="@+id/textView10_RPE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/RPE"
+            card_view:layout_constraintBottom_toBottomOf="@+id/nombre_titulo"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="@+id/nombre_titulo" />
+
+        <TextView
+            android:id="@+id/textView_num_RPE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@string/RPE"
+            card_view:layout_constraintEnd_toEndOf="@+id/textView10_RPE"
+            card_view:layout_constraintStart_toStartOf="@+id/textView10_RPE"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView10_RPE" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
