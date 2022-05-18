@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.apprpe.R;
-import com.example.apprpe.modelo.Sesion;
 
 public class InsertarNuevoEjercicio extends AppCompatActivity {
 

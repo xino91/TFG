@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.modelo.SesionDao;
 import com.example.apprpe.ui.home.HomeViewModel;
 
 public class EditarEjercicio extends AppCompatActivity {

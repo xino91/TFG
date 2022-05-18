@@ -21,7 +21,7 @@
     <string name="rpe">RPE Objetivo</string>
     <string name="insertar">Insertar</string>
     <string name="id">ID</string>
-    <string name="title_activity_vista_ejercicio">Lista Ejercicios</string>
+    <string name="title_activity_vista_ejercicio">Lista de Ejercicios</string>
     <string name="action_settings">Settings</string>
     <string name="Perfil"> Perfil </string>
     <string name="nombre">Nombre:</string>
@@ -64,6 +64,8 @@
     <string name="InsertarNuevoEjercicio_activity">Insertar Nuevo Ejercicio</string>
     <string name="eliminar_sesion">Eliminar Sesión</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="fecha">%1$/%2$/%3$</string>
+    <string name="muestra_ejercicio"> %1$/%2$ </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -154,4 +156,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="tipo_actividad">Tipo Actividad</string>
+    <string name="iniciar_entrenamiento">Iniciar Entrenamiento</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="siguiente_ejercicio">Siguiente ejercicio</string>
+    <string name="finalizar">Finalizar Entrenamiento</string>
 </resources>

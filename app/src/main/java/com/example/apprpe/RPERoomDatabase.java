@@ -6,27 +6,27 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.apprpe.modelo.Converters;
 import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.modelo.EjercicioDao;
-import com.example.apprpe.modelo.Sesion;
-import com.example.apprpe.modelo.SesionDao;
+import com.example.apprpe.modelo.Ent_Realizado;
+import com.example.apprpe.modelo.Entrenamiento;
+import com.example.apprpe.modelo.EntrenamientoDao;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Ejercicio.class, Sesion.class}, version = 2, exportSchema = false)
+@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class}, version = 2, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract  class RPERoomDatabase extends RoomDatabase {
 
-    public abstract SesionDao sesionDao();
+    public abstract EntrenamientoDao entrenamientoDao();
 
     private static volatile RPERoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static RPERoomDatabase getInstanceDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -53,7 +53,7 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
 
-                SesionDao daosesion = INSTANCE.sesionDao();
+                EntrenamientoDao daosesion = INSTANCE.entrenamientoDao();
 
                 Ejercicio ejercicio = new Ejercicio("Flexiones", 2, 2, 2, 1);
                 daosesion.insert(ejercicio);

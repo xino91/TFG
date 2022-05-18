@@ -18,7 +18,6 @@ public class Ejercicio {
     private int Rpe;
     private int Sesion_Id;
 
-
     public Ejercicio(String nombre, int repeticiones, int sets, int rpe, int sesion_id) {
         Nombre = nombre;
         Repeticiones = repeticiones;

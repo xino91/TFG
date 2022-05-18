@@ -2,7 +2,6 @@ package com.example.apprpe.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.apprpe.Inicio_activity;
 import com.example.apprpe.R;
-import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.modelo.Sesion;
-import com.example.apprpe.VistaEjercicioActivity;
+import com.example.apprpe.modelo.Entrenamiento;
+import com.example.apprpe.VistaEjerciciosActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -42,12 +39,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        SesionListAdapter adapter = new SesionListAdapter(getContext());
+        EntrenamientoListAdapter adapter = new EntrenamientoListAdapter(getContext());
         recyclerView.setAdapter(adapter);
-        homeViewModel.getAllSesiones().observe(getViewLifecycleOwner(), new Observer<List<Sesion>>() {
+        homeViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
-            public void onChanged(List<Sesion> sesiones) {
-                adapter.setSesion(sesiones);
+            public void onChanged(List<Entrenamiento> entrenamientos) {
+                adapter.setSesion(entrenamientos);
             }
         });
 
@@ -56,18 +53,18 @@ public class HomeFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), InsertarSesion_activity.class);
+                Intent intent = new Intent(getActivity(), InsertarEntrenamiento_activity.class);
                 startActivityForResult(intent, INSERT_SESION_ACTIVITY_CODE);
             }
         });
 
-        //ESCUCHADOR PARA ADAPTADOR SESION
-        adapter.setOnItemClickListener(new SesionListAdapter.OnItemClickListener() {
+        //ESCUCHADOR PARA ADAPTADOR ENTRENAMIENTO
+        adapter.setOnItemClickListener(new EntrenamientoListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, int id_sesion) throws InterruptedException {
-                Intent intent = new Intent(getActivity(), VistaEjercicioActivity.class);
-                Sesion sesion = homeViewModel.getSesion(id_sesion);
-                intent.putExtra("Position", sesion.getId());
+                Intent intent = new Intent(getActivity(), VistaEjerciciosActivity.class);
+                Entrenamiento entrenamiento = homeViewModel.getEntrenamiento(id_sesion);
+                intent.putExtra("Position", entrenamiento.getId());
                 startActivity(intent);
             }
         });
@@ -79,16 +76,15 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
             if(requestCode==INSERT_SESION_ACTIVITY_CODE && resultCode == RESULT_OK){
-                Sesion sesion = new Sesion();
+                Entrenamiento entrenamiento = new Entrenamiento();
                 assert data != null;
-                sesion.setNombre_Sesion(Objects.requireNonNull(data.getExtras()).getString("sesion_nombre"));
-                sesion.setRpe_Sesion(Integer.parseInt(data.getExtras().getString("RPE")));
-                sesion.setTipo_Dato(data.getExtras().getString("TipoDato"));
-                homeViewModel.insert(sesion);
+                entrenamiento.setNombre_Entrenamiento(Objects.requireNonNull(data.getExtras()).getString("sesion_nombre"));
+                entrenamiento.setRpe_Sesion(Integer.parseInt(data.getExtras().getString("RPE")));
+                entrenamiento.setTipo_Dato(data.getExtras().getString("TipoDato"));
+                homeViewModel.insert(entrenamiento);
             }
             else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();
             }
     }
-
 }

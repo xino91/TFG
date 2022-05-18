@@ -1,36 +1,41 @@
 package com.example.apprpe.ui.home;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.modelo.Sesion;
-import com.example.apprpe.modelo.SesionConEjercicios;
-import com.example.apprpe.SesionRepository;
+import com.example.apprpe.modelo.Entrenamiento;
+import com.example.apprpe.EntrenamientoRepository;
 
 import java.util.List;
 
 public class HomeViewModel extends AndroidViewModel {
 
-    private SesionRepository mRepository;
-    private LiveData<List<Sesion>> listSesiones;
-    private LiveData<List<Ejercicio>> listSesionesConEjercicios;
+    private EntrenamientoRepository mRepository;
+    private LiveData<List<Entrenamiento>> listSesiones;
+    private LiveData<List<Ejercicio>> listEjercicios;
+    private List<Ejercicio> listEjercicios2;
+    private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios>> EntrenamientoConEjercicios;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new SesionRepository(application);
-        listSesiones = mRepository.getAllSesiones();
+        mRepository = new EntrenamientoRepository(application);
+        listSesiones = mRepository.getAllEntrenamientos();
     }
 
-    public LiveData<List<Sesion>> getAllSesiones() { return listSesiones; }
+    public LiveData<List<Entrenamiento>> getAllEntrenamientos() { return listSesiones; }
 
-    public LiveData<List<Ejercicio>> getSesionConEjercicios(int id){
-        listSesionesConEjercicios = mRepository.getSesionConEjercicios(id);
-        return listSesionesConEjercicios;
+    public LiveData<List<Ejercicio>> getEntrenamientoConEjercicios(int id) {
+        listEjercicios = mRepository.getEntrenamientoConEjercicios(id);
+        return listEjercicios;
+    }
+
+    public List<Ejercicio> getListEntrenamientoConEjercicios(int id) throws InterruptedException {
+        listEjercicios2 = mRepository.getListEntrenamientoConEjercicios(id);
+        return listEjercicios2;
     }
 
     public Ejercicio getEjercicio(int id) throws InterruptedException {
@@ -38,19 +43,19 @@ public class HomeViewModel extends AndroidViewModel {
         ejercicio = mRepository.getEjercicio(id);
         return ejercicio;
     }
-    public Sesion getSesion(int id) throws InterruptedException {
-        Sesion sesion;
-        sesion = mRepository.getSesion(id);
-        return sesion;
+    public Entrenamiento getEntrenamiento(int id) throws InterruptedException {
+        Entrenamiento entrenamiento;
+        entrenamiento = mRepository.getEntrenamiento(id);
+        return entrenamiento;
     }
 
-    public void insert(Sesion sesion) { mRepository.insert(sesion); }
+    public void insert(Entrenamiento entrenamiento) { mRepository.insert(entrenamiento); }
     public void insert(Ejercicio ejercicio) { mRepository.insert(ejercicio); }
     public void update_NumEjerciciosMas(int id) { mRepository.update_NumEjerciciosMas(id);}
     public void update_NumEjerciciosMenos(int id) { mRepository.update_NumEjerciciosMenos(id);}
     public void updateEjercicio(Ejercicio ejercicio) { mRepository.updateEjercicio(ejercicio); }
-    public void deleteSesion(Sesion sesion) { mRepository.deleteSesion(sesion); }
-    public void deleteAllEjercicioSesion(Sesion sesion) { mRepository.deleteAllEjerciciosSesion(sesion);}
+    public void deleteSesion(Entrenamiento entrenamiento) { mRepository.deleteSesion(entrenamiento); }
+    public void deleteAllEjercicioSesion(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
     public void deleteAll() { mRepository.deleteAll(); }
 

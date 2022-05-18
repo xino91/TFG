@@ -28,18 +28,26 @@ public class PerfilFragment extends Fragment {
     TextView txtView_Usuario, txtView_Genero, txtView_Email;
     TextView txtView_Estatura, txtView_Peso, txtView_Nacimiento;
     TextView txtView_Actividad;
+    String nombreUsuario;
+    String genero;
+    String estatura;
+    String peso;
+    String email;
+    String tipo_actividad;
+    String nacimiento;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
-        preferencias = requireActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
 
-        String nombreUsuario = preferencias.getString("NombreUsuario", "");
-        String genero = preferencias.getString("Genero", "");
-        String estatura = preferencias.getString("Estatura", "");
-        String peso = preferencias.getString("Peso", "");
-        String email = preferencias.getString("Email", "");
-        String tipo_actividad = preferencias.getString("Actividad", "");
+        inicializarComponenetes(root);
+        obtenerDatosFicheroPreferencias();
+        vistas();
+
+        return root;
+    }
+
+    private void inicializarComponenetes(View root) {
 
         txtView_Usuario = root.findViewById(R.id.textView_Nombre);
         txtView_Genero = root.findViewById(R.id.textView_Genero);
@@ -47,14 +55,28 @@ public class PerfilFragment extends Fragment {
         txtView_Peso = root.findViewById(R.id.textView_Peso);
         txtView_Email = root.findViewById(R.id.textView_Email);
         txtView_Actividad = root.findViewById(R.id.textView_Actividad);
+        txtView_Nacimiento = root.findViewById(R.id.TextView_fecha);
+    }
 
+    private void obtenerDatosFicheroPreferencias() {
+        preferencias = requireActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        nombreUsuario = preferencias.getString("NombreUsuario", "");
+        genero = preferencias.getString("Genero", "");
+        estatura = preferencias.getString("Estatura", "");
+        peso = preferencias.getString("Peso", "");
+        email = preferencias.getString("Email", "");
+        tipo_actividad = preferencias.getString("Actividad", "");
+        nacimiento = preferencias.getString("Fecha", "");
+    }
+
+    private void vistas(){
         txtView_Usuario.setText(nombreUsuario);
         txtView_Genero.setText(genero);
         txtView_Estatura.setText(estatura);
         txtView_Peso.setText(peso);
         txtView_Email.setText(email);
         txtView_Actividad.setText(tipo_actividad);
-
-        return root;
+        txtView_Nacimiento.setText(nacimiento);
     }
+
 }

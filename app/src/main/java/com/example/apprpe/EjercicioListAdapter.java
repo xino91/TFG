@@ -1,7 +1,7 @@
 package com.example.apprpe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.modelo.Sesion;
-import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.ui.home.SesionListAdapter;
+import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,6 +21,7 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<EjercicioListAdap
 
     private final LayoutInflater mInflater;
     private List<Ejercicio> mEjercicio;
+    private List<EntrenamientoConEjercicios> mEjercicios;
     private EjercicioListAdapter.OnItemClickListenerEjercicio mlistener;
 
     public EjercicioListAdapter(Context context) {
@@ -50,8 +49,14 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<EjercicioListAdap
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     void setEjercicio(List<Ejercicio> ejercicios){
         mEjercicio = ejercicios;
+        notifyDataSetChanged();
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    void setEjercicios(List<EntrenamientoConEjercicios> ejercicios){
+        mEjercicios = ejercicios;
         notifyDataSetChanged();
     }
 
