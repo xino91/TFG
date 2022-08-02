@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
                 assert data != null;
                 entrenamiento.setNombre_Entrenamiento(Objects.requireNonNull(data.getExtras()).getString("sesion_nombre"));
                 entrenamiento.setRpe_Sesion(Integer.parseInt(data.getExtras().getString("RPE")));
-                entrenamiento.setTipo_Dato(data.getExtras().getString("TipoDato"));
+                entrenamiento.setTipo(data.getExtras().getString("TipoDato"));
                 homeViewModel.insert(entrenamiento);
             }
             else if(resultCode == RESULT_CANCELED){

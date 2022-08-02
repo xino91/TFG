@@ -9,7 +9,7 @@ import androidx.room.Query;
 import com.example.apprpe.modelo.Ejercicio;
 
 import java.util.List;
-
+/*
 @Dao
 public interface EjercicioDao {
 
@@ -23,3 +23,4 @@ public interface EjercicioDao {
     LiveData<List<Ejercicio>> getAlphabetizedEjercicios();
 
 }
+*/

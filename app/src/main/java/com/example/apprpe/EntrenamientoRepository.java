@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.example.apprpe.modelo.Ejercicio;
+import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 import com.example.apprpe.modelo.EntrenamientoDao;
@@ -86,6 +87,12 @@ public class EntrenamientoRepository {
             });
         }
 
+        public void insert(Ent_Realizado ent_realizado) {
+            RPERoomDatabase.databaseWriteExecutor.execute(() ->{
+                entrenamientoDao.insert(ent_realizado);
+            });
+        }
+
         public void update_NumEjerciciosMas(final int id){
             RPERoomDatabase.databaseWriteExecutor.execute(() ->{
                 entrenamientoDao.update_NumEjerciciosMas(id);
@@ -125,6 +132,12 @@ public class EntrenamientoRepository {
         public void deleteSesion(Entrenamiento entrenamiento) {
             RPERoomDatabase.databaseWriteExecutor.execute(()-> {
                 entrenamientoDao.deleteSesion(entrenamiento);
+            });
+        }
+
+        public void deleteEnt_Realizado(){
+            RPERoomDatabase.databaseWriteExecutor.execute(()-> {
+                entrenamientoDao.deleteAllEnt_Realizados();
             });
         }
 }

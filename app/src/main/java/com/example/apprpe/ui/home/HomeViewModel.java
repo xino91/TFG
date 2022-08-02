@@ -7,8 +7,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.apprpe.modelo.Ejercicio;
+import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.EntrenamientoRepository;
+
 
 import java.util.List;
 
@@ -51,12 +53,14 @@ public class HomeViewModel extends AndroidViewModel {
 
     public void insert(Entrenamiento entrenamiento) { mRepository.insert(entrenamiento); }
     public void insert(Ejercicio ejercicio) { mRepository.insert(ejercicio); }
+    public void insert(Ent_Realizado ent_realizado) {mRepository.insert(ent_realizado);}
     public void update_NumEjerciciosMas(int id) { mRepository.update_NumEjerciciosMas(id);}
     public void update_NumEjerciciosMenos(int id) { mRepository.update_NumEjerciciosMenos(id);}
     public void updateEjercicio(Ejercicio ejercicio) { mRepository.updateEjercicio(ejercicio); }
     public void deleteSesion(Entrenamiento entrenamiento) { mRepository.deleteSesion(entrenamiento); }
     public void deleteAllEjercicioSesion(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
+    public void deleteAllEnt_Realizado() {mRepository.deleteEnt_Realizado(); }
     public void deleteAll() { mRepository.deleteAll(); }
 
 

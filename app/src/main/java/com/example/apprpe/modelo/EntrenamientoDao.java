@@ -20,6 +20,9 @@ public interface EntrenamientoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Ejercicio ejercicio);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(Ent_Realizado ent_realizado);
+
     @Query("UPDATE Entrenamiento_table SET Num_ejercicios = Num_ejercicios +1 WHERE Id = :id")
     void update_NumEjerciciosMas(int id);
 
@@ -64,4 +67,11 @@ public interface EntrenamientoDao {
 
     @Query("DELETE FROM ejercicio_table WHERE Sesion_Id = :Id_sesion")
     void deleteAllEjerciciosSesion(int Id_sesion);
+
+    @Query("DELETE FROM entrealizado_table")
+    void deleteAllEnt_Realizados();
+
+    @Delete
+    void deleteAllEnt_Realizados(Ent_Realizado ent_realizado);
+
 }

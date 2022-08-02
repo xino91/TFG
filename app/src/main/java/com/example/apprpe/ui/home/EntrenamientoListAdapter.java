@@ -21,9 +21,7 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<Entrenamiento
     private List<Entrenamiento> mSesiones; // Cached copy of Ejercicios
     private OnItemClickListener mlistener;
 
-    EntrenamientoListAdapter(Context context) {
-        this.mInflater = LayoutInflater.from(context);
-    }
+    EntrenamientoListAdapter(Context context) {this.mInflater = LayoutInflater.from(context);}
 
     @NonNull
     @Override
