@@ -14,38 +14,54 @@ import com.example.apprpe.modelo.Entrenamiento;
 
 
 import java.util.List;
+import java.util.Objects;
 
-public class EntrenamientoListAdapter extends RecyclerView.Adapter<EntrenamientoListAdapter.SesionViewHolder>{
+public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final LayoutInflater mInflater;
-    private List<Entrenamiento> mSesiones; // Cached copy of Ejercicios
+    private List<Entrenamiento> mEntrenamientos; // Cached copy of Ejercicios
     private OnItemClickListener mlistener;
+    private final int TIPO_FUERZA = 0;
+    private final int TIPO_AEROBICO= 1;
 
     EntrenamientoListAdapter(Context context) {this.mInflater = LayoutInflater.from(context);}
 
     @NonNull
     @Override
-    public SesionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-        return new SesionViewHolder(itemView, mlistener);
-    }
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        switch (viewType){
+            case TIPO_FUERZA:
+                View itemView_fuerza = mInflater.inflate(R.layout.recyclerview_item_fuerza, parent, false);
+                return new ViewHolderFuerza(itemView_fuerza, mlistener);
 
-    @Override
-    public void onBindViewHolder(@NonNull SesionViewHolder holder, int position) {
-        if (mSesiones != null) {
-            Entrenamiento current = mSesiones.get(position);
-            holder.textViewID.setText(String.valueOf(current.getId()));
-            holder.textviewNombre.setText(current.getNombre_Entrenamiento());
-            holder.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
-            holder.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
-        } else {
-            // Covers the case of data not being ready yet.
-            holder.textviewNombre.setText("Ninguna Sesion");
+            default:
+                View itemView_aerobico = mInflater.inflate(R.layout.recyclerview_item_aerobico, parent, false);
+                return new ViewHolderAerobico(itemView_aerobico, mlistener);
         }
     }
 
-    void setSesion(List<Entrenamiento> sesiones){
-        mSesiones = sesiones;
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Entrenamiento current = mEntrenamientos.get(position);
+        switch (holder.getItemViewType()){
+            case TIPO_FUERZA:
+                ViewHolderFuerza holderFuerza = (ViewHolderFuerza) holder;
+                holderFuerza.textViewID.setText(String.valueOf(current.getId()));
+                holderFuerza.textviewNombre.setText(current.getNombre_Entrenamiento());
+                holderFuerza.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
+                holderFuerza.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
+                break;
+            case TIPO_AEROBICO:
+                ViewHolderAerobico holderAerobico = (ViewHolderAerobico) holder;
+                holderAerobico.textViewID.setText(String.valueOf(current.getId()));
+                holderAerobico.textviewNombre.setText(current.getNombre_Entrenamiento());
+                holderAerobico.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
+                holderAerobico.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
+        }
+    }
+
+    void setEntrenamiento(List<Entrenamiento> Entrenamientoes){
+        mEntrenamientos = Entrenamientoes;
         notifyDataSetChanged();
     }
 
@@ -53,25 +69,37 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<Entrenamiento
     // mWords has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mSesiones != null)
-            return mSesiones.size();
+        if (mEntrenamientos != null)
+            return mEntrenamientos.size();
         else return 0;
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(Objects.equals(mEntrenamientos.get(position).getTipo(), "Fuerza")){
+            return TIPO_FUERZA;
+        }
+        if(Objects.equals(mEntrenamientos.get(position).getTipo(), "Aeróbico")){
+            return TIPO_AEROBICO;
+        }
+        return 0;
+    }
+
     void setOnItemClickListener(OnItemClickListener listener){
         this.mlistener = listener;
     }
 
     interface OnItemClickListener{
-        void onItemClick(View view, int position, int Id_sesion) throws InterruptedException;
+        void onItemClick(View view, int position, int Id_entrenamiento) throws InterruptedException;
     }
 
-    public class SesionViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolderFuerza extends RecyclerView.ViewHolder{
        private final TextView textViewID;
        private final TextView textviewNombre;
        private final TextView textviewNum;
        private final TextView textviewRPE;
 
-       private SesionViewHolder(View itemView, OnItemClickListener onItemClickListener) {
+       private ViewHolderFuerza(View itemView, OnItemClickListener onItemClickListener) {
            super(itemView);
            textViewID = itemView.findViewById(R.id.Id_textView);
            textviewNombre = itemView.findViewById(R.id.Nombre_textView);
@@ -83,7 +111,7 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<Entrenamiento
                public void onClick(View v) {
                    int pos = getAbsoluteAdapterPosition();
                    try {
-                       mlistener.onItemClick(itemView, pos, mSesiones.get(pos).getId());
+                       mlistener.onItemClick(itemView, pos, mEntrenamientos.get(pos).getId());
                    } catch (InterruptedException e) {
                        e.printStackTrace();
                    }
@@ -91,6 +119,34 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<Entrenamiento
            });
        }
    }
+
+    public class ViewHolderAerobico extends RecyclerView.ViewHolder{
+        private final TextView textViewID;
+        private final TextView textviewNombre;
+        private final TextView textviewNum;
+        private final TextView textviewRPE;
+
+        private ViewHolderAerobico(View itemView, OnItemClickListener onItemClickListener) {
+            super(itemView);
+            textViewID = itemView.findViewById(R.id.Id_textView);
+            textviewNombre = itemView.findViewById(R.id.Nombre_textView);
+            textviewNum = itemView.findViewById(R.id.Num_textView);
+            textviewRPE = itemView.findViewById(R.id.RPE_textView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAbsoluteAdapterPosition();
+                    try {
+                        mlistener.onItemClick(itemView, pos, mEntrenamientos.get(pos).getId());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+
 }
 
 

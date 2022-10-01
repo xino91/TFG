@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
         homeViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
-                adapter.setSesion(entrenamientos);
+                adapter.setEntrenamiento(entrenamientos);
             }
         });
 
@@ -61,9 +61,9 @@ public class HomeFragment extends Fragment {
         //ESCUCHADOR PARA ADAPTADOR ENTRENAMIENTO
         adapter.setOnItemClickListener(new EntrenamientoListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position, int id_sesion) throws InterruptedException {
+            public void onItemClick(View view, int position, int id_entrenamiento) throws InterruptedException {
                 Intent intent = new Intent(getActivity(), VistaEjerciciosActivity.class);
-                Entrenamiento entrenamiento = homeViewModel.getEntrenamiento(id_sesion);
+                Entrenamiento entrenamiento = homeViewModel.getEntrenamiento(id_entrenamiento);
                 intent.putExtra("Position", entrenamiento.getId());
                 startActivity(intent);
             }

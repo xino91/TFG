@@ -8,7 +8,7 @@
     android:clickable="true"
     android:elevation="5dp"
     android:focusable="true"
-    card_view:cardBackgroundColor="#D5D5D5"
+    card_view:cardBackgroundColor="#FFFFFF"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true"
@@ -109,9 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="RPE Objetivo:"
+            android:text="AEROBICO"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/Id_textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
-
