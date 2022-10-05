@@ -34,6 +34,14 @@ public class EntrenamientoRepository {
         // Room executes all queries on a separate thread.
         // Observed LiveData will notify the observer when the data has changed.
         public LiveData<List<Entrenamiento>> getAllEntrenamientos() { return listSesion; }
+        public LiveData<List<Entrenamiento>> getEntrenamientosFuerza() {
+            listSesion = entrenamientoDao.getEntrenamientosFuerza();
+            return listSesion;
+        }
+        public LiveData<List<Entrenamiento>> getEntrenamientosAerobico() {
+            listSesion = entrenamientoDao.getEntrenamientosAerobico();
+            return listSesion;
+        }
 
         public LiveData<List<Ejercicio>> getEntrenamientoConEjercicios(int id) {
             listEntrenamientoConEjercicios = entrenamientoDao.getAllEjercicios_SesionId(id);

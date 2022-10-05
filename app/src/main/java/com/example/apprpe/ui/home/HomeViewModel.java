@@ -17,7 +17,7 @@ import java.util.List;
 public class HomeViewModel extends AndroidViewModel {
 
     private EntrenamientoRepository mRepository;
-    private LiveData<List<Entrenamiento>> listSesiones;
+    private LiveData<List<Entrenamiento>> listEntrenamientos;
     private LiveData<List<Ejercicio>> listEjercicios;
     private List<Ejercicio> listEjercicios2;
     private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios>> EntrenamientoConEjercicios;
@@ -25,10 +25,12 @@ public class HomeViewModel extends AndroidViewModel {
     public HomeViewModel(@NonNull Application application) {
         super(application);
         mRepository = new EntrenamientoRepository(application);
-        listSesiones = mRepository.getAllEntrenamientos();
+        listEntrenamientos = mRepository.getAllEntrenamientos();
     }
 
-    public LiveData<List<Entrenamiento>> getAllEntrenamientos() { return listSesiones; }
+    public LiveData<List<Entrenamiento>> getAllEntrenamientos() { return listEntrenamientos; }
+    public LiveData<List<Entrenamiento>> getEntrenamientosFuerza() { return mRepository.getEntrenamientosFuerza(); }
+    public LiveData<List<Entrenamiento>> getEntrenamientosAerobico() { return mRepository.getEntrenamientosAerobico(); }
 
     public LiveData<List<Ejercicio>> getEntrenamientoConEjercicios(int id) {
         listEjercicios = mRepository.getEntrenamientoConEjercicios(id);

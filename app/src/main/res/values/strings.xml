@@ -162,4 +162,8 @@
     <string name="play">Play</string>
     <string name="siguiente_ejercicio">Siguiente ejercicio</string>
     <string name="finalizar">Finalizar Entrenamiento</string>
+    <string name="fuerza">Fuerza</string>
+    <string name="aer_bico">Aeróbico</string>
+    <string name="Todo">Todo</string>
+    <string name="Todos">Todos</string>
 </resources>

@@ -13,6 +13,8 @@ import com.example.apprpe.R;
 import com.example.apprpe.modelo.Entrenamiento;
 
 
+import org.w3c.dom.EntityReference;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -60,8 +62,8 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    void setEntrenamiento(List<Entrenamiento> Entrenamientoes){
-        mEntrenamientos = Entrenamientoes;
+    void setEntrenamientos(List<Entrenamiento> Entrenamientos){
+        mEntrenamientos = Entrenamientos;
         notifyDataSetChanged();
     }
 

@@ -1,10 +1,15 @@
 package com.example.apprpe.ui.home;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +35,9 @@ public class HomeFragment extends Fragment {
     private static final int RESULT_CANCELED = 0;
     private HomeViewModel homeViewModel;
     private RecyclerView recyclerView;
+    private Button botonFuerza;
+    private Button botonAerobico;
+    private Button botonTodo;
     private FloatingActionButton fab;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,18 +46,55 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerview_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        enlazarVistas(root);
 
         EntrenamientoListAdapter adapter = new EntrenamientoListAdapter(getContext());
         recyclerView.setAdapter(adapter);
         homeViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
-                adapter.setEntrenamiento(entrenamientos);
+                adapter.setEntrenamientos(entrenamientos);
+            }
+        });
+
+        botonFuerza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Fuerza");
+                homeViewModel.getEntrenamientosFuerza().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                    @Override
+                    public void onChanged(List<Entrenamiento> entrenamientos) {
+                        adapter.setEntrenamientos(entrenamientos);
+                    }
+                });
+            }
+        });
+        botonAerobico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Aerobico");
+                homeViewModel.getEntrenamientosAerobico().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                    @Override
+                    public void onChanged(List<Entrenamiento> entrenamientos) {
+                        adapter.setEntrenamientos(entrenamientos);
+                    }
+                });
+            }
+        });
+        botonTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Todo");
+                homeViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                    @Override
+                    public void onChanged(List<Entrenamiento> entrenamientos) {
+                        adapter.setEntrenamientos(entrenamientos);
+                    }
+                });
             }
         });
 
         //BOTON FLOTANTE Y ESCUCHADOR
-        fab = root.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +114,33 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    private void enlazarVistas(View root) {
+        fab = root.findViewById(R.id.floatingActionButton);
+        botonFuerza = root.findViewById(R.id.buttonFuerza);
+        botonAerobico = root.findViewById(R.id.buttonAerobico);
+        botonTodo = root.findViewById(R.id.buttonTodo);
+    }
+
+    private void CambiarBackgroundBotones(Button botonFuerza, Button botonAerobico, Button botonTodo, String botonPulsado) {
+        switch (botonPulsado){
+            case "Fuerza":
+                botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));
+                botonAerobico.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
+                botonTodo.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
+                break;
+            case "Aerobico":
+                botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
+                botonAerobico.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));
+                botonTodo.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
+                break;
+            case "Todo":
+                botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
+                botonAerobico.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
+                botonTodo.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));
+                break;
+        }
     }
 
     //Recibe una sesion de otra activity(InsertarSesion_activity) para realizar el insert en la BD
