@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/button_custom.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/button_filter_home.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/button_filter_home_off.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/circulo.xml" value="0.139" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.139" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_stop_24.xml" value="0.139" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_editar_ejercicio.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_infoentrenamiento_realizado.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_iniciar_entrenamiento.xml" value="0.264" />
