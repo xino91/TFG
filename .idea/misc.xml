@@ -11,13 +11,15 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.139" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_stop_24.xml" value="0.139" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_user_3_24dp.xml" value="0.15" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/next.xml" value="0.1535" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_editar_ejercicio.xml" value="0.2526041666666667" />
-        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_infoentrenamiento_realizado.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_infoentrenamiento_realizado.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_iniciar_entrenamiento.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_main.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_first.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_perfil.xml" value="0.2" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_perfil.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/inicio_activity.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_ejercicio.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_item.xml" value="0.2526041666666667" />

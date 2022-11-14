@@ -46,6 +46,9 @@ public interface EntrenamientoDao {
     @Query("SELECT * FROM Entrenamiento_table WHERE Tipo='Aeróbico'")
     LiveData<List<Entrenamiento>> getEntrenamientosAerobico();
 
+    @Query("SELECT * FROM entrealizado_table")
+    LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados();
+
     @Transaction
     @Query("SELECT * FROM ejercicio_table WHERE Sesion_Id=:id")
     LiveData<List<Ejercicio>> getAllEjercicios_SesionId(int id);

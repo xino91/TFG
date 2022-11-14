@@ -166,4 +166,13 @@
     <string name="aer_bico">Aeróbico</string>
     <string name="Todo">Todo</string>
     <string name="Todos">Todos</string>
+    <string name="fin_entrenamiento">Entrenamiento terminado</string>
+    <string name="carga">Carga</string>
+    <string name="datos_entrenamiento">Datos Entrenamiento</string>
+    <string name="duracion">Duración</string>
+    <string name="ndice_de_monoton_a">Índice de Monotonía</string>
+    <string name="terminar">Terminar</string>
+    <string name="segundos">segundos</string>
+    <string name="hora_finalizaci_n">Hora Finalización</string>
+    <string name="hora_inicio">Hora Inicio</string>
 </resources>

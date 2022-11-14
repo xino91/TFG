@@ -17,6 +17,7 @@ public class EntrenamientoRepository {
 
         private EntrenamientoDao entrenamientoDao;
         private LiveData<List<Entrenamiento>> listSesion;
+        private LiveData<List<Ent_Realizado>> listEntrenamietosRealizados;
         private LiveData<List<Ejercicio>> listEntrenamientoConEjercicios;
         private List<Ejercicio> listEntrenamientoConEjercicios2;
         private Ejercicio _ejercicio;
@@ -27,6 +28,7 @@ public class EntrenamientoRepository {
             RPERoomDatabase db = RPERoomDatabase.getInstanceDatabase(application);
             entrenamientoDao = db.entrenamientoDao();
             listSesion = entrenamientoDao.getAllSesiones();
+            listEntrenamietosRealizados = entrenamientoDao.getAllEntrenamientosRealizados();
             _ejercicio = new Ejercicio();
             _entrenamiento = new Entrenamiento();
         }
@@ -42,6 +44,8 @@ public class EntrenamientoRepository {
             listSesion = entrenamientoDao.getEntrenamientosAerobico();
             return listSesion;
         }
+
+    public LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados() { return listEntrenamietosRealizados; }
 
         public LiveData<List<Ejercicio>> getEntrenamientoConEjercicios(int id) {
             listEntrenamientoConEjercicios = entrenamientoDao.getAllEjercicios_SesionId(id);

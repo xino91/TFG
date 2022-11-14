@@ -13,7 +13,8 @@
         android:theme="@style/Theme.AppRPE">
         <activity
             android:name=".infoentrenamientoRealizado"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/fin_entrenamiento"/>
         <activity
             android:name=".ui.home.InsertarNuevoEjercicio"
             android:label="@string/InsertarNuevoEjercicio_activity" />
