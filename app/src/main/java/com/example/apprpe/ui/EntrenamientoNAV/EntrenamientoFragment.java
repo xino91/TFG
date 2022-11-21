@@ -1,10 +1,6 @@
-package com.example.apprpe.ui.home;
+package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.ColorSpace;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +24,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 import java.util.Objects;
 
-public class HomeFragment extends Fragment {
+public class EntrenamientoFragment extends Fragment {
 
     private static final int INSERT_SESION_ACTIVITY_CODE = 1;
     private static final int RESULT_OK = -1;
     private static final int RESULT_CANCELED = 0;
-    private HomeViewModel homeViewModel;
+    private EntrenamientoViewModel entrenamientoViewModel;
     private RecyclerView recyclerView;
     private Button botonFuerza;
     private Button botonAerobico;
@@ -45,12 +41,12 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = root.findViewById(R.id.recyclerview_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         enlazarVistas(root);
 
         EntrenamientoListAdapter adapter = new EntrenamientoListAdapter(getContext());
         recyclerView.setAdapter(adapter);
-        homeViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+        entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
                 adapter.setEntrenamientos(entrenamientos);
@@ -61,7 +57,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Fuerza");
-                homeViewModel.getEntrenamientosFuerza().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                entrenamientoViewModel.getEntrenamientosFuerza().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
                     @Override
                     public void onChanged(List<Entrenamiento> entrenamientos) {
                         adapter.setEntrenamientos(entrenamientos);
@@ -73,7 +69,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Aerobico");
-                homeViewModel.getEntrenamientosAerobico().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                entrenamientoViewModel.getEntrenamientosAerobico().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
                     @Override
                     public void onChanged(List<Entrenamiento> entrenamientos) {
                         adapter.setEntrenamientos(entrenamientos);
@@ -85,7 +81,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Todo");
-                homeViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
                     @Override
                     public void onChanged(List<Entrenamiento> entrenamientos) {
                         adapter.setEntrenamientos(entrenamientos);
@@ -108,7 +104,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position, int id_entrenamiento) throws InterruptedException {
                 Intent intent = new Intent(getActivity(), VistaEjerciciosActivity.class);
-                Entrenamiento entrenamiento = homeViewModel.getEntrenamiento(id_entrenamiento);
+                Entrenamiento entrenamiento = entrenamientoViewModel.getEntrenamiento(id_entrenamiento);
                 intent.putExtra("Position", entrenamiento.getId());
                 startActivity(intent);
             }
@@ -153,7 +149,7 @@ public class HomeFragment extends Fragment {
                 entrenamiento.setNombre_Entrenamiento(Objects.requireNonNull(data.getExtras()).getString("sesion_nombre"));
                 entrenamiento.setRpe_Sesion(Integer.parseInt(data.getExtras().getString("RPE")));
                 entrenamiento.setTipo(data.getExtras().getString("TipoDato"));
-                homeViewModel.insert(entrenamiento);
+                entrenamientoViewModel.insert(entrenamiento);
             }
             else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();

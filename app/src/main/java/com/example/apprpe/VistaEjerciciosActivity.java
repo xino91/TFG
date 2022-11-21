@@ -5,8 +5,8 @@ import android.os.Bundle;
 
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Entrenamiento;
-import com.example.apprpe.ui.home.HomeViewModel;
-import com.example.apprpe.ui.home.InsertarNuevoEjercicio;
+import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
+import com.example.apprpe.ui.EntrenamientoNAV.InsertarNuevoEjercicio;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +30,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     private static final int INSERT_EJERCICIO_CODE = 1;
     private static final int RESULT_EJERCICO_OK = -1;
     private static final int RESULT_EJERCICIO_CANCELED = 0;
-    HomeViewModel homeViewModel;
+    EntrenamientoViewModel entrenamientoViewModel;
     RecyclerView recyclerView;
     int Id_sesion;
     Entrenamiento entrenamiento;
@@ -46,7 +46,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         EjercicioListAdapter adapter = new EjercicioListAdapter(this);
         recyclerView.setAdapter(adapter);
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         //Recogemos el ID del entrenamiento
         getIdEntrenamiento();
 
@@ -59,7 +59,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             }
         });
 
-        homeViewModel.getEntrenamientoConEjercicios(Id_sesion).observe(this, new Observer<List<Ejercicio>>() {
+        entrenamientoViewModel.getEntrenamientoConEjercicios(Id_sesion).observe(this, new Observer<List<Ejercicio>>() {
             @Override
             public void onChanged(List<Ejercicio> Ejercicios) {
                 adapter.setEjercicio(Ejercicios);
@@ -72,7 +72,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             public void onItemClick(View view, int position, int Id_ejercicio) throws InterruptedException {
 
                 Intent i = new Intent(getApplication(), EditarEjercicio.class);
-                Ejercicio ejercicio = new Ejercicio(homeViewModel.getEjercicio(Id_ejercicio));
+                Ejercicio ejercicio = new Ejercicio(entrenamientoViewModel.getEjercicio(Id_ejercicio));
 
                 i.putExtra("NombreEjercicio", ejercicio.getNombre());
                 i.putExtra("Sets", ejercicio.getSets());
@@ -112,8 +112,8 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     }
 
     private void eliminarSesion() {
-        homeViewModel.deleteAllEjercicioSesion(entrenamiento);
-        homeViewModel.deleteSesion(entrenamiento);
+        entrenamientoViewModel.deleteAllEjercicioSesion(entrenamiento);
+        entrenamientoViewModel.deleteSesion(entrenamiento);
         finish();
     }
 
@@ -131,8 +131,8 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             ejercicio.setRepeticiones(Integer.parseInt(data.getExtras().getString("Repeticiones")));
             ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
             ejercicio.setSesion_Id(Id_sesion);
-            homeViewModel.insert(ejercicio); //INSERTAMOS
-            homeViewModel.update_NumEjerciciosMas(Id_sesion); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+            entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
+            entrenamientoViewModel.update_NumEjerciciosMas(Id_sesion); //ACTUALIZAMOS Numero Ejercicios de la Sesión
         }
         else if(resultCode == RESULT_EJERCICIO_CANCELED){
             Toast.makeText(getApplication(), "Cancelado", Toast.LENGTH_SHORT).show();

@@ -1,4 +1,4 @@
-package com.example.apprpe.ui.home;
+package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Entrenamiento;
 
-
-import org.w3c.dom.EntityReference;
 
 import java.util.List;
 import java.util.Objects;
@@ -59,6 +57,7 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
                 holderAerobico.textviewNombre.setText(current.getNombre_Entrenamiento());
                 holderAerobico.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
                 holderAerobico.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
+                break;
         }
     }
 

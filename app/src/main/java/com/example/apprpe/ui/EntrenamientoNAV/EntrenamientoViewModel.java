@@ -1,4 +1,4 @@
-package com.example.apprpe.ui.home;
+package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.app.Application;
 
@@ -14,7 +14,7 @@ import com.example.apprpe.EntrenamientoRepository;
 
 import java.util.List;
 
-public class HomeViewModel extends AndroidViewModel {
+public class EntrenamientoViewModel extends AndroidViewModel {
 
     private EntrenamientoRepository mRepository;
     private LiveData<List<Entrenamiento>> listEntrenamientos;
@@ -22,7 +22,7 @@ public class HomeViewModel extends AndroidViewModel {
     private List<Ejercicio> listEjercicios2;
     private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios>> EntrenamientoConEjercicios;
 
-    public HomeViewModel(@NonNull Application application) {
+    public EntrenamientoViewModel(@NonNull Application application) {
         super(application);
         mRepository = new EntrenamientoRepository(application);
         listEntrenamientos = mRepository.getAllEntrenamientos();

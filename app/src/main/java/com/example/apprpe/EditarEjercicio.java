@@ -15,14 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.ui.home.HomeViewModel;
+import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 
 public class EditarEjercicio extends AppCompatActivity {
 
     Ejercicio ejercicio;
     EditText edt_Nombre, edt_Sets, edt_Repeticiones, edt_RPE;
     Button button_Cancelar, button_Editar;
-    HomeViewModel homeViewModel;
+    EntrenamientoViewModel entrenamientoViewModel;
 
 
     @Override
@@ -30,7 +30,7 @@ public class EditarEjercicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_ejercicio);
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
 
         edt_Nombre = findViewById(R.id.editTextNombre_EjercicioEditar);
         edt_Sets = findViewById(R.id.editTextTNum_SetEditar);
@@ -74,7 +74,7 @@ public class EditarEjercicio extends AppCompatActivity {
                     ejercicio.setSets(Integer.parseInt(String.valueOf(edt_Sets.getText())));
                     ejercicio.setRepeticiones(Integer.parseInt(String.valueOf(edt_Repeticiones.getText())));
                     ejercicio.setRpe(Integer.parseInt(String.valueOf(edt_RPE.getText())));
-                    homeViewModel.updateEjercicio(ejercicio);
+                    entrenamientoViewModel.updateEjercicio(ejercicio);
                 }
                 finish();
             }
@@ -98,8 +98,8 @@ public class EditarEjercicio extends AppCompatActivity {
     }
 
     private void eliminarEjercicio() {
-        homeViewModel.deleteEjercicio(ejercicio);
-        homeViewModel.update_NumEjerciciosMenos(ejercicio.getSesion_Id());
+        entrenamientoViewModel.deleteEjercicio(ejercicio);
+        entrenamientoViewModel.update_NumEjerciciosMenos(ejercicio.getSesion_Id());
         Toast.makeText(getApplicationContext(), "Eliminado con Éxito", Toast.LENGTH_SHORT).show();
         finish();
     }

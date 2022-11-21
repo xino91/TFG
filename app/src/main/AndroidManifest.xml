@@ -16,7 +16,7 @@
             android:exported="false"
             android:label="@string/fin_entrenamiento"/>
         <activity
-            android:name=".ui.home.InsertarNuevoEjercicio"
+            android:name=".ui.EntrenamientoNAV.InsertarNuevoEjercicio"
             android:label="@string/InsertarNuevoEjercicio_activity" />
         <activity
             android:name=".EditarEjercicio"
@@ -39,7 +39,7 @@
             android:label="@string/pantalla_configuraci_n"
             android:theme="@style/Theme.AppRPE" />
         <activity
-            android:name=".ui.home.InsertarEntrenamiento_activity"
+            android:name=".ui.EntrenamientoNAV.InsertarEntrenamiento_activity"
             android:label="@string/title_insertar_sesion_activity" />
         <activity
             android:name=".Iniciar_entrenamiento"

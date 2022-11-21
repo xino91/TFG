@@ -1,4 +1,4 @@
-package com.example.apprpe.ui.home;
+package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Intent;
 import android.os.Bundle;

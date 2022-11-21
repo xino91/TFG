@@ -7,20 +7,17 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.apprpe.modelo.Ejercicio;
-import com.example.apprpe.ui.home.HomeViewModel;
+import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,7 +29,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
     }
     private Chronometer cronometro;
     private int Id_entrenamiento;
-    private HomeViewModel homeViewModel;
+    private EntrenamientoViewModel entrenamientoViewModel;
     private Temporizador temporizador = Temporizador.PARADO;
     private long pauseoffset = 0;
     private FloatingActionButton fab_play, fab_stop;
@@ -55,9 +52,9 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
         enlazarVistas();
         //cronometro.stop();
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         try {
-            listEjercicios = homeViewModel.getListEntrenamientoConEjercicios(Id_entrenamiento);
+            listEjercicios = entrenamientoViewModel.getListEntrenamientoConEjercicios(Id_entrenamiento);
             modificarVistas();
         } catch (InterruptedException e) {
             e.printStackTrace();

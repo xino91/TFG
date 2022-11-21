@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AppRPE</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Entrenamientos</string>
+    <string name="title_dashboard">Realizados</string>
+    <string name="title_notifications">Progreso</string>
     <string name="title_perfil">Perfil</string>
     <string name="todo">TODO</string>
     <string name="title_insertar_sesion_activity">Insertar Sesión</string>

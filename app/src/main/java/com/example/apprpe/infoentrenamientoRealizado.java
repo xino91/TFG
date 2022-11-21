@@ -1,7 +1,6 @@
 package com.example.apprpe;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -13,14 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apprpe.modelo.Ent_Realizado;
-import com.example.apprpe.ui.home.HomeFragment;
-import com.example.apprpe.ui.home.HomeViewModel;
+import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 import java.sql.Date;
 import java.util.Calendar;
 
 public class infoentrenamientoRealizado extends AppCompatActivity {
 
-    private HomeViewModel homeViewModel;
+    private EntrenamientoViewModel entrenamientoViewModel;
     Ent_Realizado entrenamiento_realizado;
     private TextView view_fecha, view_h_inicio, view_h_fin, view_carga, view_duracion, view_ind_monotonia;
     private Date date;
@@ -58,7 +56,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 entrenamiento_realizado = new Ent_Realizado(date, duracion, 0, hora_inicio, hora_finalizacion, 0,0 );
-                homeViewModel.insert(entrenamiento_realizado);
+                entrenamientoViewModel.insert(entrenamiento_realizado);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
                 startActivity(intent);
@@ -74,7 +72,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         view_carga = findViewById(R.id.txtView_Carga);
         view_ind_monotonia = findViewById(R.id.txtView_indice);
         butt_terminar = findViewById(R.id.bt_terminar);
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
     }
 
     void mostrarVistas() {
