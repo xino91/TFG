@@ -11,7 +11,7 @@ public class EntrenamientoConEjercicios {
     @Embedded public Entrenamiento entrenamiento;
     @Relation(
             parentColumn = "Id",
-            entityColumn = "Sesion_Id"
+            entityColumn = "entrenamiento_Id"
     )
     public List<Ejercicio> list_ejercicios;
 

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.apprpe.modelo.DB.RPERoomDatabase;
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;

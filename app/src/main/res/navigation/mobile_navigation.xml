@@ -21,11 +21,11 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.apprpe.ui.ProgresoNAV.ProgresoFragment"
         android:label="Progreso"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_progreso" />
 
     <fragment
         android:id="@+id/navigation_perfil"
         android:name="com.example.apprpe.ui.Perfil.PerfilFragment"
         android:label="@string/title_perfil"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_progreso" />
 </navigation>

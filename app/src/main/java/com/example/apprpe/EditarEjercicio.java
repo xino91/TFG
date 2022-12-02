@@ -46,7 +46,7 @@ public class EditarEjercicio extends AppCompatActivity {
         ejercicio.setRepeticiones(extras.getInt("Repeticiones", 0));
         ejercicio.setRpe(extras.getInt("RPE", 0));
         ejercicio.setId_Ejercicio(extras.getInt("ID_EJERCICIO", 0));
-        ejercicio.setSesion_Id(extras.getInt("ID_SESION", 0));
+        ejercicio.setEntrenamiento_Id(extras.getInt("ID_SESION", 0));
 
         edt_Nombre.setText(ejercicio.getNombre());
         edt_Sets.setText(String.valueOf(ejercicio.getSets()));
@@ -99,7 +99,7 @@ public class EditarEjercicio extends AppCompatActivity {
 
     private void eliminarEjercicio() {
         entrenamientoViewModel.deleteEjercicio(ejercicio);
-        entrenamientoViewModel.update_NumEjerciciosMenos(ejercicio.getSesion_Id());
+        entrenamientoViewModel.update_NumEjerciciosMenos(ejercicio.getEntrenamiento_Id());
         Toast.makeText(getApplicationContext(), "Eliminado con Éxito", Toast.LENGTH_SHORT).show();
         finish();
     }

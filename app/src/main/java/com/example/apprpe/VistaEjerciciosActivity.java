@@ -79,7 +79,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                 i.putExtra("Repeticiones", ejercicio.getRepeticiones());
                 i.putExtra("RPE", ejercicio.getRpe());
                 i.putExtra("ID_EJERCICIO", ejercicio.getId_Ejercicio());
-                i.putExtra("ID_SESION", ejercicio.getSesion_Id());
+                i.putExtra("ID_SESION", ejercicio.getEntrenamiento_Id());
                 startActivity(i);
             }
         });
@@ -130,7 +130,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             ejercicio.setSets(Integer.parseInt(data.getExtras().getString("Set")));
             ejercicio.setRepeticiones(Integer.parseInt(data.getExtras().getString("Repeticiones")));
             ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
-            ejercicio.setSesion_Id(Id_sesion);
+            ejercicio.setEntrenamiento_Id(Id_sesion);
             entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
             entrenamientoViewModel.update_NumEjerciciosMas(Id_sesion); //ACTUALIZAMOS Numero Ejercicios de la Sesión
         }

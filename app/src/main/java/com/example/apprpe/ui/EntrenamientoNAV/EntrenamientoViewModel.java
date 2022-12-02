@@ -22,7 +22,7 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     private List<Ejercicio> listEjercicios2;
     private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios>> EntrenamientoConEjercicios;
 
-    public EntrenamientoViewModel(@NonNull Application application) {
+    public EntrenamientoViewModel(@NonNull Application application) throws InterruptedException {
         super(application);
         mRepository = new EntrenamientoRepository(application);
         listEntrenamientos = mRepository.getAllEntrenamientos();

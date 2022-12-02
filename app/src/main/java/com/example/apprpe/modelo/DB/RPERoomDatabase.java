@@ -1,4 +1,4 @@
-package com.example.apprpe;
+package com.example.apprpe.modelo.DB;
 
 import android.content.Context;
 
@@ -18,17 +18,17 @@ import com.example.apprpe.modelo.EntrenamientoDao;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class}, version = 2, exportSchema = false)
+@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract  class RPERoomDatabase extends RoomDatabase {
 
-    public abstract EntrenamientoDao entrenamientoDao();
-
     private static volatile RPERoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static RPERoomDatabase getInstanceDatabase(final Context context) {
+    public abstract EntrenamientoDao entrenamientoDao();
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+    public static RPERoomDatabase getInstanceDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (RPERoomDatabase.class) {
                 if (INSTANCE == null) {

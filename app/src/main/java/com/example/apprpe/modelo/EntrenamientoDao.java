@@ -40,6 +40,8 @@ public interface EntrenamientoDao {
 
     @Query("SELECT * from Entrenamiento_table")
     LiveData<List<Entrenamiento>> getAllSesiones();
+    @Query("SELECT * from Entrenamiento_table")
+    List<Entrenamiento> getAllSesiones2();
 
     @Query("SELECT * FROM Entrenamiento_table WHERE Tipo='Fuerza'")
     LiveData<List<Entrenamiento>> getEntrenamientosFuerza();
@@ -50,10 +52,10 @@ public interface EntrenamientoDao {
     LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados();
 
     @Transaction
-    @Query("SELECT * FROM ejercicio_table WHERE Sesion_Id=:id")
+    @Query("SELECT * FROM ejercicio_table WHERE entrenamiento_Id=:id")
     LiveData<List<Ejercicio>> getAllEjercicios_SesionId(int id);
     @Transaction
-    @Query("SELECT * FROM ejercicio_table WHERE Sesion_Id=:id")
+    @Query("SELECT * FROM ejercicio_table WHERE entrenamiento_Id=:id")
     List<Ejercicio> getAllEjerciciosList_SesionId(int id);
 
     @Transaction
@@ -73,7 +75,7 @@ public interface EntrenamientoDao {
     @Query("DELETE FROM Entrenamiento_table")
     void deleteAll();
 
-    @Query("DELETE FROM ejercicio_table WHERE Sesion_Id = :Id_sesion")
+    @Query("DELETE FROM ejercicio_table WHERE entrenamiento_Id = :Id_sesion")
     void deleteAllEjerciciosSesion(int Id_sesion);
 
     @Query("DELETE FROM entrealizado_table")

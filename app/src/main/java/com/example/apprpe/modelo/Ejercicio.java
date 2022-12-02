@@ -1,11 +1,7 @@
 package com.example.apprpe.modelo;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.ColumnInfo;
 import androidx.room.PrimaryKey;
-
-import java.util.Objects;
 
 @Entity(tableName= "Ejercicio_table")
 public class Ejercicio {
@@ -16,14 +12,14 @@ public class Ejercicio {
     private int Repeticiones;
     private int Sets;
     private int Rpe;
-    private int Sesion_Id;
+    private int entrenamiento_Id;
 
-    public Ejercicio(String nombre, int repeticiones, int sets, int rpe, int sesion_id) {
+    public Ejercicio(String nombre, int repeticiones, int sets, int rpe, int entrenamientoId) {
         Nombre = nombre;
         Repeticiones = repeticiones;
         Sets = sets;
         Rpe = rpe;
-        Sesion_Id = sesion_id;
+        entrenamiento_Id = entrenamientoId;
     }
 
     public Ejercicio(){}
@@ -34,14 +30,14 @@ public class Ejercicio {
         Repeticiones = ejercicio.getRepeticiones();
         Sets = ejercicio.getSets();
         Rpe = ejercicio.getRpe();
-        Sesion_Id = ejercicio.getSesion_Id();
+        entrenamiento_Id = ejercicio.getEntrenamiento_Id();
     }
 
     public int getId_Ejercicio() { return Id_Ejercicio; }
     public void setId_Ejercicio(int id_ejercicio) { Id_Ejercicio = id_ejercicio; }
 
-    public int getSesion_Id() { return Sesion_Id; }
-    public void setSesion_Id(int sesion_Id) { Sesion_Id = sesion_Id; }
+    public int getEntrenamiento_Id() { return entrenamiento_Id; }
+    public void setEntrenamiento_Id(int entrenamiento_Id) { this.entrenamiento_Id = entrenamiento_Id; }
 
     public String getNombre() { return Nombre; }
     public void setNombre(String nombre) { Nombre = nombre; }
