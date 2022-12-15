@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,14 +47,12 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
         switch (holder.getItemViewType()){
             case TIPO_FUERZA:
                 ViewHolderFuerza holderFuerza = (ViewHolderFuerza) holder;
-                holderFuerza.textViewID.setText(String.valueOf(current.getId()));
                 holderFuerza.textviewNombre.setText(current.getNombre_Entrenamiento());
                 holderFuerza.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
                 holderFuerza.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
                 break;
             case TIPO_AEROBICO:
                 ViewHolderAerobico holderAerobico = (ViewHolderAerobico) holder;
-                holderAerobico.textViewID.setText(String.valueOf(current.getId()));
                 holderAerobico.textviewNombre.setText(current.getNombre_Entrenamiento());
                 holderAerobico.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
                 holderAerobico.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
@@ -95,14 +94,14 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     public class ViewHolderFuerza extends RecyclerView.ViewHolder{
-       private final TextView textViewID;
+        private final ImageView imageView;
        private final TextView textviewNombre;
        private final TextView textviewNum;
        private final TextView textviewRPE;
 
        private ViewHolderFuerza(View itemView, OnItemClickListener onItemClickListener) {
            super(itemView);
-           textViewID = itemView.findViewById(R.id.Id_textView);
+           imageView = itemView.findViewById(R.id.imageView3);
            textviewNombre = itemView.findViewById(R.id.Nombre_textView);
            textviewNum = itemView.findViewById(R.id.Num_textView);
            textviewRPE = itemView.findViewById(R.id.RPE_textView);
@@ -122,14 +121,14 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
    }
 
     public class ViewHolderAerobico extends RecyclerView.ViewHolder{
-        private final TextView textViewID;
+        private final ImageView imageView;
         private final TextView textviewNombre;
         private final TextView textviewNum;
         private final TextView textviewRPE;
 
         private ViewHolderAerobico(View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
-            textViewID = itemView.findViewById(R.id.Id_textView);
+            imageView = itemView.findViewById(R.id.imageView3);
             textviewNombre = itemView.findViewById(R.id.Nombre_textView);
             textviewNum = itemView.findViewById(R.id.Num_textView);
             textviewRPE = itemView.findViewById(R.id.RPE_textView);

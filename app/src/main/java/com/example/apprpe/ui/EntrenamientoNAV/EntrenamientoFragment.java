@@ -56,7 +56,7 @@ public class EntrenamientoFragment extends Fragment {
         botonFuerza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Fuerza");
+                CambiarBackgroundBotonesFiltro(botonFuerza,botonAerobico,botonTodo, "Fuerza");
                 entrenamientoViewModel.getEntrenamientosFuerza().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
                     @Override
                     public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -68,7 +68,7 @@ public class EntrenamientoFragment extends Fragment {
         botonAerobico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Aerobico");
+                CambiarBackgroundBotonesFiltro(botonFuerza,botonAerobico,botonTodo, "Aerobico");
                 entrenamientoViewModel.getEntrenamientosAerobico().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
                     @Override
                     public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -80,7 +80,7 @@ public class EntrenamientoFragment extends Fragment {
         botonTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CambiarBackgroundBotones(botonFuerza,botonAerobico,botonTodo, "Todo");
+                CambiarBackgroundBotonesFiltro(botonFuerza,botonAerobico,botonTodo, "Todo");
                 entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
                     @Override
                     public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -119,7 +119,7 @@ public class EntrenamientoFragment extends Fragment {
         botonTodo = root.findViewById(R.id.buttonTodo);
     }
 
-    private void CambiarBackgroundBotones(Button botonFuerza, Button botonAerobico, Button botonTodo, String botonPulsado) {
+    private void CambiarBackgroundBotonesFiltro(Button botonFuerza, Button botonAerobico, Button botonTodo, String botonPulsado) {
         switch (botonPulsado){
             case "Fuerza":
                 botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));

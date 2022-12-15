@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AppRPE</string>
     <string name="title_home">Entrenamientos</string>
-    <string name="title_dashboard">Realizados</string>
-    <string name="title_notifications">Progreso</string>
+    <string name="title_dashboard">Progreso</string>
+    <string name="title_notifications">Estadísticas</string>
     <string name="title_perfil">Perfil</string>
     <string name="todo">TODO</string>
     <string name="title_insertar_sesion_activity">Insertar Sesión</string>
@@ -15,7 +15,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="insertar_sesi_n">Insertar Sesión</string>
-    <string name="titulo_de_la_sesi_n">Titulo de la Sesión:</string>
+    <string name="titulo_de_la_sesi_n">Titulo del entrenamiento:</string>
     <string name="titulo">Titulo</string>
     <string name="rpe_de_la_sesi_n">RPE de la Sesión</string>
     <string name="rpe">RPE Objetivo</string>
@@ -175,4 +175,10 @@
     <string name="segundos">segundos</string>
     <string name="hora_finalizaci_n">Hora Finalización</string>
     <string name="hora_inicio">Hora Inicio</string>
+    <string name="n_mero_ejercicios">Nº Ejercicios:</string>
+    <string name="tiempo">Tiempo:</string>
+    <string name="num">Num</string>
+    <string name="rpe_objetivo">RPE Objetivo:</string>
+    <string name="aerobico">AEROBICO</string>
+    <string name="fuerzaa">FUERZA</string>
 </resources>

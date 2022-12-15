@@ -108,14 +108,12 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public class ViewHolderAerobicoRealizado extends RecyclerView.ViewHolder{
-        private final TextView textViewID;
         private final TextView textviewNombre;
         private final TextView textviewNum;
         private final TextView textviewRPE;
 
         private ViewHolderAerobicoRealizado(View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
-            textViewID = itemView.findViewById(R.id.Id_textView);
             textviewNombre = itemView.findViewById(R.id.Nombre_textView);
             textviewNum = itemView.findViewById(R.id.Num_textView);
             textviewRPE = itemView.findViewById(R.id.RPE_textView);
