@@ -181,4 +181,5 @@
     <string name="rpe_objetivo">RPE Objetivo:</string>
     <string name="aerobico">AEROBICO</string>
     <string name="fuerzaa">FUERZA</string>
+    <string name="no_has_realizado_ning_n_entrenamiento">No has realizado ningún entrenamiento</string>
 </resources>

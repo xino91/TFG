@@ -43,12 +43,12 @@ public interface EntrenamientoDao {
     @Query("SELECT * from Entrenamiento_table ORDER BY Id ASC")
     LiveData<List<Entrenamiento>> getAllSesionesASC();
 
-    @Query("SELECT * FROM Entrenamiento_table WHERE Tipo='Fuerza'")
+    @Query("SELECT * FROM entrenamiento_table WHERE Tipo='Fuerza' ORDER BY Id DESC")
     LiveData<List<Entrenamiento>> getEntrenamientosFuerza();
-    @Query("SELECT * FROM Entrenamiento_table WHERE Tipo='Aeróbico'")
+    @Query("SELECT * FROM Entrenamiento_table WHERE Tipo='Aeróbico' ORDER BY Id DESC")
     LiveData<List<Entrenamiento>> getEntrenamientosAerobico();
 
-    @Query("SELECT * FROM entrealizado_table")
+    @Query("SELECT * FROM entrealizado_table ORDER BY Id DESC")
     LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados();
 
     @Transaction

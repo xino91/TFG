@@ -1,4 +1,4 @@
-package com.example.apprpe.modelo;
+package com.example.apprpe.modelo.DB;
 
 import androidx.room.TypeConverter;
 

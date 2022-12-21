@@ -24,4 +24,6 @@ public class EntRealizadoViewModel extends AndroidViewModel {
     public LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados() { return listEntrenamientosRealizados; }
     //public LiveData<List<Ent_Realizado>> getEntrenamientosFuerzaRealizados() { return mRepository.getEntrenamientosFuerza(); }
     //public LiveData<List<Ent_Realizado>> getEntrenamientosAerobicoRealizados() { return mRepository.getEntrenamientosAerobico(); }
+
+    public void deleteAllEnt_Realizado() {mRepository.deleteEnt_Realizado(); }
 }

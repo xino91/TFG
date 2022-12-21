@@ -35,6 +35,7 @@ public class EntrenamientoFragment extends Fragment {
     private Button botonAerobico;
     private Button botonTodo;
     private FloatingActionButton fab;
+    EntrenamientoListAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -44,7 +45,7 @@ public class EntrenamientoFragment extends Fragment {
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         enlazarVistas(root);
 
-        EntrenamientoListAdapter adapter = new EntrenamientoListAdapter(getContext());
+        adapter = new EntrenamientoListAdapter(getContext());
         recyclerView.setAdapter(adapter);
         entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
@@ -53,6 +54,18 @@ public class EntrenamientoFragment extends Fragment {
             }
         });
 
+        botonTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarBackgroundBotonesFiltro(botonFuerza,botonAerobico,botonTodo, "Todo");
+                entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
+                    @Override
+                    public void onChanged(List<Entrenamiento> entrenamientos) {
+                        adapter.setEntrenamientos(entrenamientos);
+                    }
+                });
+            }
+        });
         botonFuerza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,18 +90,6 @@ public class EntrenamientoFragment extends Fragment {
                 });
             }
         });
-        botonTodo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CambiarBackgroundBotonesFiltro(botonFuerza,botonAerobico,botonTodo, "Todo");
-                entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
-                    @Override
-                    public void onChanged(List<Entrenamiento> entrenamientos) {
-                        adapter.setEntrenamientos(entrenamientos);
-                    }
-                });
-            }
-        });
 
         //BOTON FLOTANTE Y ESCUCHADOR
         fab.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,8 @@ public class EntrenamientoFragment extends Fragment {
             public void onItemClick(View view, int position, int id_entrenamiento) throws InterruptedException {
                 Intent intent = new Intent(getActivity(), VistaEjerciciosActivity.class);
                 Entrenamiento entrenamiento = entrenamientoViewModel.getEntrenamiento(id_entrenamiento);
-                intent.putExtra("Position", entrenamiento.getId());
+                intent.putExtra("POSICION", entrenamiento.getId());
+                intent.putExtra("TIPO", entrenamiento.getTipo());
                 startActivity(intent);
             }
         });
@@ -150,6 +152,7 @@ public class EntrenamientoFragment extends Fragment {
                 entrenamiento.setRpe_Sesion(Integer.parseInt(data.getExtras().getString("RPE")));
                 entrenamiento.setTipo(data.getExtras().getString("TipoDato"));
                 entrenamientoViewModel.insert(entrenamiento);
+                adapter.notificar();
             }
             else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();

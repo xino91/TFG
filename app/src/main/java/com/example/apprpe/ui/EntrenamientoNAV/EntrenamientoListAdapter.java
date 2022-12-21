@@ -64,6 +64,9 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
         mEntrenamientos = Entrenamientos;
         notifyDataSetChanged();
     }
+    void notificar(){
+        notifyDataSetChanged();
+    }
 
     // getItemCount() is called many times, and when it is first called,
     // mWords has not been updated (means initially, it's null, and we can't return null).

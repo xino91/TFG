@@ -62,7 +62,6 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     public void deleteSesion(Entrenamiento entrenamiento) { mRepository.deleteSesion(entrenamiento); }
     public void deleteAllEjercicioSesion(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
-    public void deleteAllEnt_Realizado() {mRepository.deleteEnt_Realizado(); }
     public void deleteAll() { mRepository.deleteAll(); }
 
 

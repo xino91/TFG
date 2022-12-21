@@ -12,7 +12,6 @@ public class Entrenamiento {
     private int Num_ejercicios;
     private int Rpe_Sesion;
     private String Tipo;
-    private int Duracion;
 
     public Entrenamiento(int id, String nombre_Entrenamiento, int num_ejercicios, int rpe_Sesion, String tipo, int duracion) {
         Id = id;
@@ -20,7 +19,6 @@ public class Entrenamiento {
         Num_ejercicios = num_ejercicios;
         Rpe_Sesion = rpe_Sesion;
         Tipo = tipo;
-        Duracion = duracion;
     }
     public Entrenamiento(int id, String nombre_Entrenamiento, int num_ejercicios, int rpe_Sesion) {
         Id = id;
@@ -51,7 +49,6 @@ public class Entrenamiento {
     //public List<Ejercicio> getList_Sesion() { return list_Sesion; }
     public int getRpe_Sesion() { return Rpe_Sesion; }
     public String getTipo() { return Tipo; }
-    public int getDuracion() { return Duracion; }
 
     //Setter
     public void setId(int id) { Id = id; }
@@ -61,5 +58,4 @@ public class Entrenamiento {
     //public void setList_Sesion(Ejercicio ejercicio) { this.list_Sesion.add(ejercicio); }
     public void setRpe_Sesion(int rpe_Sesion) { Rpe_Sesion = rpe_Sesion; }
     public void setTipo(String tipo) { Tipo = tipo; }
-    public void setDuracion(int duracion) { Duracion = duracion; }
 }

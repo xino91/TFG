@@ -16,6 +16,10 @@ import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 import java.sql.Date;
 import java.util.Calendar;
 
+/**
+ * Activity que muestra los datos de un entrenamiento finalizado
+ */
+
 public class infoentrenamientoRealizado extends AppCompatActivity {
 
     private EntrenamientoViewModel entrenamientoViewModel;
@@ -24,7 +28,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
     private Date date;
     private long duracion;
     private Button butt_terminar;
-    private String hora_inicio, hora_finalizacion;
+    private String hora_inicio, hora_finalizacion, tipo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,30 +36,33 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         setContentView(R.layout.activity_infoentrenamiento_realizado);
         enlazarVistas();
         obtenerDatosAnteriorActivity();
-        Bundle extras = getIntent().getExtras();
-        duracion = extras.getLong("DURACION_EJERCICIO", 0);
-
-        date = new Date(Calendar.getInstance().getTimeInMillis());
         mostrarVistas();
         escuchadorBotonTerminar();
     }
 
+    /**
+     * Función que recoge los datos del activity anterior y los guarda en las variables..
+     * duracion del entrenamiento, hora de inicio y finalización y el día en que se realizó.
+     */
     private void obtenerDatosAnteriorActivity() {
         Bundle extras = getIntent().getExtras();
         duracion = extras.getLong("DURACION_EJERCICIO", 0);
         hora_inicio = extras.getString("HORA_INICIO", "");
         hora_finalizacion = extras.getString("HORA_FINALIZACION", "");
+        tipo = extras.getString("TIPO", "");
         date = new Date(Calendar.getInstance().getTimeInMillis());
-        Log.i("HORA_INICIO", hora_inicio);
-        Log.i("HORA_FINALIZACION", hora_finalizacion);
+        //Log.i("HORA_INICIO", hora_inicio);
+        //Log.i("HORA_FINALIZACION", hora_finalizacion);
     }
 
-    //Funcion que crea un Intent para volver a la pantalla principal
+    /**
+     * Funcion que crea un Intent para volver a la pantalla principal
+     */
     private void escuchadorBotonTerminar() {
         butt_terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entrenamiento_realizado = new Ent_Realizado(date, duracion, 0, hora_inicio, hora_finalizacion, 0,0 );
+                entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, 0,hora_inicio, hora_finalizacion, 0);
                 entrenamientoViewModel.insert(entrenamiento_realizado);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
@@ -64,6 +71,9 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         });
     }
 
+    /**
+     * Función para vincular las Vistas
+     */
     void enlazarVistas() {
         view_fecha = findViewById(R.id.txtView_fecha);
         view_h_inicio = findViewById(R.id.txtView_h_inicio);
@@ -75,20 +85,25 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
     }
 
+    /**
+     * Función para mostrar los datos en View vinculados
+     */
     void mostrarVistas() {
-        Log.i("DURACION", String.valueOf(duracion));
-        Log.i("DIA", String.valueOf(date.getDate()) + "/" + String.valueOf(date.getMonth()+1) + "/" + String.valueOf(date.getYear()));
+        //Log.i("DURACION", String.valueOf(duracion));
+        //Log.i("DIA", String.valueOf(date.getDate()) + "/" + String.valueOf(date.getMonth()+1) + "/" + String.valueOf(date.getYear()));
         view_fecha.setText(date.toString());
         view_duracion.setText(String.valueOf(duracion));
         view_h_inicio.setText(String.valueOf(hora_inicio));
         view_h_fin.setText(String.valueOf(hora_finalizacion));
     }
 
+    /**
+     * Si se pulsa botón atrás volveremos al activity MAIN sin guardar los datos del entrenamiento
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         Toast.makeText(this, "Cancelado, datos no guardados", Toast.LENGTH_LONG).show();
         startActivity(intent);
-
     }
 }

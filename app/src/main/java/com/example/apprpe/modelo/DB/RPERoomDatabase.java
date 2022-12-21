@@ -9,7 +9,6 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.apprpe.modelo.Converters;
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;

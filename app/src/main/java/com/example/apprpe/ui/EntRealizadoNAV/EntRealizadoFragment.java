@@ -22,10 +22,12 @@ public class EntRealizadoFragment extends Fragment {
 
     private EntRealizadoViewModel entRealizadoViewModel;
     private RecyclerView recyclerView;
+    private TextView textVacio;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        textVacio = root.findViewById(R.id.textView_vacio);
 
         recyclerView = root.findViewById(R.id.recyclerview_ent_realizado);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -36,6 +38,8 @@ public class EntRealizadoFragment extends Fragment {
         entRealizadoViewModel.getAllEntrenamientosRealizados().observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
             public void onChanged(List<Ent_Realizado> ent_realizados) {
+                if(ent_realizados.size() == 0){textVacio.setVisibility(View.VISIBLE);}
+                else{textVacio.setVisibility(View.GONE);}
                 adapter.setEntrenamientosRealizados(ent_realizados);
             }
         });

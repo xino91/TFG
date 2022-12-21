@@ -48,13 +48,17 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         //Recogemos el ID del entrenamiento
-        getIdEntrenamiento();
+        try {
+            getEntrenamiento();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         button_iniciar_entrenamiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), Iniciar_entrenamiento.class);
-                intent.putExtra("Position", Id_sesion);
+                intent.putExtra("POSICION", Id_sesion);
                 startActivity(intent);
             }
         });
@@ -111,7 +115,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
         startActivityForResult(intent, INSERT_EJERCICIO_CODE);
     }
 
-    private void eliminarSesion() {
+    private void eliminarSesion(){
         entrenamientoViewModel.deleteAllEjercicioSesion(entrenamiento);
         entrenamientoViewModel.deleteSesion(entrenamiento);
         finish();
@@ -139,8 +143,9 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
         }
     }
 
-    public void getIdEntrenamiento(){
+    public void getEntrenamiento() throws InterruptedException {
         Bundle extras = getIntent().getExtras();
-        Id_sesion = extras.getInt("Position", -1);
+        Id_sesion = extras.getInt("POSICION", -1);
+        entrenamiento = entrenamientoViewModel.getEntrenamiento(Id_sesion);
     }
 }
