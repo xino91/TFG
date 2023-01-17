@@ -15,7 +15,7 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.apprpe.ui.EntRealizadoNAV.EntRealizadoFragment"
         android:label="Entrenamientos Realizados"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_entrealizado" />
 
     <fragment
         android:id="@+id/navigation_notifications"

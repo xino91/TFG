@@ -5,7 +5,7 @@
     <string name="title_notifications">Estadísticas</string>
     <string name="title_perfil">Perfil</string>
     <string name="todo">TODO</string>
-    <string name="title_insertar_sesion_activity">Insertar Sesión</string>
+    <string name="title_insertar_sesion_activity">Nuevo Entrenamiento</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -17,7 +17,7 @@
     <string name="insertar_sesi_n">Insertar Sesión</string>
     <string name="titulo_de_la_sesi_n">Titulo del entrenamiento:</string>
     <string name="titulo">Titulo</string>
-    <string name="rpe_de_la_sesi_n">RPE de la Sesión</string>
+    <string name="rpe_de_la_sesi_n">RPE del entrenamiento</string>
     <string name="rpe">RPE Objetivo</string>
     <string name="insertar">Insertar</string>
     <string name="id">ID</string>
@@ -39,15 +39,15 @@
     <string name="peso_en_kg">Peso en Kg</string>
     <string name="pantalla_configuraci_n">Pantalla Configuración</string>
     <string name="siguiente">Siguiente</string>
-    <string name="insertar_ejercicio">Insertar Ejercicio</string>
-    <string name="editar_ejercicio">Editar Ejercicio</string>
+    <string name="insertar_ejercicio">Crear nuevo ejercicio</string>
+    <string name="editar_ejercicio">Editar ejercicio</string>
     <string name="title_activity_insertar_nuevo_ejercicio">InsertarNuevoEjercicio</string>
-    <string name="nuevo_ejercicio">Nuevo Ejercicio</string>
-    <string name="nombre_del_ejercicio">Nombre del Ejercicio</string>
+    <string name="nuevo_ejercicio">Nuevo ejercicio</string>
+    <string name="nombre_del_ejercicio">Nombre del ejercicio</string>
     <string name="n_mero_sesiones">Número Sesiones</string>
     <string name="n_mero_de_sets">Número de Sets</string>
     <string name="n_mero_de_series">Número de series</string>
-    <string name="n_mero_de_repeticiones">Número de Repeticiones</string>
+    <string name="n_mero_de_repeticiones">Número de repeticiones</string>
     <string name="rpe_del_ejercicio">Rpe del Ejercicio</string>
     <string name="repeticiones">Repeticiones</string>
     <string name="guardar">Guardar</string>
@@ -60,9 +60,9 @@
     <string name="RPE">RPE</string>
     <string name="guardar_edicion">Guardar Edicion</string>
     <string name="eliminar_ejercicio">Eliminar ejercicio</string>
-    <string name="Editar_ejercicio_activity">Editar Ejercicio</string>
-    <string name="InsertarNuevoEjercicio_activity">Insertar Nuevo Ejercicio</string>
-    <string name="eliminar_sesion">Eliminar Sesión</string>
+    <string name="Editar_ejercicio_activity">Edición de Ejercicio</string>
+    <string name="InsertarNuevoEjercicio_activity">Crear Nuevo Ejercicio</string>
+    <string name="eliminar_sesion">Eliminar Entrenamiento</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="fecha">%1$/%2$/%3$</string>
     <string name="muestra_ejercicio"> %1$/%2$ </string>
@@ -178,8 +178,14 @@
     <string name="n_mero_ejercicios">Nº Ejercicios:</string>
     <string name="tiempo">Tiempo:</string>
     <string name="num">Num</string>
-    <string name="rpe_objetivo">RPE Objetivo:</string>
+    <string name="rpe_objetivo">RPE Objetivo</string>
     <string name="aerobico">AEROBICO</string>
     <string name="fuerzaa">FUERZA</string>
     <string name="no_has_realizado_ning_n_entrenamiento">No has realizado ningún entrenamiento</string>
+    <string name="n_de_series">Número de series</string>
+    <string name="escribe_tu_nombre_aqu">Escribe tu nombre aquí</string>
+    <string name="no_hay_guardado_ning_n_entrenamiento">No hay guardado ningún entrenamiento</string>
+    <string name="nombre_del_entrenamiento">nombre del entrenamiento</string>
+    <string name="tipo">Tipo</string>
+    <string name="no_hay_ning_n_ejercicio_guardado">No hay ningún ejercicio guardado</string>
 </resources>

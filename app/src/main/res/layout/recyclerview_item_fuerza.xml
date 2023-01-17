@@ -10,24 +10,25 @@
     android:elevation="5dp"
     android:focusable="true"
     card_view:cardBackgroundColor="#FFFFFF"
-    card_view:cardCornerRadius="4dp"
+    card_view:cardCornerRadius="7dp"
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true"
     card_view:layout_constraintEnd_toEndOf="parent"
-    card_view:layout_constraintHorizontal_bias="1.0"
     card_view:layout_constraintStart_toStartOf="parent"
     card_view:layout_constraintTop_toTopOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="6dp">
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
         <TextView
             android:id="@+id/Nombre_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
             android:text="@string/titulo"
             android:textSize="20sp"
             card_view:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -48,16 +49,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/RPE"
-            android:textSize="35sp"
+            android:textSize="30sp"
             card_view:layout_constraintBottom_toBottomOf="@+id/textView_title_numejercicios"
             card_view:layout_constraintEnd_toEndOf="@+id/textView9"
+            card_view:layout_constraintHorizontal_bias="0.625"
             card_view:layout_constraintStart_toStartOf="@+id/textView9"
-            card_view:layout_constraintTop_toBottomOf="@+id/textView9" />
+            card_view:layout_constraintTop_toBottomOf="@+id/textView9"
+            card_view:layout_constraintVertical_bias="0.666" />
 
         <TextView
             android:id="@+id/textView_title_numejercicios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:text="@string/n_mero_ejercicios"
             android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="@+id/imageView3"
@@ -67,21 +71,21 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="10dp"
             android:text="@string/rpe_objetivo"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/Nombre_textView" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/fuerzaa"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:srcCompat="@mipmap/ejercicio_fuerza"
-            android:contentDescription="@string/fuerzaa" />
+            card_view:srcCompat="@mipmap/ejercicio_fuerza" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 

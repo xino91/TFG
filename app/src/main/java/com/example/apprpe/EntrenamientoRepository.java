@@ -81,7 +81,7 @@ public class EntrenamientoRepository {
                 //Log.e("REPOSITORY_REPES", String.valueOf(_sesion.getRepeticiones()));
                 //Log.e("REPOSITORY_RPE", String.valueOf(_sesion.getRpe()));
             });
-            RPERoomDatabase.databaseWriteExecutor.awaitTermination(500000, TimeUnit.MICROSECONDS);
+            RPERoomDatabase.databaseWriteExecutor.awaitTermination(50000, TimeUnit.MICROSECONDS);
             //Log.e("REPOSITORY_", String.valueOf(_sesion.getNombre()));
             return _entrenamiento;
         }

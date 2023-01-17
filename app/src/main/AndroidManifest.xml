@@ -21,28 +21,24 @@
             android:label="@string/Editar_ejercicio_activity" />
         <activity
             android:name=".VistaEjerciciosActivity"
-            android:label="@string/title_activity_vista_ejercicio"
-            android:theme="@style/Theme.AppRPE" />
+            android:label="@string/title_activity_vista_ejercicio" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".Inicio_activity"
-            android:label="@string/pantalla_configuraci_n"
-            android:theme="@style/Theme.AppRPE" />
+            android:label="@string/pantalla_configuraci_n" />
         <activity
             android:name=".ui.EntrenamientoNAV.InsertarEntrenamiento_activity"
             android:label="@string/title_insertar_sesion_activity" />
         <activity
             android:name=".Iniciar_entrenamiento"
-            android:label="@string/iniciar_entrenamiento"
-            android:theme="@style/Theme.AppRPE" />
+            android:label="@string/iniciar_entrenamiento" />
     </application>
 
 </manifest>

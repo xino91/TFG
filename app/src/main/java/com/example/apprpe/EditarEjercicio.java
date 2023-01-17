@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class EditarEjercicio extends AppCompatActivity {
 

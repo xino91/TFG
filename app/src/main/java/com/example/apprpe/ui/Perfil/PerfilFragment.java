@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.apprpe.R;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.common.Feature;
 
 import java.io.File;
 import java.net.URI;
@@ -30,7 +33,6 @@ public class PerfilFragment extends Fragment {
     SharedPreferences preferencias;
     TextView txtView_Usuario, txtView_Genero, txtView_Email;
     TextView txtView_Estatura, txtView_Peso, txtView_Nacimiento;
-    TextView txtView_Actividad;
     String nombreUsuario;
     String genero;
     String estatura;
@@ -65,7 +67,6 @@ public class PerfilFragment extends Fragment {
         txtView_Estatura = root.findViewById(R.id.textView_Estatura);
         txtView_Peso = root.findViewById(R.id.textView_Peso);
         txtView_Email = root.findViewById(R.id.textView_Email);
-        txtView_Actividad = root.findViewById(R.id.textView_Actividad);
         txtView_Nacimiento = root.findViewById(R.id.TextView_fecha);
         imagen = root.findViewById(R.id.profile_image);
     }
@@ -80,7 +81,7 @@ public class PerfilFragment extends Fragment {
         email = preferencias.getString("Email", "");
         tipo_actividad = preferencias.getString("Actividad", "");
         nacimiento = preferencias.getString("Fecha", "");
-        path = preferencias.getString("Path","");
+            path = preferencias.getString("Path","");
     }
 
     private void vistas(){
@@ -89,14 +90,19 @@ public class PerfilFragment extends Fragment {
         txtView_Estatura.setText(estatura);
         txtView_Peso.setText(peso);
         txtView_Email.setText(email);
-        txtView_Actividad.setText(tipo_actividad);
         txtView_Nacimiento.setText(nacimiento);
         CargarImagen();
     }
 
     private void CargarImagen() {
-        File file = new File(path);
-        imagen.setImageURI(Uri.fromFile(file));
+        if(path.isEmpty()){
+            imagen.setImageResource(R.mipmap.perfil_pordefecto);
+            imagen.setBorderColor(Color.BLACK);
+        }
+        else {
+            File file = new File(path);
+            imagen.setImageURI(Uri.fromFile(file));
+        }
     }
 
     private void elegirImagen() {
@@ -118,7 +124,7 @@ public class PerfilFragment extends Fragment {
             SharedPreferences.Editor editor = preferencias.edit();
             editor.putString("Path", uri.getEncodedPath());
             editor.apply();
-            Log.e("Hola2", uri.getEncodedPath());
+            //Log.e("Hola2", uri.getEncodedPath());
         }
     }
 

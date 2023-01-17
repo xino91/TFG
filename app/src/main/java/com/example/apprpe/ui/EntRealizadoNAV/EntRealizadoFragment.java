@@ -26,7 +26,7 @@ public class EntRealizadoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_entrealizado, container, false);
         textVacio = root.findViewById(R.id.textView_vacio);
 
         recyclerView = root.findViewById(R.id.recyclerview_ent_realizado);

@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/fondo_insert_edit"
     tools:context=".VistaEjerciciosActivity">
     <!---
     <com.google.android.material.appbar.AppBarLayout
@@ -47,9 +48,9 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:listitem="@layout/recyclerview_ejercicio" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_inicio_entrenamiento"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -58,6 +59,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textVacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxEms="10"
+        android:minLines="2"
+        android:text="@string/no_hay_ning_n_ejercicio_guardado"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!---
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

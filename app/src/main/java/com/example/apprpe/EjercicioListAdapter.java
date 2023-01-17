@@ -42,7 +42,7 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<EjercicioListAdap
             holder.textViewTitulo.setText(current.getNombre());
             holder.textviewSets.setText(String.valueOf(current.getSets()));
             holder.textviewRepeticiones.setText(String.valueOf(current.getRepeticiones()));
-            holder.textviewRPE.setText(String.valueOf(current.getRpe()));
+            //holder.textviewRPE.setText(String.valueOf(current.getRpe()));
         } else {
             // Covers the case of data not being ready yet.
             holder.textViewTitulo.setText("Ningun Ejercicio");
@@ -79,14 +79,14 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<EjercicioListAdap
         private final TextView textViewTitulo;
         private final TextView textviewSets;
         private final TextView textviewRepeticiones;
-        private final TextView textviewRPE;
+        //private final TextView textviewRPE;
 
         public EjercicioViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.nombre_titulo);
             textviewSets = itemView.findViewById(R.id.numero_sets);
             textviewRepeticiones = itemView.findViewById(R.id.numero_repeticiones);
-            textviewRPE = itemView.findViewById(R.id.textView_num_RPE);
+            //textviewRPE = itemView.findViewById(R.id.textView_num_RPE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

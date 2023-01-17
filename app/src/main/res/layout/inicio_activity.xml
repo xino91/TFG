@@ -10,7 +10,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:scrollbars="vertical"
+            android:padding="15dp">
 
                 <TextView
                     android:id="@+id/textView_inicio_titulo"
@@ -24,28 +25,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView_nombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="60dp"
-                    android:text="@string/nombre_inicio"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/Edit_nombre"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/InputLayout_tuNombre"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:hint="@string/escriba_su_nombre"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_nombre" />
+                    android:layout_marginTop="25dp"
+                    android:hint="@string/escribe_tu_nombre_aqu"
+                    app:layout_constraintStart_toStartOf="@+id/textView_inicio_titulo"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_inicio_titulo">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/Edit_nombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text">
+                        </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView2_genero"
@@ -55,8 +51,8 @@
                     android:text="@string/g_nero"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/Edit_nombre"
-                    app:layout_constraintTop_toBottomOf="@+id/Edit_nombre" />
+                    app:layout_constraintStart_toStartOf="@+id/InputLayout_tuNombre"
+                    app:layout_constraintTop_toBottomOf="@+id/InputLayout_tuNombre" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"

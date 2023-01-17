@@ -17,8 +17,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class Inicio_activity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class Inicio_activity extends AppCompatActivity {
     String nombreUsuario, genero, email = "";
     String estatura, peso = "";
     String nacimiento;
-    EditText edt_Nombre;
+    TextInputEditText edt_Nombre;
     RadioButton radbutton_masculino;
     RadioButton radbutton_femenino;
     EditText edt_Estatura;
@@ -92,7 +95,7 @@ public class Inicio_activity extends AppCompatActivity {
     }
 
     private void recogerDatos(){
-        nombreUsuario = edt_Nombre.getText().toString();
+        nombreUsuario = Objects.requireNonNull(edt_Nombre.getText()).toString();
         System.out.println(nombreUsuario);
         estatura = edt_Estatura.getText().toString();
         peso = edt_Peso.getText().toString();
@@ -110,7 +113,7 @@ public class Inicio_activity extends AppCompatActivity {
             radbutton_femenino.setError("Obligatorio");
             return false;
         } else if (edt_Estatura.getText().length() != 3) {
-            edt_Estatura.setError("Campo obligatorio y solo tres caracteres");
+            edt_Estatura.setError("Campo obligatorio en cm, solo tres carácteres");
             return false;
         } else if (edt_Peso.getText().length() < 2 || edt_Peso.getText().length() > 3) {
             edt_Peso.setError("Campo obligatorio, dos o tres caracteres");
