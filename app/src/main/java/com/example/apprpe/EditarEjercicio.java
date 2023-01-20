@@ -1,5 +1,6 @@
 package com.example.apprpe;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -92,7 +94,7 @@ public class EditarEjercicio extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.eliminar_ejercicio) {
-            eliminarEjercicio();
+            dialogoConfirmacionDelete();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -103,5 +105,27 @@ public class EditarEjercicio extends AppCompatActivity {
         entrenamientoViewModel.update_NumEjerciciosMenos(ejercicio.getEntrenamiento_Id());
         Toast.makeText(getApplicationContext(), "Eliminado con Éxito", Toast.LENGTH_SHORT).show();
         finish();
+    }
+    /**
+     * Función que muestra un dialogAlert para la confirmación del botón eliminar ejercicio
+     */
+    public void dialogoConfirmacionDelete(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.DialogBasico);
+        alertDialog.setTitle("Confirmación");
+        alertDialog.setMessage("¿Está seguro que desea eliminar el ejercicio?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        eliminarEjercicio();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 }

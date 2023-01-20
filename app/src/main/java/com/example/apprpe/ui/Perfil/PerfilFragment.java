@@ -9,6 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,8 +19,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 
+import com.example.apprpe.Inicio_activity;
 import com.example.apprpe.R;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.common.Feature;
@@ -28,7 +33,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PerfilFragment extends Fragment {
+public class PerfilFragment extends Fragment implements MenuProvider {
 
     SharedPreferences preferencias;
     TextView txtView_Usuario, txtView_Genero, txtView_Email;
@@ -46,6 +51,7 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
+        requireActivity().addMenuProvider(this, getViewLifecycleOwner());
 
         inicializarComponenetes(root);
         obtenerDatosFicheroPreferencias();
@@ -59,6 +65,20 @@ public class PerfilFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.menu_perfil, menu);
+    }
+
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        if(menuItem.getItemId() == R.id.action_editar){
+            editarPerfil();
+            return true;
+        }
+        return false;
     }
 
     private void inicializarComponenetes(View root) {
@@ -81,7 +101,7 @@ public class PerfilFragment extends Fragment {
         email = preferencias.getString("Email", "");
         tipo_actividad = preferencias.getString("Actividad", "");
         nacimiento = preferencias.getString("Fecha", "");
-            path = preferencias.getString("Path","");
+        path = preferencias.getString("Path","");
     }
 
     private void vistas(){
@@ -126,6 +146,11 @@ public class PerfilFragment extends Fragment {
             editor.apply();
             //Log.e("Hola2", uri.getEncodedPath());
         }
+    }
+
+    private void editarPerfil() {
+        Intent intent = new Intent(getContext(), Inicio_activity.class);
+        startActivity(intent);
     }
 
 }

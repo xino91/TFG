@@ -1,6 +1,7 @@
 package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,10 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
             return TIPO_AEROBICO;
         }
         return 0;
+    }
+
+    public int getId(int pos){
+        return mEntrenamientos.get(pos).getId();
     }
 
     void setOnItemClickListener(OnItemClickListener listener){

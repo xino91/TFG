@@ -143,7 +143,7 @@ public class EntrenamientoRepository {
 
         }
 
-        public void deleteSesion(Entrenamiento entrenamiento) {
+        public void deleteEntrenamiento(Entrenamiento entrenamiento) {
             RPERoomDatabase.databaseWriteExecutor.execute(()-> {
                 entrenamientoDao.deleteSesion(entrenamiento);
             });

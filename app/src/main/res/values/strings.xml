@@ -188,4 +188,5 @@
     <string name="nombre_del_entrenamiento">nombre del entrenamiento</string>
     <string name="tipo">Tipo</string>
     <string name="no_hay_ning_n_ejercicio_guardado">No hay ningún ejercicio guardado</string>
+    <string name="editar_datos">editar datos</string>
 </resources>

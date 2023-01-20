@@ -1,6 +1,7 @@
 package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +12,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,9 +26,12 @@ import com.example.apprpe.VistaEjerciciosActivity;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.Objects;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class EntrenamientoFragment extends Fragment {
 
@@ -67,7 +73,7 @@ public class EntrenamientoFragment extends Fragment {
             }
         });
 
-        //BOTON FLOTANTE Y ESCUCHADOR
+        //BOTON FLOTANTE, ESCUCHADOR
         escuchadorBotonFlotante();
 
         //ESCUCHADOR PARA ADAPTADOR ENTRENAMIENTO
@@ -81,8 +87,51 @@ public class EntrenamientoFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         return root;
     }
+
+    /**
+     * Función que permite el deslizamiento a derecha o izquierda en el recyclerView para la eliminación de un entrenamiento
+     */
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAbsoluteAdapterPosition();
+            int id = adapter.getId(position);
+            try {
+                Entrenamiento entrenamiento = entrenamientoViewModel.getEntrenamiento(id);
+                entrenamientoViewModel.deleteEntrenamiento(entrenamiento);
+                Snackbar.make(recyclerView, "" , Snackbar.LENGTH_LONG).setAction("DESHACER", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        entrenamientoViewModel.insert(entrenamiento);
+                    }
+                }).show();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(),R.color.rojo))
+                    .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_24)
+                    .addSwipeLeftLabel("ELIMINAR")
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
 
     public void ObserverTODO(){
         entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
@@ -111,6 +160,10 @@ public class EntrenamientoFragment extends Fragment {
                 adapter.setEntrenamientos(entrenamientos);
             }
         });
+    }
+
+    public void recyclerviewSwipe() {
+
     }
 
 

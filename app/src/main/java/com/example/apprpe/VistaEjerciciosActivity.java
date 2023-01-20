@@ -112,7 +112,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                 return true;
             }
             if(id == R.id.menu_eliminar_sesion){
-                dialogoConfirmacion();
+                dialogoConfirmacionDelete();
                 return true;
             }
         return false;
@@ -129,11 +129,11 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     }
 
     /**
-     * Función que elimina el entrenamiento por completo
+     * Función que elimina el entrenamiento por completo, eliminará todos sus ejercicios
      */
     private void eliminarEntrenamiento(){
         entrenamientoViewModel.deleteAllEjercicioSesion(entrenamiento);
-        entrenamientoViewModel.deleteSesion(entrenamiento);
+        entrenamientoViewModel.deleteEntrenamiento(entrenamiento);
         finish();
     }
 
@@ -185,7 +185,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     /**
      * Función que muestra un dialogAlert para la confirmación del botón eliminar entrenamiento
      */
-    public void dialogoConfirmacion(){
+    public void dialogoConfirmacionDelete(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.DialogBasico);
         alertDialog.setTitle("Confirmación");
         alertDialog.setMessage("¿Está seguro que desea eliminar el entrenamiento?")
