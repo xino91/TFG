@@ -1,6 +1,7 @@
 package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -61,9 +62,7 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     public void update_NumEjerciciosMenos(int id) { mRepository.update_NumEjerciciosMenos(id);}
     public void updateEjercicio(Ejercicio ejercicio) { mRepository.updateEjercicio(ejercicio); }
     public void deleteEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteEntrenamiento(entrenamiento); }
-    public void deleteAllEjercicioSesion(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
+    public void deleteAllEjerciciosEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
     public void deleteAll() { mRepository.deleteAll(); }
-
-
 }

@@ -58,6 +58,7 @@ public class EntrenamientoFragment extends Fragment {
 
         adapter = new EntrenamientoListAdapter(getContext());
         recyclerView.setAdapter(adapter);
+        //recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
         ObserverTODO();
         chipGroup.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
@@ -95,12 +96,16 @@ public class EntrenamientoFragment extends Fragment {
     }
 
     /**
-     * Función que permite el deslizamiento a derecha o izquierda en el recyclerView para la eliminación de un entrenamiento
+     * ItemtouchHelper -> Clase de utilidad que permite el deslizamiento a derecha, izquierda, arriba o abajo
+     * en el recyclerView para crear utilidades de borrar o mover un elemento
      */
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
+            int pos_viewHolder = viewHolder.getAbsoluteAdapterPosition();
+            int pos_target = target.getAbsoluteAdapterPosition();
+            adapter.intercambiarFilas(pos_viewHolder, pos_target);
+            return true;
         }
 
         @Override
@@ -109,7 +114,9 @@ public class EntrenamientoFragment extends Fragment {
             int id = adapter.getId(position);
             try {
                 Entrenamiento entrenamiento = entrenamientoViewModel.getEntrenamiento(id);
+                entrenamientoViewModel.deleteAllEjerciciosEntrenamiento(entrenamiento);
                 entrenamientoViewModel.deleteEntrenamiento(entrenamiento);
+                //Snackbar para deshacer el borrado
                 Snackbar.make(recyclerView, "" , Snackbar.LENGTH_LONG).setAction("DESHACER", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -124,8 +131,9 @@ public class EntrenamientoFragment extends Fragment {
         @Override
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(),R.color.rojo))
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(),R.color.boton_home))
                     .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_24)
+                    .setSwipeLeftLabelColor(R.color.black)
                     .addSwipeLeftLabel("ELIMINAR")
                     .create()
                     .decorate();
@@ -134,6 +142,7 @@ public class EntrenamientoFragment extends Fragment {
     };
 
     public void ObserverTODO(){
+        Log.i("TODO", "TODO");
         entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -145,6 +154,7 @@ public class EntrenamientoFragment extends Fragment {
     }
 
     public void ObserverFUERZA(){
+        Log.i("FUERZA", "FUERZA");
         entrenamientoViewModel.getEntrenamientosFuerza().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -154,6 +164,7 @@ public class EntrenamientoFragment extends Fragment {
     }
 
     public void ObserverAEROBICO(){
+        Log.i("AEROBICO", "AEROBICO");
         entrenamientoViewModel.getEntrenamientosAerobico().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -161,11 +172,6 @@ public class EntrenamientoFragment extends Fragment {
             }
         });
     }
-
-    public void recyclerviewSwipe() {
-
-    }
-
 
     /***
      * Recibe un entrenamiento de otra activity(InsertarEntrenamiento_activity) para realizar el insert en la BD
@@ -177,11 +183,10 @@ public class EntrenamientoFragment extends Fragment {
                 Entrenamiento entrenamiento = new Entrenamiento();
                 assert data != null;
                 entrenamiento.setNombre_Entrenamiento(Objects.requireNonNull(data.getExtras()).getString("sesion_nombre"));
-                entrenamiento.setRpe_Sesion(Integer.parseInt(data.getExtras().getString("RPE")));
+                entrenamiento.setRpe_Objetivo(Integer.parseInt(data.getExtras().getString("RPE")));
                 entrenamiento.setTipo(data.getExtras().getString("TipoDato"));
                 entrenamientoViewModel.insert(entrenamiento);
-                Log.i("INSERT", "sdfsfd");
-                ObserverTODO();
+                Log.i("INSERT", "INSERT");
             }
             else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();
@@ -201,6 +206,7 @@ public class EntrenamientoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        chipGroup.check(R.id.buttonTodo);
         Log.i("RESUME", "RESUME");
     }
 
@@ -224,7 +230,6 @@ public class EntrenamientoFragment extends Fragment {
     public void ocultar_TextVacio(){
         textVacio.setVisibility(View.GONE);
     }
-
 
 
     /*private void CambiarBackgroundBotonesFiltro(Button botonFuerza, Button botonAerobico, Button botonTodo, String botonPulsado) {

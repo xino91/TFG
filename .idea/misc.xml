@@ -13,6 +13,7 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/fondo_perfil.xml" value="0.156" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic__20_delete.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1475" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.156" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_fitness_center_24.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.139" />
@@ -37,6 +38,7 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_nuevo_ejercicio.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_dashboard.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_entrealizado.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_entrenamiento.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_first.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_perfil.xml" value="0.264" />
@@ -45,6 +47,8 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/insertar_entrenamiento.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/insertar_sesion.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_ejercicio.xml" value="0.264" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_ejercicio_aerobico.xml" value="0.264" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_ejercicio_fuerza.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_item.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_item_aerobico.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/recyclerview_item_aerobicorealizado.xml" value="0.2515625" />

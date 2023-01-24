@@ -33,7 +33,6 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ProgresoFragment extends Fragment {
@@ -62,7 +61,7 @@ public class ProgresoFragment extends Fragment {
             public void onChanged(List<Entrenamiento> entrenamientos) {
                 for(int i=0; i<entrenamientos.size(); i++){
                     list.addAll(entrenamientos);
-                    Log.i("LIST", String.valueOf(list.get(i).getRpe_Sesion()));
+                    Log.i("LIST", String.valueOf(list.get(i).getRpe_Objetivo()));
                 }
 
                 prepararLineChart();

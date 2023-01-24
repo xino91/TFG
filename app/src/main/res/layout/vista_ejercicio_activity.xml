@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:listitem="@layout/recyclerview_ejercicio" />
+        tools:listitem="@layout/recyclerview_ejercicio_fuerza" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_inicio_entrenamiento"

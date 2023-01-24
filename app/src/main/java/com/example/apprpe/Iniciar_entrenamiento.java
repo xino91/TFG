@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -21,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class Iniciar_entrenamiento extends AppCompatActivity {
 
@@ -29,7 +31,6 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
     }
     private Chronometer cronometro;
     private int Id_entrenamiento;
-    private EntrenamientoViewModel entrenamientoViewModel;
     private Temporizador temporizador = Temporizador.PARADO;
     private long pauseoffset = 0;
     private FloatingActionButton fab_play, fab_stop;
@@ -39,8 +40,8 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
     private int num_ejercicio = 0, pulsado = 0;
     private long duracion_segundos;
     private String hora_inicio, hora_finalizacion, tipo;
-    private int dia, mes, anno;
     private int carga;
+    private int rpe_objetivo;
     ArrayList<Integer> date = new ArrayList<Integer>();
 
     @Override
@@ -51,14 +52,13 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
         getIdEntrenamiento();
         enlazarVistas();
 
-        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
+        EntrenamientoViewModel entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         try {
             listEjercicios = entrenamientoViewModel.getListEntrenamientoConEjercicios(Id_entrenamiento);
             modificarVistas();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         escuchadoresBotones();
     }
 
@@ -67,13 +67,15 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
      * Esta función pasará a la siguiente activity la duración, hora comienzo y finalización del entrenamiento
      */
     private void FinEntrenamiento() {
-        getDuracionEntrenamiento();
         hora_finalizacion = getHora();
+        CargaTotal();
         Intent intent = new Intent(getApplicationContext(), infoentrenamientoRealizado.class);
         intent.putExtra("DURACION_EJERCICIO", duracion_segundos);
         intent.putExtra("HORA_INICIO", hora_inicio);
         intent.putExtra("HORA_FINALIZACION", hora_finalizacion);
         intent.putExtra("TIPO", tipo);
+        intent.putExtra("CARGA", carga);
+        intent.putExtra("RPE_OBJ", rpe_objetivo);
         startActivity(intent);
     }
 
@@ -90,8 +92,9 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
 
     public void getIdEntrenamiento(){
         Bundle extras = getIntent().getExtras();
-        Id_entrenamiento = extras.getInt("POSICION", -1);
+        Id_entrenamiento = extras.getInt("POSICION", 0);
         tipo = extras.getString("TIPO", "");
+        rpe_objetivo = extras.getInt("RPE_OBJ", 0);
     }
 
     /**
@@ -151,6 +154,35 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
         nrepet.setText(String.valueOf(listEjercicios.get(num_ejercicio).getRepeticiones()));
         rpe.setText(String.valueOf(listEjercicios.get(num_ejercicio).getRpe()));
         indicador_num_ejercicio.setText(num_ejercicio+1 +"/"+ listEjercicios.size());
+        CalcularCargaFuerza();
+    }
+
+    /**
+     * Esta función va calculando la carga de todos los ejercicios según se realizan
+     */
+    public void CalcularCargaFuerza(){
+        if(Objects.equals(tipo, "Fuerza")){
+            int sets, repeticiones, rpe_obj;
+            sets = listEjercicios.get(num_ejercicio).getSets();
+            repeticiones = listEjercicios.get(num_ejercicio).getRepeticiones();
+            rpe_obj = listEjercicios.get(num_ejercicio).getRpe();
+            carga = carga + (rpe_obj * (sets * repeticiones) );
+        }
+    }
+
+    /**
+     * En caso de un entrenamiento de Fuerza está función divide la carga de todos los ejercicios entre el número de ejercicios realizados,
+     * en caso de un entrenamiento Aeróbico multiplica la duración por Rpe objetivo
+     */
+    public void CargaTotal(){
+        if(Objects.equals(tipo, "Fuerza")) {
+            carga = carga / listEjercicios.size();
+        }
+        else{
+            Log.i("DURACION", String.valueOf(duracion_segundos));
+            float duracion_minutos = (float) duracion_segundos / 60;
+            carga = carga + (int)(listEjercicios.get(num_ejercicio).getRpe() * duracion_minutos);
+        }
     }
 
     /**
@@ -181,6 +213,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
                     pulsado++; //Variable usada para obligar a pulsar dos veces en el boton para finalizar el entrenamiento
                     if(pulsado > 1){
                         pauseCronometro();
+                        getDuracionEntrenamiento();
                         FinEntrenamiento();
                     }
                 }

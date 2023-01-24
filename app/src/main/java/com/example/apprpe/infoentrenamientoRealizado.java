@@ -1,8 +1,10 @@
 package com.example.apprpe;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,11 +26,13 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
 
     private EntrenamientoViewModel entrenamientoViewModel;
     Ent_Realizado entrenamiento_realizado;
-    private TextView view_fecha, view_h_inicio, view_h_fin, view_carga, view_duracion, view_ind_monotonia;
+    private TextView view_fecha, view_h_inicio, view_h_fin, view_carga, view_duracion;
     private Date date;
     private long duracion;
+    private int rpe_objetivo;
+    private int carga, resto, cociente;
     private Button butt_terminar;
-    private String hora_inicio, hora_finalizacion, tipo;
+    private String hora_inicio, hora_finalizacion, tipo, duracion_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         setContentView(R.layout.activity_infoentrenamiento_realizado);
         enlazarVistas();
         obtenerDatosAnteriorActivity();
+        CargaEnMinutos();
         mostrarVistas();
         escuchadorBotonTerminar();
     }
@@ -50,6 +55,8 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         hora_inicio = extras.getString("HORA_INICIO", "");
         hora_finalizacion = extras.getString("HORA_FINALIZACION", "");
         tipo = extras.getString("TIPO", "");
+        carga = extras.getInt("CARGA", 0);
+        rpe_objetivo = extras.getInt("RPE_OBJ", 0);
         date = new Date(Calendar.getInstance().getTimeInMillis());
         //Log.i("HORA_INICIO", hora_inicio);
         //Log.i("HORA_FINALIZACION", hora_finalizacion);
@@ -62,7 +69,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         butt_terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, 0,hora_inicio, hora_finalizacion, 0);
+                entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, carga, hora_inicio, hora_finalizacion, 0);
                 entrenamientoViewModel.insert(entrenamiento_realizado);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
@@ -80,10 +87,21 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         view_h_fin = findViewById(R.id.txtView_h_fin);
         view_duracion = findViewById(R.id.txtView_tiempo);
         view_carga = findViewById(R.id.txtView_Carga);
-        view_ind_monotonia = findViewById(R.id.txtView_indice);
         butt_terminar = findViewById(R.id.bt_terminar);
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
     }
+
+    /**
+     * Función para mostrar la duracion en minutos y segundos, ejemplo 2:16 minutos
+     */
+    public void CargaEnMinutos(){
+        resto = (int)duracion % 60;
+        cociente = (int)duracion / 60;
+        Log.i("RESTO", String.valueOf(resto));
+        Log.i("COCIENTE", String.valueOf(cociente));
+        duracion_string = String.valueOf(cociente) + ':' + String.valueOf(resto);
+    }
+
 
     /**
      * Función para mostrar los datos en View vinculados
@@ -92,9 +110,10 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         //Log.i("DURACION", String.valueOf(duracion));
         //Log.i("DIA", String.valueOf(date.getDate()) + "/" + String.valueOf(date.getMonth()+1) + "/" + String.valueOf(date.getYear()));
         view_fecha.setText(date.toString());
-        view_duracion.setText(String.valueOf(duracion));
+        view_duracion.setText(duracion_string);
         view_h_inicio.setText(String.valueOf(hora_inicio));
         view_h_fin.setText(String.valueOf(hora_finalizacion));
+        view_carga.setText(String.valueOf(carga));
     }
 
     /**
@@ -106,4 +125,5 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         Toast.makeText(this, "Cancelado, datos no guardados", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
+
 }

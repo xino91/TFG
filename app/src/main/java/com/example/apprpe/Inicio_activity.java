@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
@@ -35,8 +36,9 @@ public class Inicio_activity extends AppCompatActivity {
     EditText edt_Estatura;
     EditText edt_Peso;
     EditText edt_Mail;
-    Spinner spinner;
-    Button buttonfecha, buttonAvanzar;
+    EditText buttonfecha;
+    ImageButton imagebutton;
+    Button buttonAvanzar;
     String spinner_actividad;
     int dia,mes,ano;
 
@@ -46,7 +48,7 @@ public class Inicio_activity extends AppCompatActivity {
         setContentView(R.layout.inicio_activity);
         inicializarComponentes();
 
-        buttonfecha.setOnClickListener(new View.OnClickListener() {
+        imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
@@ -85,23 +87,17 @@ public class Inicio_activity extends AppCompatActivity {
         edt_Estatura = findViewById(R.id.Edit_estatura);
         edt_Peso = findViewById(R.id.Edit_peso);
         edt_Mail = findViewById(R.id.Edit_email);
-        spinner = findViewById(R.id.spinner);
-        buttonfecha = findViewById(R.id.button_fecha);
+        buttonfecha = findViewById(R.id.Edit_fecha);
         buttonAvanzar = findViewById(R.id.button_avanzar);
-
-        String [] arreglo = {"Fuerza", "Aeróbico"};
-        ArrayAdapter<String> adapter_spinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arreglo);
-        spinner.setAdapter(adapter_spinner);
+        imagebutton = findViewById(R.id.imageButton_fecha);
     }
 
     private void recogerDatos(){
         nombreUsuario = Objects.requireNonNull(edt_Nombre.getText()).toString();
-        System.out.println(nombreUsuario);
         estatura = edt_Estatura.getText().toString();
         peso = edt_Peso.getText().toString();
         email = edt_Mail.getText().toString();
-        nacimiento = (String) buttonfecha.getText();
-        spinner_actividad = spinner.getSelectedItem().toString();
+        nacimiento = buttonfecha.getText().toString();
     }
 
     private boolean comprobarDatos(){

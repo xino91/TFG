@@ -93,6 +93,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                 i.putExtra("RPE", ejercicio.getRpe());
                 i.putExtra("ID_EJERCICIO", ejercicio.getId_Ejercicio());
                 i.putExtra("ID_SESION", ejercicio.getEntrenamiento_Id());
+                i.putExtra("TIPO", entrenamiento.getTipo());
                 startActivity(i);
             }
         });
@@ -124,7 +125,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
      */
     private void insertarNuevoEjercicio() {
         Intent intent = new Intent(this, InsertarNuevoEjercicio.class);
-        intent.putExtra("ID_POSITION", Id_entrenamiento);
+        intent.putExtra("TIPO", entrenamiento.getTipo());
         startActivityForResult(intent, INSERT_EJERCICIO_CODE);
     }
 
@@ -132,7 +133,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
      * Función que elimina el entrenamiento por completo, eliminará todos sus ejercicios
      */
     private void eliminarEntrenamiento(){
-        entrenamientoViewModel.deleteAllEjercicioSesion(entrenamiento);
+        entrenamientoViewModel.deleteAllEjerciciosEntrenamiento(entrenamiento);
         entrenamientoViewModel.deleteEntrenamiento(entrenamiento);
         finish();
     }
@@ -146,13 +147,25 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
         if(requestCode==INSERT_EJERCICIO_CODE && resultCode == RESULT_EJERCICO_OK){
             Ejercicio ejercicio = new Ejercicio();
             assert data != null;
-            ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
-            ejercicio.setSets(Integer.parseInt(data.getExtras().getString("Set")));
-            ejercicio.setRepeticiones(Integer.parseInt(data.getExtras().getString("Repeticiones")));
-            ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
-            ejercicio.setEntrenamiento_Id(Id_entrenamiento);
-            entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-            entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+            if(Objects.equals(entrenamiento.getTipo(), "Fuerza")){
+                ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
+                ejercicio.setSets(Integer.parseInt(data.getExtras().getString("Set")));
+                ejercicio.setRepeticiones(Integer.parseInt(data.getExtras().getString("Repeticiones")));
+                ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
+                ejercicio.setEntrenamiento_Id(Id_entrenamiento);
+                entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
+                entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+            }
+            else{
+                ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
+                ejercicio.setSets(0);
+                ejercicio.setRepeticiones(0);
+                ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
+                ejercicio.setEntrenamiento_Id(Id_entrenamiento);
+                entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
+                entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+            }
+
         }
         else if(resultCode == RESULT_EJERCICIO_CANCELED){
             Toast.makeText(getApplication(), "Cancelado", Toast.LENGTH_SHORT).show();
@@ -177,6 +190,8 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), Iniciar_entrenamiento.class);
                 intent.putExtra("POSICION", Id_entrenamiento);
+                intent.putExtra("TIPO", entrenamiento.getTipo());
+                intent.putExtra("RPE_OBJ", entrenamiento.getRpe_Objetivo());
                 startActivity(intent);
             }
         });

@@ -1,7 +1,6 @@
 package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import com.example.apprpe.R;
 import com.example.apprpe.modelo.Entrenamiento;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,13 +50,13 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
                 ViewHolderFuerza holderFuerza = (ViewHolderFuerza) holder;
                 holderFuerza.textviewNombre.setText(current.getNombre_Entrenamiento());
                 holderFuerza.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
-                holderFuerza.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
+                holderFuerza.textviewRPE.setText(String.valueOf(current.getRpe_Objetivo()));
                 break;
             case TIPO_AEROBICO:
                 ViewHolderAerobico holderAerobico = (ViewHolderAerobico) holder;
                 holderAerobico.textviewNombre.setText(current.getNombre_Entrenamiento());
                 holderAerobico.textviewNum.setText(String.valueOf(current.getNum_ejercicios()));
-                holderAerobico.textviewRPE.setText(String.valueOf(current.getRpe_Sesion()));
+                holderAerobico.textviewRPE.setText(String.valueOf(current.getRpe_Objetivo()));
                 break;
         }
     }
@@ -89,6 +89,11 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public int getId(int pos){
         return mEntrenamientos.get(pos).getId();
+    }
+
+    public void intercambiarFilas(int pos_arrastrada, int pos_nueva){
+        Collections.swap(mEntrenamientos, pos_arrastrada, pos_nueva);
+        notifyItemMoved(pos_arrastrada, pos_nueva);
     }
 
     void setOnItemClickListener(OnItemClickListener listener){
