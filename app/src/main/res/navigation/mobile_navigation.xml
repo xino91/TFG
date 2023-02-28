@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.apprpe.ui.ProgresoNAV.ProgresoFragment"
+        android:name="com.example.apprpe.ui.ProgresoNAV.EstadisticasFragment"
         android:label="Progreso"
         tools:layout="@layout/fragment_progreso" />
 

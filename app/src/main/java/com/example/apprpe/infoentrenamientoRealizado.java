@@ -1,15 +1,24 @@
 package com.example.apprpe;
 
+import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Dialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +39,10 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
     private Date date;
     private long duracion;
     private int rpe_objetivo;
+    private int rpe_subjetivo;
     private int carga, resto, cociente;
     private Button butt_terminar;
+    private RadioButton radio1;
     private String hora_inicio, hora_finalizacion, tipo, duracion_string;
 
     @Override
@@ -69,11 +80,38 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         butt_terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, carga, hora_inicio, hora_finalizacion, 0);
-                entrenamientoViewModel.insert(entrenamiento_realizado);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                CuadroDialogo_rpe dialogo = new CuadroDialogo_rpe();
+                dialogo.show(getSupportFragmentManager(), "Dialog_rpe");
+                dialogo.setStyle(DialogFragment.STYLE_NORMAL, R.style.AlertDialog_AppCompat);
+                dialogo.setCancelable(false);
+                dialogo.getRPE(new CuadroDialogo_rpe.CuadroDialogo_listener() {
+                    @Override
+                    public void apply_rpe(int rpe) {
+                        CuadroDialogo_satisfaccion dialogo = new CuadroDialogo_satisfaccion();
+                        dialogo.show(getSupportFragmentManager(), "Dialog_satisfaccion");
+                        dialogo.setStyle(DialogFragment.STYLE_NORMAL, R.style.AlertDialog_AppCompat);
+                        dialogo.setCancelable(false);
+                        rpe_subjetivo = rpe;
+                        Log.i("RPE_SUB", String.valueOf(rpe_subjetivo));
+                        dialogo.getSatisfaccion(new CuadroDialogo_satisfaccion.CuadroDialogo_listener() {
+                            @Override
+                            public void apply_satisfaccion(int satisfaccion, int dolor) {
+                                Log.i("SATISFACCION", String.valueOf(satisfaccion));
+                                Log.i("DOLOR", String.valueOf(dolor));
+                                entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, carga, hora_inicio,
+                                        hora_finalizacion, rpe_objetivo, rpe_subjetivo, satisfaccion, dolor );
+                                entrenamientoViewModel.insert(entrenamiento_realizado);
+                            }
+                        });
+                        //Log.i("RPE", String.valueOf(rpe));
+                        //entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, carga, hora_inicio, hora_finalizacion, rpe_objetivo, rpe);
+                        //entrenamientoViewModel.insert(entrenamiento_realizado);
+                    }
+                });
+                Toast.makeText(infoentrenamientoRealizado.this, String.valueOf(rpe_subjetivo), Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
+                //startActivity(intent)*/
             }
         });
     }
@@ -88,6 +126,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         view_duracion = findViewById(R.id.txtView_tiempo);
         view_carga = findViewById(R.id.txtView_Carga);
         butt_terminar = findViewById(R.id.bt_terminar);
+        radio1 = findViewById(R.id.radioButton1);
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
     }
 
@@ -125,5 +164,4 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         Toast.makeText(this, "Cancelado, datos no guardados", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
-
 }

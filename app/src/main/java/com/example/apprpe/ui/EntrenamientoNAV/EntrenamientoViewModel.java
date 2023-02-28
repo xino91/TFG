@@ -11,6 +11,7 @@ import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.EntrenamientoRepository;
+import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     private LiveData<List<Entrenamiento>> listEntrenamientos;
     private LiveData<List<Ejercicio>> listEjercicios;
     private List<Ejercicio> listEjercicios2;
-    private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios>> EntrenamientoConEjercicios;
+    private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios> > EntrenamientoConEjercicios;
 
     public EntrenamientoViewModel(@NonNull Application application) throws InterruptedException {
         super(application);

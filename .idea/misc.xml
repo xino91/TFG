@@ -9,12 +9,19 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/button_filter_home.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/button_filter_home_off.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/circulo.xml" value="0.139" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/custom_radio_no_selected.xml" value="0.1515" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/custom_radio_selected.xml" value="0.156" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/custom_radio_selector.xml" value="0.156" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/fondo_insert.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/fondo_perfil.xml" value="0.156" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic__20_delete.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.156" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1515" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1515" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1475" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_filter_list_30.xml" value="0.156" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_filter_list_35.xml" value="0.156" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_fitness_center_24.xml" value="0.1475" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.139" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1475" />
@@ -36,6 +43,8 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_iniciar_entrenamiento.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_main.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_nuevo_ejercicio.xml" value="0.264" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/cuadrodialogo_rpe.xml" value="0.2515625" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/cuadrodialogo_satisfaccion.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_dashboard.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_entrealizado.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_entrenamiento.xml" value="0.25677083333333334" />

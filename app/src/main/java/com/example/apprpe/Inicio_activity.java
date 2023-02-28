@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class Inicio_activity extends AppCompatActivity {
+public class Inicio_activity extends AppCompatActivity{
 
     SharedPreferences preferencias;
     String nombreUsuario, genero, email = "";
@@ -82,8 +82,8 @@ public class Inicio_activity extends AppCompatActivity {
     }
     private void inicializarComponentes(){
         edt_Nombre = findViewById(R.id.Edit_nombre);
-        radbutton_masculino = findViewById(R.id.radioButton2);
-        radbutton_femenino = findViewById(R.id.radioButton3);
+        radbutton_masculino = findViewById(R.id.radioButton_masculino);
+        radbutton_femenino = findViewById(R.id.radioButton_femenino);
         edt_Estatura = findViewById(R.id.Edit_estatura);
         edt_Peso = findViewById(R.id.Edit_peso);
         edt_Mail = findViewById(R.id.Edit_email);

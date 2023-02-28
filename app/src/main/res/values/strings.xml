@@ -192,4 +192,18 @@
     <string name="click">Click</string>
     <string name="Fecha">Fecha</string>
     <string name="calendario">Calendario</string>
+    <string name="gr_fico_lineal">Gráfico Lineal</string>
+    <string name="filtro">filtro</string>
+    <string name="muy_ligero">Muy Ligero</string>
+    <string name="ning_n_esfuerzo">Ningún esfuerzo</string>
+    <string name="duro">Duro</string>
+    <string name="muy_duro">Muy Duro</string>
+    <string name="moderado">Moderado</string>
+    <string name="f_cil">Fácil</string>
+    <string name="muy_f_cil">Muy fácil</string>
+    <string name="m_ximo">Máximo</string>
+    <string name="c_mo_ha_sido_tu_satisfacci_n_con_el_entrenamiento">¿Cómo ha sido tu satisfacción con el entrenamiento?</string>
+    <string name="satisfacci_n">Satisfacción</string>
+    <string name="sientes_alg_n_dolor">¿Sientes algún dolor?</string>
+    <string name="dolor">Dolor</string>
 </resources>

@@ -24,7 +24,8 @@ public class Ent_Realizado {
     private int satisfaccion;
     private int dolor;
 
-    public Ent_Realizado(Date fecha, long duracion, String tipo, int carga, String hora_inicio, String hora_finalizacion, int rpe_objetivo) {
+    public Ent_Realizado(Date fecha, long duracion, String tipo, int carga, String hora_inicio,
+                         String hora_finalizacion, int rpe_objetivo, int rpe_subjetivo, int satisfaccion, int dolor) {
         Fecha = fecha;
         FechaString = fecha.toString();
         Duracion = duracion;
@@ -33,6 +34,9 @@ public class Ent_Realizado {
         this.hora_finalizacion = hora_finalizacion;
         this.tipo = tipo;
         this.rpe_objetivo = rpe_objetivo;
+        this.rpe_subjetivo = rpe_subjetivo;
+        this.satisfaccion = satisfaccion;
+        this.dolor = dolor;
         //this.ind_fatiga = ind_fatiga;
     }
 
