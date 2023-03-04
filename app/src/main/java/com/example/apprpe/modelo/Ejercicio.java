@@ -21,6 +21,14 @@ public class Ejercicio {
         Rpe = rpe;
         entrenamiento_Id = entrenamientoId;
     }
+    public Ejercicio(int id, String nombre, int repeticiones, int sets, int rpe, int entrenamientoId) {
+        Id_Ejercicio = id;
+        Nombre = nombre;
+        Repeticiones = repeticiones;
+        Sets = sets;
+        Rpe = rpe;
+        entrenamiento_Id = entrenamientoId;
+    }
 
     public Ejercicio(){}
 

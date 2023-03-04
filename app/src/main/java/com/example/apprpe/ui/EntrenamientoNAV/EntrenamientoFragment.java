@@ -104,7 +104,6 @@ public class EntrenamientoFragment extends Fragment {
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             int pos_viewHolder = viewHolder.getAbsoluteAdapterPosition();
             int pos_target = target.getAbsoluteAdapterPosition();
-            adapter.intercambiarFilas(pos_viewHolder, pos_target);
             return true;
         }
 
@@ -142,7 +141,6 @@ public class EntrenamientoFragment extends Fragment {
     };
 
     public void ObserverTODO(){
-        Log.i("TODO", "TODO");
         entrenamientoViewModel.getAllEntrenamientos().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {

@@ -170,6 +170,7 @@
     <string name="carga">Carga</string>
     <string name="datos_entrenamiento">Datos Entrenamiento</string>
     <string name="duracion">Duración</string>
+    <string name="duracion2">Duración</string>
     <string name="ndice_de_monoton_a">Índice de Monotonía</string>
     <string name="terminar">Terminar</string>
     <string name="segundos">segundos</string>
@@ -178,7 +179,8 @@
     <string name="n_mero_ejercicios">Nº Ejercicios:</string>
     <string name="tiempo">Tiempo:</string>
     <string name="num">Num</string>
-    <string name="rpe_objetivo">RPE Objetivo</string>
+    <string name="rpe_objetivo">RPE objetivo</string>
+    <string name="rpe_objetivo2">RPE objetivo:</string>
     <string name="aerobico">AEROBICO</string>
     <string name="fuerzaa">FUERZA</string>
     <string name="no_has_realizado_ning_n_entrenamiento">No has realizado ningún entrenamiento</string>
@@ -206,4 +208,5 @@
     <string name="satisfacci_n">Satisfacción</string>
     <string name="sientes_alg_n_dolor">¿Sientes algún dolor?</string>
     <string name="dolor">Dolor</string>
+    <string name="rpe_percibido">RPE percibido:</string>
 </resources>

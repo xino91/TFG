@@ -39,7 +39,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
     private List<Ejercicio> listEjercicios;
     private int num_ejercicio = 0, pulsado = 0;
     private long duracion_segundos;
-    private String hora_inicio, hora_finalizacion, tipo;
+    private String hora_inicio, hora_finalizacion, tipo, nombre_entrenamiento;
     private int carga;
     private int rpe_objetivo;
     ArrayList<Integer> date = new ArrayList<Integer>();
@@ -70,6 +70,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
         hora_finalizacion = getHora();
         CargaTotal();
         Intent intent = new Intent(getApplicationContext(), infoentrenamientoRealizado.class);
+        intent.putExtra("NOMBRE_ENTRENAMIENTO", nombre_entrenamiento);
         intent.putExtra("DURACION_EJERCICIO", duracion_segundos);
         intent.putExtra("HORA_INICIO", hora_inicio);
         intent.putExtra("HORA_FINALIZACION", hora_finalizacion);
@@ -95,6 +96,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
         Id_entrenamiento = extras.getInt("POSICION", 0);
         tipo = extras.getString("TIPO", "");
         rpe_objetivo = extras.getInt("RPE_OBJ", 0);
+        nombre_entrenamiento = extras.getString("NOMBRE_ENTRENAMIENTO", "");
     }
 
     /**
@@ -179,7 +181,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
             carga = carga / listEjercicios.size();
         }
         else{
-            Log.i("DURACION", String.valueOf(duracion_segundos));
+            //Log.i("DURACION", String.valueOf(duracion_segundos));
             float duracion_minutos = (float) duracion_segundos / 60;
             carga = carga + (int)(listEjercicios.get(num_ejercicio).getRpe() * duracion_minutos);
         }

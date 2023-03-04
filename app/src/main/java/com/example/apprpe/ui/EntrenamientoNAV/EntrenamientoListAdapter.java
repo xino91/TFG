@@ -91,11 +91,6 @@ public class EntrenamientoListAdapter extends RecyclerView.Adapter<RecyclerView.
         return mEntrenamientos.get(pos).getId();
     }
 
-    public void intercambiarFilas(int pos_arrastrada, int pos_nueva){
-        Collections.swap(mEntrenamientos, pos_arrastrada, pos_nueva);
-        notifyItemMoved(pos_arrastrada, pos_nueva);
-    }
-
     void setOnItemClickListener(OnItemClickListener listener){
         this.mlistener = listener;
     }

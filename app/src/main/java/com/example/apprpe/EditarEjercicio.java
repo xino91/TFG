@@ -69,7 +69,7 @@ public class EditarEjercicio extends AppCompatActivity {
                     }
                     finish();
                 }
-                else {
+                else { //AEROBICO
                     if(TextUtils.isEmpty(edt_Nombre.getText()) || TextUtils.isEmpty(edt_RPE.getText())) {
                         Toast.makeText(getApplicationContext(), "Error, Ningún Campo puede ser vacío", Toast.LENGTH_SHORT).show();
                         finish();
@@ -163,7 +163,6 @@ public class EditarEjercicio extends AppCompatActivity {
      */
     private void eliminarEjercicio() {
         entrenamientoViewModel.deleteEjercicio(ejercicio);
-        entrenamientoViewModel.update_NumEjerciciosMenos(ejercicio.getEntrenamiento_Id());
         Toast.makeText(getApplicationContext(), "Eliminado con Éxito", Toast.LENGTH_SHORT).show();
         finish();
     }

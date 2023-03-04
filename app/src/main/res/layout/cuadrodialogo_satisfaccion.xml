@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_radio_selector"
             android:button="@color/white"
-            android:drawableStart="@drawable/enfermo"
+            android:drawableStart="@drawable/sat_enfermo1"
             android:padding="10dp"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_radio_selector"
             android:button="@color/white"
-            android:drawableStart="@drawable/asustado"
+            android:drawableStart="@drawable/sat_asustado2"
             android:padding="10dp" />
 
         <RadioButton
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_radio_selector"
             android:button="@color/white"
-            android:drawableStart="@drawable/silencioso"
+            android:drawableStart="@drawable/sat_silencioso3"
             android:padding="10dp" />
 
         <RadioButton
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_radio_selector"
             android:button="@color/white"
-            android:drawableStart="@drawable/sonreir"
+            android:drawableStart="@drawable/sat_sonreir4"
             android:padding="10dp" />
 
         <RadioButton
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_radio_selector"
             android:button="@color/white"
-            android:drawableStart="@drawable/risa"
+            android:drawableStart="@drawable/sat_risa5"
             android:padding="10dp" />
 
     </RadioGroup>

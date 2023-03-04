@@ -11,6 +11,7 @@ public class Ent_Realizado {
 
     @PrimaryKey(autoGenerate = true)
     private int Id;
+    private String nombre_entrenamiento;
     private Date Fecha;
     private String FechaString;
     private long Duracion;
@@ -18,7 +19,6 @@ public class Ent_Realizado {
     private String hora_inicio;
     private String hora_finalizacion;
     private String tipo;
-    //private int ind_fatiga;
     private int rpe_objetivo;
     private int rpe_subjetivo;
     private int satisfaccion;
@@ -40,9 +40,43 @@ public class Ent_Realizado {
         //this.ind_fatiga = ind_fatiga;
     }
 
+    public Ent_Realizado(String nombre, Date fecha, long duracion, String tipo, int carga, String hora_inicio,
+                         String hora_finalizacion, int rpe_objetivo, int rpe_subjetivo, int satisfaccion, int dolor) {
+        this.nombre_entrenamiento = nombre;
+        Fecha = fecha;
+        FechaString = fecha.toString();
+        Duracion = duracion;
+        Carga = carga;
+        this.hora_inicio = hora_inicio;
+        this.hora_finalizacion = hora_finalizacion;
+        this.tipo = tipo;
+        this.rpe_objetivo = rpe_objetivo;
+        this.rpe_subjetivo = rpe_subjetivo;
+        this.satisfaccion = satisfaccion;
+        this.dolor = dolor;
+    }
+
+    public Ent_Realizado(int id, String nombre, Date fecha, long duracion, String tipo, int carga, String hora_inicio,
+                         String hora_finalizacion, int rpe_objetivo, int rpe_subjetivo, int satisfaccion, int dolor) {
+        this.Id = id;
+        this.nombre_entrenamiento = nombre;
+        Fecha = fecha;
+        FechaString = fecha.toString();
+        Duracion = duracion;
+        Carga = carga;
+        this.hora_inicio = hora_inicio;
+        this.hora_finalizacion = hora_finalizacion;
+        this.tipo = tipo;
+        this.rpe_objetivo = rpe_objetivo;
+        this.rpe_subjetivo = rpe_subjetivo;
+        this.satisfaccion = satisfaccion;
+        this.dolor = dolor;
+    }
+
     public Ent_Realizado(){};
 
     public int getId() { return Id; }
+    public String getNombre_entrenamiento(){return nombre_entrenamiento;}
     public Date getFecha() { return Fecha; }
     public String getFechaString() {return FechaString;}
     public long getDuracion() { return Duracion; }
@@ -58,6 +92,7 @@ public class Ent_Realizado {
 
 
     public void setId(int id) { Id = id; }
+    public void setNombre_entrenamiento(String nombre) {nombre_entrenamiento = nombre; }
     public void setFecha(Date fecha) { Fecha = fecha; }
     public void setFechaString(String fecha){FechaString = fecha; }
     public void setDuracion(long duracion) { Duracion = duracion; }

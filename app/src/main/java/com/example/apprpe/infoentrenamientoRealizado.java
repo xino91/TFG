@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apprpe.modelo.Ent_Realizado;
+import com.example.apprpe.ui.EntRealizadoNAV.EntRealizadoViewModel;
 import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 import java.sql.Date;
 import java.util.Calendar;
@@ -33,16 +34,16 @@ import java.util.Calendar;
 
 public class infoentrenamientoRealizado extends AppCompatActivity {
 
-    private EntrenamientoViewModel entrenamientoViewModel;
+    private EntRealizadoViewModel entrealizadoViewModel;
     Ent_Realizado entrenamiento_realizado;
     private TextView view_fecha, view_h_inicio, view_h_fin, view_carga, view_duracion;
+    private String nombre_entrenamiento;
     private Date date;
     private long duracion;
     private int rpe_objetivo;
     private int rpe_subjetivo;
     private int carga, resto, cociente;
     private Button butt_terminar;
-    private RadioButton radio1;
     private String hora_inicio, hora_finalizacion, tipo, duracion_string;
 
     @Override
@@ -62,6 +63,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
      */
     private void obtenerDatosAnteriorActivity() {
         Bundle extras = getIntent().getExtras();
+        nombre_entrenamiento = extras.getString("NOMBRE_ENTRENAMIENTO", "");
         duracion = extras.getLong("DURACION_EJERCICIO", 0);
         hora_inicio = extras.getString("HORA_INICIO", "");
         hora_finalizacion = extras.getString("HORA_FINALIZACION", "");
@@ -98,20 +100,16 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
                             public void apply_satisfaccion(int satisfaccion, int dolor) {
                                 Log.i("SATISFACCION", String.valueOf(satisfaccion));
                                 Log.i("DOLOR", String.valueOf(dolor));
-                                entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, carga, hora_inicio,
+                                entrenamiento_realizado = new Ent_Realizado(nombre_entrenamiento, date, duracion, tipo, carga, hora_inicio,
                                         hora_finalizacion, rpe_objetivo, rpe_subjetivo, satisfaccion, dolor );
-                                entrenamientoViewModel.insert(entrenamiento_realizado);
+                                entrealizadoViewModel.insert(entrenamiento_realizado);
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
+                                startActivity(intent);
                             }
                         });
-                        //Log.i("RPE", String.valueOf(rpe));
-                        //entrenamiento_realizado = new Ent_Realizado(date, duracion, tipo, carga, hora_inicio, hora_finalizacion, rpe_objetivo, rpe);
-                        //entrenamientoViewModel.insert(entrenamiento_realizado);
                     }
                 });
-                Toast.makeText(infoentrenamientoRealizado.this, String.valueOf(rpe_subjetivo), Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                //Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
-                //startActivity(intent)*/
             }
         });
     }
@@ -126,8 +124,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
         view_duracion = findViewById(R.id.txtView_tiempo);
         view_carga = findViewById(R.id.txtView_Carga);
         butt_terminar = findViewById(R.id.bt_terminar);
-        radio1 = findViewById(R.id.radioButton1);
-        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
+        entrealizadoViewModel = new ViewModelProvider(this).get(EntRealizadoViewModel.class);
     }
 
     /**

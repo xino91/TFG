@@ -56,14 +56,14 @@ public class EntrenamientoViewModel extends AndroidViewModel {
         return entrenamiento;
     }
 
+    public void intercambiarId(int id_anterior, int id_posterior){
+        mRepository.intercambiarId(id_anterior, id_posterior);
+    }
+
     public void insert(Entrenamiento entrenamiento) { mRepository.insert(entrenamiento); }
     public void insert(Ejercicio ejercicio) { mRepository.insert(ejercicio); }
-    public void insert(Ent_Realizado ent_realizado) {mRepository.insert(ent_realizado);}
-    public void update_NumEjerciciosMas(int id) { mRepository.update_NumEjerciciosMas(id);}
-    public void update_NumEjerciciosMenos(int id) { mRepository.update_NumEjerciciosMenos(id);}
     public void updateEjercicio(Ejercicio ejercicio) { mRepository.updateEjercicio(ejercicio); }
     public void deleteEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteEntrenamiento(entrenamiento); }
     public void deleteAllEjerciciosEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
-    public void deleteAll() { mRepository.deleteAll(); }
 }

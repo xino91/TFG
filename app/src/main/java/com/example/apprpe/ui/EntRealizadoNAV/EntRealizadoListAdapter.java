@@ -1,10 +1,11 @@
 package com.example.apprpe.ui.EntRealizadoNAV;
 
 import android.content.Context;
-import android.util.Log;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.apprpe.modelo.Ent_Realizado;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -32,11 +34,11 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
         switch (viewType){
             case TIPO_FUERZA:
                 View itemView_fuerza = mInflater.inflate(R.layout.recyclerview_item_fuerzarealizado, parent, false);
-                return new EntRealizadoListAdapter.ViewHolderFuerzaRealizado(itemView_fuerza, mlistener);
+                return new ViewHolderFuerzaRealizado(itemView_fuerza, mlistener);
 
             default:
                 View itemView_aerobico = mInflater.inflate(R.layout.recyclerview_item_aerobicorealizado, parent, false);
-                return new EntRealizadoListAdapter.ViewHolderAerobicoRealizado(itemView_aerobico, mlistener);
+                return new ViewHolderAerobicoRealizado(itemView_aerobico, mlistener);
         }
     }
 
@@ -46,10 +48,49 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
         switch (holder.getItemViewType()){
             case TIPO_FUERZA:
                 EntRealizadoListAdapter.ViewHolderFuerzaRealizado holderFuerzaRealizado = (ViewHolderFuerzaRealizado) holder;
-                holderFuerzaRealizado.textDate.setText((current.getFecha().toString()));
-                holderFuerzaRealizado.text_duracion.setText(String.valueOf(current.getDuracion()));
+                holderFuerzaRealizado.nombre.setText(current.getNombre_entrenamiento());
+                holderFuerzaRealizado.date.setText((current.getFecha().toString()));
+                holderFuerzaRealizado.duracion.setText(String.valueOf(current.getDuracion()));
+                holderFuerzaRealizado.carga.setText(String.valueOf(current.getCarga()));
+                holderFuerzaRealizado.rpe_objetivo.setText(String.valueOf(current.getRpe_objetivo()));
+                holderFuerzaRealizado.rpe_subjetivo.setText(String.valueOf(current.getRpe_subjetivo()));
+                switch (current.getDolor()){
+                    case 1: holderFuerzaRealizado.dolor.setText("Suave"); break;
+                    case 2: holderFuerzaRealizado.dolor.setText("Moderado"); break;
+                    case 3: holderFuerzaRealizado.dolor.setText("Mucho"); break;
+                    case 4: holderFuerzaRealizado.dolor.setText("Insoportable"); break;
+                    default: holderFuerzaRealizado.dolor.setText("Sin dolor"); break;
+                }
+                switch (current.getSatisfaccion()){
+                    case 1: holderFuerzaRealizado.satisfaccion.setImageResource(R.drawable.sat_enfermo1); break;
+                    case 2: holderFuerzaRealizado.satisfaccion.setImageResource(R.drawable.sat_asustado2); break;
+                    case 4: holderFuerzaRealizado.satisfaccion.setImageResource(R.drawable.sat_sonreir4); break;
+                    case 5: holderFuerzaRealizado.satisfaccion.setImageResource(R.drawable.sat_risa5); break;
+                    default: holderFuerzaRealizado.satisfaccion.setImageResource(R.drawable.sat_silencioso3); break;
+                }
                 break;
             case TIPO_AEROBICO:
+                EntRealizadoListAdapter.ViewHolderAerobicoRealizado holderAerobicoRealizado= (ViewHolderAerobicoRealizado) holder;
+                holderAerobicoRealizado.nombre.setText(current.getNombre_entrenamiento());
+                holderAerobicoRealizado.date.setText((current.getFecha().toString()));
+                holderAerobicoRealizado.duracion.setText(String.valueOf(current.getDuracion()));
+                holderAerobicoRealizado.carga.setText(String.valueOf(current.getCarga()));
+                holderAerobicoRealizado.rpe_objetivo.setText(String.valueOf(current.getRpe_objetivo()));
+                holderAerobicoRealizado.rpe_subjetivo.setText(String.valueOf(current.getRpe_subjetivo()));
+                switch (current.getDolor()){
+                    case 1: holderAerobicoRealizado.dolor.setText("Suave"); break;
+                    case 2: holderAerobicoRealizado.dolor.setText("Moderado"); break;
+                    case 3: holderAerobicoRealizado.dolor.setText("Mucho"); break;
+                    case 4: holderAerobicoRealizado.dolor.setText("Insoportable"); break;
+                    default: holderAerobicoRealizado.dolor.setText("Sin dolor"); break;
+                }
+                switch (current.getSatisfaccion()){
+                    case 1: holderAerobicoRealizado.satisfaccion.setImageResource(R.drawable.sat_enfermo1); break;
+                    case 2: holderAerobicoRealizado.satisfaccion.setImageResource(R.drawable.sat_asustado2); break;
+                    case 4: holderAerobicoRealizado.satisfaccion.setImageResource(R.drawable.sat_sonreir4); break;
+                    case 5: holderAerobicoRealizado.satisfaccion.setImageResource(R.drawable.sat_risa5); break;
+                    default: holderAerobicoRealizado.satisfaccion.setImageResource(R.drawable.sat_silencioso3); break;
+                }
                 break;
 
         }
@@ -67,12 +108,16 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
         notifyDataSetChanged();
     }
 
+    public int getId(int pos){
+        return mEntrenamientosRealizados.get(pos).getId();
+    }
+
     @Override
     public int getItemViewType(int position) {
-        if(Objects.equals(mEntrenamientosRealizados.get(position), "Fuerza")){
+        if(Objects.equals(mEntrenamientosRealizados.get(position).getTipo(), "Fuerza")){
             return TIPO_FUERZA;
         }
-        if(Objects.equals(mEntrenamientosRealizados.get(position), "Aeróbico")){
+        if(Objects.equals(mEntrenamientosRealizados.get(position).getTipo(), "Aeróbico")){
             return TIPO_AEROBICO;
         }
         return 0;
@@ -85,13 +130,25 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public class ViewHolderFuerzaRealizado extends RecyclerView.ViewHolder{
-        private final TextView textDate;
-        private final TextView text_duracion;
+        private final TextView nombre;
+        private final TextView date;
+        private final TextView duracion;
+        private final TextView carga;
+        private final TextView rpe_objetivo;
+        private final TextView rpe_subjetivo;
+        private final ImageView satisfaccion;
+        private final TextView dolor;
 
         private ViewHolderFuerzaRealizado(View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
-            textDate = itemView.findViewById(R.id.TextDate);
-            text_duracion = itemView.findViewById(R.id.textView_duracion);
+            date = itemView.findViewById(R.id.TextDate);
+            duracion = itemView.findViewById(R.id.textView_duracion);
+            carga = itemView.findViewById(R.id.textView_carga);
+            nombre = itemView.findViewById(R.id.textView);
+            rpe_objetivo = itemView.findViewById(R.id.textView_objetivo);
+            rpe_subjetivo = itemView.findViewById(R.id.textView_percibido);
+            satisfaccion = itemView.findViewById(R.id.imageView_satisfaccion);
+            dolor = itemView.findViewById(R.id.textView_dolor);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,15 +165,25 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public class ViewHolderAerobicoRealizado extends RecyclerView.ViewHolder{
-        private final TextView textviewNombre;
-        private final TextView textviewNum;
-        private final TextView textviewRPE;
+        private final TextView nombre;
+        private final TextView date;
+        private final TextView duracion;
+        private final TextView carga;
+        private final TextView rpe_objetivo;
+        private final TextView rpe_subjetivo;
+        private final ImageView satisfaccion;
+        private final TextView dolor;
 
         private ViewHolderAerobicoRealizado(View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
-            textviewNombre = itemView.findViewById(R.id.Nombre_textView);
-            textviewNum = itemView.findViewById(R.id.Num_textView);
-            textviewRPE = itemView.findViewById(R.id.RPE_textView);
+            date = itemView.findViewById(R.id.TextDate);
+            duracion = itemView.findViewById(R.id.textView_duracion);
+            carga = itemView.findViewById(R.id.textView_carga);
+            nombre = itemView.findViewById(R.id.textView);
+            rpe_objetivo = itemView.findViewById(R.id.textView_objetivo);
+            rpe_subjetivo = itemView.findViewById(R.id.textView_percibido);
+            satisfaccion = itemView.findViewById(R.id.imageView_satisfaccion);
+            dolor = itemView.findViewById(R.id.textView_dolor);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

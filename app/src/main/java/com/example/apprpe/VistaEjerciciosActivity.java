@@ -154,7 +154,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                 ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
                 ejercicio.setEntrenamiento_Id(Id_entrenamiento);
                 entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-                entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+                //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
             }
             else{
                 ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
@@ -163,7 +163,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                 ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
                 ejercicio.setEntrenamiento_Id(Id_entrenamiento);
                 entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-                entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+                //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
             }
 
         }
@@ -190,6 +190,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), Iniciar_entrenamiento.class);
                 intent.putExtra("POSICION", Id_entrenamiento);
+                intent.putExtra("NOMBRE_ENTRENAMIENTO", entrenamiento.getNombre_Entrenamiento());
                 intent.putExtra("TIPO", entrenamiento.getTipo());
                 intent.putExtra("RPE_OBJ", entrenamiento.getRpe_Objetivo());
                 startActivity(intent);

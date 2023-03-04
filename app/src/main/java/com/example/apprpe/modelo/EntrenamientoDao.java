@@ -38,6 +38,9 @@ public interface EntrenamientoDao {
     @Query("SELECT * FROM Ejercicio_table WHERE Id_Ejercicio=:id")
     Ejercicio getEjercicio(int id);
 
+    @Query("SELECT * FROM entrealizado_table WHERE Id=:id")
+    Ent_Realizado getEntRealizado(int id);
+
     @Query("SELECT * from Entrenamiento_table ORDER BY Id DESC")
     LiveData<List<Entrenamiento>> getAllSesiones();
     @Query("SELECT * from Entrenamiento_table ORDER BY Id ASC")
@@ -48,12 +51,19 @@ public interface EntrenamientoDao {
     @Query("SELECT * FROM Entrenamiento_table WHERE Tipo='Aeróbico' ORDER BY Id DESC")
     LiveData<List<Entrenamiento>> getEntrenamientosAerobico();
 
-    @Query("SELECT * FROM entrealizado_table ORDER BY Id DESC")
+    @Query("SELECT * FROM entrealizado_table ORDER BY Fecha DESC")
     LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados();
+
+    @Query("SELECT * FROM entrealizado_table WHERE tipo='Fuerza' ORDER BY Fecha DESC")
+    LiveData<List<Ent_Realizado>> getEntrenamientosFuerzaRealizados();
+
+    @Query("SELECT * FROM entrealizado_table WHERE tipo='Aeróbico' ORDER BY Fecha DESC")
+    LiveData<List<Ent_Realizado>> getEntrenamientosAerobicosRealizados();
 
     @Transaction
     @Query("SELECT * FROM ejercicio_table WHERE entrenamiento_Id=:id")
     LiveData<List<Ejercicio>> getAllEjercicios_SesionId(int id);
+
     @Transaction
     @Query("SELECT * FROM ejercicio_table WHERE entrenamiento_Id=:id")
     List<Ejercicio> getAllEjerciciosList_SesionId(int id);
@@ -72,16 +82,15 @@ public interface EntrenamientoDao {
     @Delete
     void deleteSesion(Entrenamiento entrenamiento);
 
+    @Delete
+    void deleteEnt_Realizado(Ent_Realizado ent_realizado);
+
     @Query("DELETE FROM Entrenamiento_table")
     void deleteAll();
 
     @Query("DELETE FROM ejercicio_table WHERE entrenamiento_Id = :Id_sesion")
     void deleteAllEjerciciosSesion(int Id_sesion);
 
-    @Query("DELETE FROM entrealizado_table")
-    void deleteAllEnt_Realizados();
-
-    @Delete
-    void deleteAllEnt_Realizados(Ent_Realizado ent_realizado);
-
+    @Query("UPDATE entrenamiento_table SET Id=:posterior WHERE Id=:anterior")
+    void intercambiarId(int anterior, int posterior);
 }
