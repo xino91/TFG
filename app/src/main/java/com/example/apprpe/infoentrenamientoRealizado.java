@@ -104,7 +104,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
                                         hora_finalizacion, rpe_objetivo, rpe_subjetivo, satisfaccion, dolor );
                                 entrealizadoViewModel.insert(entrenamiento_realizado);
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                             }
                         });

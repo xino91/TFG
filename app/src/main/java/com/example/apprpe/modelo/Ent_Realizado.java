@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.sql.Date;
+import java.text.DateFormat;
 
 @Entity(tableName= "EntRealizado_table")
 public class Ent_Realizado {
@@ -24,21 +25,6 @@ public class Ent_Realizado {
     private int satisfaccion;
     private int dolor;
 
-    public Ent_Realizado(Date fecha, long duracion, String tipo, int carga, String hora_inicio,
-                         String hora_finalizacion, int rpe_objetivo, int rpe_subjetivo, int satisfaccion, int dolor) {
-        Fecha = fecha;
-        FechaString = fecha.toString();
-        Duracion = duracion;
-        Carga = carga;
-        this.hora_inicio = hora_inicio;
-        this.hora_finalizacion = hora_finalizacion;
-        this.tipo = tipo;
-        this.rpe_objetivo = rpe_objetivo;
-        this.rpe_subjetivo = rpe_subjetivo;
-        this.satisfaccion = satisfaccion;
-        this.dolor = dolor;
-        //this.ind_fatiga = ind_fatiga;
-    }
 
     public Ent_Realizado(String nombre, Date fecha, long duracion, String tipo, int carga, String hora_inicio,
                          String hora_finalizacion, int rpe_objetivo, int rpe_subjetivo, int satisfaccion, int dolor) {

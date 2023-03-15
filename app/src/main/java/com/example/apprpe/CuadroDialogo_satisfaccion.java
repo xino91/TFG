@@ -19,6 +19,7 @@ public class CuadroDialogo_satisfaccion extends DialogFragment {
 
     private RadioGroup radioGroup;
     private SeekBar seekBar;
+    private RadioButton boton1, boton2, boton3, boton4, boton5;
     private CuadroDialogo_listener listener;
     private int dolor;
 
@@ -30,8 +31,7 @@ public class CuadroDialogo_satisfaccion extends DialogFragment {
 
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.cuadrodialogo_satisfaccion, null);
-        radioGroup = view.findViewById(R.id.radioGroup2);
-        seekBar = view.findViewById(R.id.seekBar);
+        enlazarVistas(view);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -53,23 +53,12 @@ public class CuadroDialogo_satisfaccion extends DialogFragment {
                         Toast.makeText(getContext(), "Selecciona algún item", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        switch(radioGroup.getCheckedRadioButtonId()) {
-                            case 2131296819:
-                                listener.apply_satisfaccion(1, dolor);
-                                break;
-                            case 2131296821:
-                                listener.apply_satisfaccion(2, dolor);
-                                break;
-                            case 2131296822:
-                                listener.apply_satisfaccion(3, dolor);
-                                break;
-                            case 2131296823:
-                                listener.apply_satisfaccion(4, dolor);
-                                break;
-                            case 2131296824:
-                                listener.apply_satisfaccion(5, dolor);
-                                break;
-                        }
+                        Log.i("SATISFACCION", String.valueOf(radioGroup.getCheckedRadioButtonId()));
+                        if(boton1.isChecked()) {listener.apply_satisfaccion(1,dolor);}
+                        else if(boton2.isChecked()) {listener.apply_satisfaccion(2,dolor);}
+                        else if(boton3.isChecked()) {listener.apply_satisfaccion(3,dolor);}
+                        else if(boton4.isChecked()) {listener.apply_satisfaccion(4,dolor);}
+                        else if(boton5.isChecked()) {listener.apply_satisfaccion(5,dolor);}
                     }
                 })
                 .setPositiveButtonIcon(requireActivity().getDrawable(R.drawable.ic_baseline_check_24))
@@ -82,7 +71,14 @@ public class CuadroDialogo_satisfaccion extends DialogFragment {
         return dialogo.create();
     }
 
-    private void apply_satisfaccion(int i) {
+    public void enlazarVistas(View view){
+        radioGroup = view.findViewById(R.id.radioGroup2);
+        seekBar = view.findViewById(R.id.seekBar);
+        boton1 = view.findViewById(R.id.radioButton1);
+        boton2 = view.findViewById(R.id.radioButton2);
+        boton3 = view.findViewById(R.id.radioButton3);
+        boton4 = view.findViewById(R.id.radioButton4);
+        boton5 = view.findViewById(R.id.radioButton5);
     }
 
     @Override

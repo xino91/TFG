@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.MapInfo;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Dao
 public interface EntrenamientoDao {
@@ -54,11 +56,21 @@ public interface EntrenamientoDao {
     @Query("SELECT * FROM entrealizado_table ORDER BY Fecha DESC")
     LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados();
 
+    @Query("SELECT * FROM entrealizado_table ORDER BY Fecha ASC")
+    LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizadosOrderAsc();
+
+    @Query("SELECT * FROM entrealizado_table ORDER BY Fecha DESC LIMIT :dias")
+    LiveData<List<Ent_Realizado>> getEntrenamientosRealizadosFiltro(int dias);
+
     @Query("SELECT * FROM entrealizado_table WHERE tipo='Fuerza' ORDER BY Fecha DESC")
     LiveData<List<Ent_Realizado>> getEntrenamientosFuerzaRealizados();
 
     @Query("SELECT * FROM entrealizado_table WHERE tipo='Aeróbico' ORDER BY Fecha DESC")
     LiveData<List<Ent_Realizado>> getEntrenamientosAerobicosRealizados();
+
+    @MapInfo(keyColumn = "nombre", valueColumn = "cantidad")
+    @Query("SELECT nombre_entrenamiento AS nombre, COUNT(nombre_entrenamiento) AS cantidad FROM Entrealizado_table GROUP BY nombre_entrenamiento LIMIT 7")
+    LiveData<Map<String, Integer>> getEntrenamientosCount();
 
     @Transaction
     @Query("SELECT * FROM ejercicio_table WHERE entrenamiento_Id=:id")

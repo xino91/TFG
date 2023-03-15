@@ -209,4 +209,10 @@
     <string name="sientes_alg_n_dolor">¿Sientes algún dolor?</string>
     <string name="dolor">Dolor</string>
     <string name="rpe_percibido">RPE percibido:</string>
+    <string name="por_d_as">Por días</string>
+    <string name="ltimos_7_d_as">Últimos 7 días</string>
+    <string name="ltimos_14_d_as">Últimos 14 días</string>
+    <string name="ltimos_21_d_as">Últimos 21 días</string>
+    <string name="ltimos_31_d_as">Últimos 31 días</string>
+    <string name="datos_a_mostrar">---Datos a mostrar</string>
 </resources>

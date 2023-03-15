@@ -25,6 +25,7 @@ import java.util.Objects;
 public class CuadroDialogo_rpe extends DialogFragment{
 
     private RadioGroup radioGroup;
+    private RadioButton boton1, boton2, boton3, boton4, boton5, boton6, boton7, boton8, boton9, boton10;
     private int rpe;
     private CuadroDialogo_listener listener;
     private RadioButton button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;
@@ -37,7 +38,7 @@ public class CuadroDialogo_rpe extends DialogFragment{
 
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.cuadrodialogo_rpe, null);
-        radioGroup = view.findViewById(R.id.radioGroup2);
+        enlazarVistas(view);
 
         dialogo.setView(view).
             setCancelable(false)
@@ -50,38 +51,16 @@ public class CuadroDialogo_rpe extends DialogFragment{
                         Toast.makeText(getContext(), "Selecciona algún item" , Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        switch(radioGroup.getCheckedRadioButtonId()){
-                            case 2131296819:
-                                listener.apply_rpe(1);
-                                break;
-                            case 2131296821:
-                                listener.apply_rpe(2);
-                                break;
-                            case 2131296822:
-                                listener.apply_rpe(3);
-                                break;
-                            case 2131296823:
-                                listener.apply_rpe(4);
-                                break;
-                            case 2131296824:
-                                listener.apply_rpe(5);
-                                break;
-                            case 2131296825:
-                                listener.apply_rpe(6);
-                                break;
-                            case 2131296826:
-                                listener.apply_rpe(7);
-                                break;
-                            case 2131296827:
-                                listener.apply_rpe(8);
-                                break;
-                            case 2131296828:
-                                listener.apply_rpe(9);
-                                break;
-                            case 2131296820:
-                                listener.apply_rpe(10);
-                                break;
-                        }
+                        if(boton1.isChecked()) {listener.apply_rpe(1);}
+                        else if(boton2.isChecked()){listener.apply_rpe(2);}
+                        else if(boton3.isChecked()){listener.apply_rpe(3);}
+                        else if(boton4.isChecked()){listener.apply_rpe(4);}
+                        else if(boton5.isChecked()){listener.apply_rpe(5);}
+                        else if(boton6.isChecked()){listener.apply_rpe(6);}
+                        else if(boton7.isChecked()){listener.apply_rpe(7);}
+                        else if(boton8.isChecked()){listener.apply_rpe(8);}
+                        else if(boton9.isChecked()){listener.apply_rpe(9);}
+                        else if(boton10.isChecked()){listener.apply_rpe(10);}
                     }
                 }
             }).setPositiveButtonIcon(requireActivity().getDrawable(R.drawable.ic_baseline_check_24));
@@ -98,6 +77,20 @@ public class CuadroDialogo_rpe extends DialogFragment{
 
     public int getRadioButton(){
         return rpe;
+    }
+
+    public void enlazarVistas(View view){
+        radioGroup = view.findViewById(R.id.radioGroup1);
+        boton1 = view.findViewById(R.id.radioButton1);
+        boton2 = view.findViewById(R.id.radioButton2);
+        boton3 = view.findViewById(R.id.radioButton3);
+        boton4 = view.findViewById(R.id.radioButton4);
+        boton5 = view.findViewById(R.id.radioButton5);
+        boton6 = view.findViewById(R.id.radioButton6);
+        boton7 = view.findViewById(R.id.radioButton7);
+        boton8 = view.findViewById(R.id.radioButton8);
+        boton9 = view.findViewById(R.id.radioButton9);
+        boton10 = view.findViewById(R.id.radioButton10);
     }
 
     @Override

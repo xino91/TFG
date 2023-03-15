@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ANTONIO/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/drawable/button_custom.xml" value="0.15" />
@@ -45,6 +46,8 @@
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/activity_nuevo_ejercicio.xml" value="0.264" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/cuadrodialogo_rpe.xml" value="0.2515625" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/cuadrodialogo_satisfaccion.xml" value="0.264" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/dialogo_filtro.xml" value="0.12284701114488349" />
+        <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/dialogo_filtro_lineal.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_dashboard.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_entrealizado.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/ANTONIO/Desktop/TFG/ProyectosAndroid/AppRPE/app/src/main/res/layout/fragment_entrenamiento.xml" value="0.25677083333333334" />

@@ -12,6 +12,7 @@ import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 import com.example.apprpe.modelo.EntrenamientoDao;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class EntrenamientoRepository {
@@ -48,6 +49,15 @@ public class EntrenamientoRepository {
         public LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados() { return listEntrenamietosRealizados; }
         public LiveData<List<Ent_Realizado>> getEntrenamientosFuerzaRealizados() {
             return entrenamientoDao.getEntrenamientosFuerzaRealizados();
+        }
+        public LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizadosOrderAsc() {
+            return entrenamientoDao.getAllEntrenamientosRealizadosOrderAsc();
+        }
+        public LiveData<List<Ent_Realizado>> getEntrenamientosRealizadosFiltro(int dias) {
+            return entrenamientoDao.getEntrenamientosRealizadosFiltro(dias);
+        }
+        public LiveData<Map<String, Integer>> getEntrenamientosCount() {
+            return entrenamientoDao.getEntrenamientosCount();
         }
         public LiveData<List<Ent_Realizado>> getEntrenamientosAerobicosRealizados() {
             return entrenamientoDao.getEntrenamientosAerobicosRealizados();
