@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Ent_Realizado;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -25,6 +26,7 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
     private EntRealizadoListAdapter.OnItemClickListener mlistener;
     private final int TIPO_FUERZA = 0;
     private final int TIPO_AEROBICO= 1;
+    private String charsToRetain = "0123456789MS";
 
     EntRealizadoListAdapter(Context context) {this.mInflater = LayoutInflater.from(context);}
 
@@ -45,12 +47,14 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Ent_Realizado current = mEntrenamientosRealizados.get(position);
+        Duration duration;
         switch (holder.getItemViewType()){
             case TIPO_FUERZA:
                 EntRealizadoListAdapter.ViewHolderFuerzaRealizado holderFuerzaRealizado = (ViewHolderFuerzaRealizado) holder;
                 holderFuerzaRealizado.nombre.setText(current.getNombre_entrenamiento());
                 holderFuerzaRealizado.date.setText((current.getFecha().toString()));
-                holderFuerzaRealizado.duracion.setText(String.valueOf(current.getDuracion()));
+                duration = Duration.ofSeconds(current.getDuracion()); //Para cambiar la duracion de long a formato minutos,segundos
+                holderFuerzaRealizado.duracion.setText(duration.toString().substring(2));
                 holderFuerzaRealizado.carga.setText(String.valueOf(current.getCarga()));
                 holderFuerzaRealizado.rpe_objetivo.setText(String.valueOf(current.getRpe_objetivo()));
                 holderFuerzaRealizado.rpe_subjetivo.setText(String.valueOf(current.getRpe_subjetivo()));
@@ -73,7 +77,8 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
                 EntRealizadoListAdapter.ViewHolderAerobicoRealizado holderAerobicoRealizado= (ViewHolderAerobicoRealizado) holder;
                 holderAerobicoRealizado.nombre.setText(current.getNombre_entrenamiento());
                 holderAerobicoRealizado.date.setText((current.getFecha().toString()));
-                holderAerobicoRealizado.duracion.setText(String.valueOf(current.getDuracion()));
+                duration = Duration.ofSeconds(current.getDuracion());
+                holderAerobicoRealizado.duracion.setText(duration.toString().substring(2));
                 holderAerobicoRealizado.carga.setText(String.valueOf(current.getCarga()));
                 holderAerobicoRealizado.rpe_objetivo.setText(String.valueOf(current.getRpe_objetivo()));
                 holderAerobicoRealizado.rpe_subjetivo.setText(String.valueOf(current.getRpe_subjetivo()));
@@ -107,6 +112,8 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
         mEntrenamientosRealizados = EntrenamientosRealizados;
         notifyDataSetChanged();
     }
+
+
 
     public int getId(int pos){
         return mEntrenamientosRealizados.get(pos).getId();

@@ -1,6 +1,5 @@
 package com.example.apprpe;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,11 +53,11 @@ public class CuadroDialogo_satisfaccion extends DialogFragment {
                     }
                     else {
                         Log.i("SATISFACCION", String.valueOf(radioGroup.getCheckedRadioButtonId()));
-                        if(boton1.isChecked()) {listener.apply_satisfaccion(1,dolor);}
-                        else if(boton2.isChecked()) {listener.apply_satisfaccion(2,dolor);}
-                        else if(boton3.isChecked()) {listener.apply_satisfaccion(3,dolor);}
-                        else if(boton4.isChecked()) {listener.apply_satisfaccion(4,dolor);}
-                        else if(boton5.isChecked()) {listener.apply_satisfaccion(5,dolor);}
+                        if(boton1.isChecked()) {listener.apply_Satisfaccion_Dolor(1,dolor);}
+                        else if(boton2.isChecked()) {listener.apply_Satisfaccion_Dolor(2,dolor);}
+                        else if(boton3.isChecked()) {listener.apply_Satisfaccion_Dolor(3,dolor);}
+                        else if(boton4.isChecked()) {listener.apply_Satisfaccion_Dolor(4,dolor);}
+                        else if(boton5.isChecked()) {listener.apply_Satisfaccion_Dolor(5,dolor);}
                     }
                 })
                 .setPositiveButtonIcon(requireActivity().getDrawable(R.drawable.ic_baseline_check_24))
@@ -91,6 +90,6 @@ public class CuadroDialogo_satisfaccion extends DialogFragment {
     }
 
     public interface CuadroDialogo_listener{
-        void apply_satisfaccion(int satisfaccion, int dolor);
+        void apply_Satisfaccion_Dolor(int satisfaccion, int dolor);
     }
 }

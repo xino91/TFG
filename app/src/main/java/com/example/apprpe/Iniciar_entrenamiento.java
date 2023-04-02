@@ -64,7 +64,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
 
     /**
      * Función que crea un Intent y llama a la avtivity infoentrenamientoRealizado.
-     * Esta función pasará a la siguiente activity la duración, hora comienzo y finalización del entrenamiento
+     * Esta función pasará a la siguiente activity la duración, hora comienzo y finalización del entrenamiento, nombre, tipo, carga
      */
     private void FinEntrenamiento() {
         hora_finalizacion = getHora();
@@ -181,8 +181,9 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
             carga = carga / listEjercicios.size();
         }
         else{
-            //Log.i("DURACION", String.valueOf(duracion_segundos));
+            Log.i("DURACIONINICIAR", String.valueOf(duracion_segundos));
             float duracion_minutos = (float) duracion_segundos / 60;
+            Log.i("DURACIONINICIAR2", String.valueOf(duracion_minutos));
             carga = carga + (int)(listEjercicios.get(num_ejercicio).getRpe() * duracion_minutos);
         }
     }

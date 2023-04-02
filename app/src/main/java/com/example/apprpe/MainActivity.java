@@ -11,15 +11,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.apprpe.ui.Perfil.PerfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuProvider;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void addMenuProvider(@NonNull MenuProvider provider) {
-        super.addMenuProvider(provider);
-
+    public boolean onSupportNavigateUp() {
+        Log.i("MAIN", "MAINNAVI");
+        return super.onSupportNavigateUp();
     }
 }

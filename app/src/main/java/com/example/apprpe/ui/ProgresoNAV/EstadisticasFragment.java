@@ -12,13 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.apprpe.R;
@@ -43,25 +43,24 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class EstadisticasFragment extends Fragment {
 
     private EstadisticaViewModel estadisticaViewModel;
     ArrayList<String> arrayglineal = new ArrayList<>();
     ArrayList<String> arraygbar = new ArrayList<>();
-    Map<String, Integer> mapa = new HashMap<String, Integer>();
     private List<Ent_Realizado> list = new ArrayList<>();
     private LineChart lineChart;
     private BarChart barChart;
     private PieChart pieChart;
     String[] valuesDolor;
+    private TextView monotonia_line, monotonia_bar, fatiga_line, fatiga_bar;
     private RadioButton radiobuttonf7, radiobuttonf14, radiobuttonf21, radiobuttonf31;
     String datoGlineal, datoGbarras, datoGpie;
 
@@ -69,7 +68,6 @@ public class EstadisticasFragment extends Fragment {
     private ImageButton filtro_Glineal, filtro_Gbarras, filtro_Gpie;
 
     public EstadisticasFragment(){
-        Log.i("CONTRUCTOR", "Entrado");
         datoGlineal = "Rpe";
         datoGbarras = "Rpe";
         datoGpie = "Entrenamientos";
@@ -78,7 +76,7 @@ public class EstadisticasFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_progreso, container, false);
+        View root = inflater.inflate(R.layout.fragment_estadisticas, container, false);
         estadisticaViewModel = new ViewModelProvider(this).get(EstadisticaViewModel.class);
         estadisticaViewModel.getEntrenamientosRealizadosFiltro(31).observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
@@ -100,6 +98,7 @@ public class EstadisticasFragment extends Fragment {
         vincularVistas(root);
         escuchadoresFiltrosGLineal();
         Log.i("CONSULTALINECHART", dato_consulta);
+        CalcularMonotoniaYFatiga(1);
         switch (dato_consulta) {
             case "Rpe":
                 GRpeGlineal();
@@ -122,6 +121,7 @@ public class EstadisticasFragment extends Fragment {
         assert root != null;
         vincularVistas(root);
         escuchadoresFiltrosGBar();
+        CalcularMonotoniaYFatiga(2);
         Log.i("CONSULTABAR", dato_consulta);
         switch (dato_consulta) {
             case "Rpe":
@@ -151,10 +151,7 @@ public class EstadisticasFragment extends Fragment {
             @Override
             public void onChanged(Map<String, Integer> mapa) {
                 for (String s : mapa.keySet()) {
-                    Log.i("ENTRADO", "ENTRADO");
-                    System.out.println("Clave: " + s + " -> Valor: " + mapa.get(s));
                     pievalues_pie.add(new PieEntry(mapa.get(s), s));
-                    Log.i("MAPA", String.valueOf(mapa.size()));
 
                     PieDataSet pieDataSet = new PieDataSet(pievalues_pie,"");
                     ConfigPieDataset(pieDataSet);
@@ -326,9 +323,9 @@ public class EstadisticasFragment extends Fragment {
 
         for (int i = 0; i < list.size(); i++) {
             arrayglineal.add(list.get(i).getFechaString());
-            Log.i("ARRAY", String.valueOf(arrayglineal.get(i)));
+            //Log.i("ARRAY", String.valueOf(arrayglineal.get(i)));
         }
-        Log.i("ARRAYTAM", String.valueOf(list.size()));
+        //Log.i("ARRAYTAM", String.valueOf(list.size()));
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "RPE Objetivo");
         LineDataSet lineDataSet2 = new LineDataSet(linevalues2, "RPE Percibido");
@@ -354,14 +351,14 @@ public class EstadisticasFragment extends Fragment {
 
         for(int i = 0; i< list.size(); i++){
             linevalues.add(new Entry(i, list.get(i).getCarga()));
-            Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
+            //Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
         }
 
         for(int i = 0; i< list.size(); i++){
             arrayglineal.add(list.get(i).getFechaString());
-            Log.i("ARRAY", String.valueOf(arrayglineal.get(i)));
+            //Log.i("ARRAY", String.valueOf(arrayglineal.get(i)));
         }
-        Log.i("ARRAYTAM", String.valueOf(list.size()));
+        //Log.i("ARRAYTAM", String.valueOf(list.size()));
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "Carga");
         ConfigLineDataSet(lineDataSet);
@@ -381,12 +378,12 @@ public class EstadisticasFragment extends Fragment {
     }
     public void GDolorGlineal(){
         List<Entry> linevalues = new ArrayList<Entry>();
-        Log.i("LISTSIZE", String.valueOf(list.size()));
+        //Log.i("LISTSIZE", String.valueOf(list.size()));
         for(int i = 0; i< list.size(); i++){
             linevalues.add(new Entry(i, list.get(i).getDolor()));
-            Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
+            //Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
         }
-        Log.i("LINEVALUESSIZE", String.valueOf(linevalues.size()));
+        //Log.i("LINEVALUESSIZE", String.valueOf(linevalues.size()));
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "Dolor");
         ConfigLineDataSet(lineDataSet);
@@ -444,17 +441,17 @@ public class EstadisticasFragment extends Fragment {
         for(int i = 0; i< list.size(); i++){
             barvalues.add(new BarEntry(i, list.get(i).getRpe_objetivo()));
             barvalues2.add(new BarEntry(i, list.get(i).getRpe_subjetivo()));
-            Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
-            Log.i("BARVALUES2", String.valueOf(barvalues2.get(i).getY()));
+            //Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
+            //Log.i("BARVALUES2", String.valueOf(barvalues2.get(i).getY()));
         }
 
         arraygbar.clear();
         for(int i = 0; i< list.size(); i++){
             arraygbar.add(list.get(i).getFechaString());
             arraygbar.add(list.get(i).getFechaString());
-            Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
+            //Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
         }
-        Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
+        //Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
 
         BarDataSet barDataSet = new BarDataSet(barvalues, "RPE Objetivo");
         BarDataSet barDataSet2 = new BarDataSet(barvalues2, "RPE Percibido");
@@ -482,16 +479,16 @@ public class EstadisticasFragment extends Fragment {
 
         for(int i = 0; i< list.size(); i++){
             barvalues.add(new BarEntry(i, list.get(i).getCarga()));
-            Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
+            //Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
         }
 
         arraygbar.clear();
         for(int i = 0; i< list.size(); i++){
             arraygbar.add(list.get(i).getFechaString());
             arraygbar.add(list.get(i).getFechaString());
-            Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
+            //Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
         }
-        Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
+        //Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
 
         BarDataSet barDataSet = new BarDataSet(barvalues, "Carga");
 
@@ -517,16 +514,16 @@ public class EstadisticasFragment extends Fragment {
 
         for(int i = 0; i< list.size(); i++){
             barvalues.add(new BarEntry(i, list.get(i).getDolor()));
-            Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
+            //Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
         }
 
         arraygbar.clear();
         for(int i = 0; i< list.size(); i++){
             arraygbar.add(list.get(i).getFechaString());
             arraygbar.add(list.get(i).getFechaString());
-            Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
+            //Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
         }
-        Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
+        //Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
 
         BarDataSet barDataSet = new BarDataSet(barvalues, "Carga");
 
@@ -579,6 +576,45 @@ public class EstadisticasFragment extends Fragment {
     }*/
 
     /**
+     *Función que calcula el índice de monotonía y el índice de fatiga y modifica los TextView
+     * correspondientes a tráves del parámetro que recibe
+     * @param llamada si llamada = 1, modifica TextView del gráfico lineal
+     *                si llamada = 2, modifica TextView del gráfico de barras
+     */
+    public void CalcularMonotoniaYFatiga(int llamada){
+        double media_dias = 0.0;
+        double sumatoria_cuadrado = 0.0;
+        double x = 0.0;
+        double desviacion_estandar = 0.0;
+
+        for(int i=0; i<list.size(); i++){
+            media_dias = media_dias + list.get(i).getCarga();
+        }
+        media_dias = (int) (media_dias / list.size());
+
+        for(int i=0; i< list.size(); i++){
+            x = list.get(i).getCarga() - media_dias;
+            sumatoria_cuadrado = sumatoria_cuadrado + (int) Math.pow(x, 2);
+        }
+
+        desviacion_estandar = (int) (Math.sqrt(sumatoria_cuadrado / list.size()-1) );
+
+        double monotonia = 0.0;
+        monotonia = media_dias / desviacion_estandar;
+        double fatiga;
+        fatiga = media_dias * monotonia;
+
+        if(llamada == 1){
+            monotonia_line.setText((String.format("%.2f", monotonia)));
+            fatiga_line.setText(String.format("%.2f", fatiga));
+        }
+        if(llamada == 2){
+            monotonia_bar.setText((String.format("%.2f", monotonia)));
+            fatiga_bar.setText(String.format("%.2f", fatiga));
+        }
+    }
+
+    /**
      * Escuchador del botón filtro del gráfico Lineal
      */
     public void escuchadoresFiltrosGLineal(){
@@ -611,6 +647,10 @@ public class EstadisticasFragment extends Fragment {
         radiobuttonf14 = root.findViewById(R.id.radioButtonf14);
         radiobuttonf21 = root.findViewById(R.id.radioButtonf21);
         radiobuttonf31 = root.findViewById(R.id.radioButtonf31);
+        monotonia_line = root.findViewById(R.id.textView_monotoniaLineChart);
+        monotonia_bar = root.findViewById(R.id.textView_monotoniaBarchart);
+        fatiga_line = root.findViewById(R.id.textView_fatigaLinechart);
+        fatiga_bar = root.findViewById(R.id.textView_fatigaBarChart);
     }
 
     private boolean isDatoVacio(String dato) {
@@ -644,7 +684,7 @@ public class EstadisticasFragment extends Fragment {
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
         axis.setDrawGridLines(true);
         axis.setCenterAxisLabels(true);
-        axis.setLabelRotationAngle(-25);
+        axis.setLabelRotationAngle(-23);
         axis.setGranularity(1f);
         axis.setTextSize(10);
         axis.setValueFormatter(new IndexAxisValueFormatter(arrayglineal));
@@ -673,11 +713,8 @@ public class EstadisticasFragment extends Fragment {
         Legend legend = lineChart.getLegend();
         legend.setEnabled(true);
         legend.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-        legend.setWordWrapEnabled(true);
         legend.setTextSize(11f);
-        legend.setXEntrySpace(17f);
-        legend.setWordWrapEnabled(true);
-        legend.setYOffset(-0.2f);
+        legend.setXEntrySpace(17f);;
         //lineChart.setTouchEnabled(false);
         //lineChart.setDragEnabled(false);
         //lineChart.setHighlightPerTapEnabled(false);
@@ -745,6 +782,13 @@ public class EstadisticasFragment extends Fragment {
         Description description = new Description();
         description.setText("Entrenamientos más usados");
         description.setTextSize(10f);
+        description.setYOffset(-5);
+        Legend legend = pieChart.getLegend();
+        legend.setEnabled(true);
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+        legend.setYOffset(-12);
+        //pieChart.setExtraBottomOffset(20);
+        pieChart.setExtraOffsets(10,-5,10,30);
         pieChart.setDescription(description);
         pieChart.invalidate();
         pieChart.animateXY(1600,700);
@@ -757,6 +801,6 @@ class myValueFormatter extends ValueFormatter {
 
     @Override
     public String getFormattedValue(float value) {
-        return String.valueOf(value);
+        return String.valueOf((int)value);
     }
 }

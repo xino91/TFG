@@ -171,7 +171,7 @@
     <string name="datos_entrenamiento">Datos Entrenamiento</string>
     <string name="duracion">Duración</string>
     <string name="duracion2">Duración</string>
-    <string name="ndice_de_monoton_a">Índice de Monotonía</string>
+    <string name="ndice_de_monoton_a">Índice de monotonía</string>
     <string name="terminar">Terminar</string>
     <string name="segundos">segundos</string>
     <string name="hora_finalizaci_n">Hora Finalización</string>
@@ -190,7 +190,7 @@
     <string name="nombre_del_entrenamiento">nombre del entrenamiento</string>
     <string name="tipo">Tipo</string>
     <string name="no_hay_ning_n_ejercicio_guardado">No hay ningún ejercicio guardado</string>
-    <string name="editar_datos">editar datos</string>
+    <string name="editar_datos">Editar perfil</string>
     <string name="click">Click</string>
     <string name="Fecha">Fecha</string>
     <string name="calendario">Calendario</string>
@@ -198,9 +198,9 @@
     <string name="filtro">filtro</string>
     <string name="muy_ligero">Muy Ligero</string>
     <string name="ning_n_esfuerzo">Ningún esfuerzo</string>
-    <string name="duro">Duro</string>
-    <string name="muy_duro">Muy Duro</string>
     <string name="moderado">Moderado</string>
+    <string name="muy_duro">Muy Duro</string>
+    <string name="algo_pesado">Algo pesado</string>
     <string name="f_cil">Fácil</string>
     <string name="muy_f_cil">Muy fácil</string>
     <string name="m_ximo">Máximo</string>
@@ -215,4 +215,10 @@
     <string name="ltimos_21_d_as">Últimos 21 días</string>
     <string name="ltimos_31_d_as">Últimos 31 días</string>
     <string name="datos_a_mostrar">---Datos a mostrar</string>
+    <string name="gr_fico_de_barras">Gráfico de Barras</string>
+    <string name="ndice_de_fatiga">Índice de fatiga</string>
+    <string name="gr_fico_circular">Gráfico Circular</string>
+    <string name="configurar">Ajustes</string>
+    <string name="duro">Duro</string>
+    <string name="introduce_el_esfuerzo_percibido">Introduce el esfuerzo percibido</string>
 </resources>

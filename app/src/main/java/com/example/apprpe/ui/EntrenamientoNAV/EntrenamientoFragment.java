@@ -184,7 +184,6 @@ public class EntrenamientoFragment extends Fragment {
                 entrenamiento.setRpe_Objetivo(Integer.parseInt(data.getExtras().getString("RPE")));
                 entrenamiento.setTipo(data.getExtras().getString("TipoDato"));
                 entrenamientoViewModel.insert(entrenamiento);
-                Log.i("INSERT", "INSERT");
             }
             else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(getActivity(), "Cancelado", Toast.LENGTH_SHORT).show();
@@ -205,7 +204,6 @@ public class EntrenamientoFragment extends Fragment {
     public void onResume() {
         super.onResume();
         chipGroup.check(R.id.buttonTodo);
-        Log.i("RESUME", "RESUME");
     }
 
     /**

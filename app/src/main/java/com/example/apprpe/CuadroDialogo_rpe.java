@@ -25,10 +25,8 @@ import java.util.Objects;
 public class CuadroDialogo_rpe extends DialogFragment{
 
     private RadioGroup radioGroup;
-    private RadioButton boton1, boton2, boton3, boton4, boton5, boton6, boton7, boton8, boton9, boton10;
-    private int rpe;
+    private RadioButton boton0, boton1, boton2, boton3, boton4, boton5, boton6, boton7, boton8, boton9, boton10;
     private CuadroDialogo_listener listener;
-    private RadioButton button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;
 
     @NonNull
     @Override
@@ -43,7 +41,6 @@ public class CuadroDialogo_rpe extends DialogFragment{
         dialogo.setView(view).
             setCancelable(false)
             .setTitle("Esfuerzo percibido (RPE)")
-            .setMessage("¿Cómo de cansado te sientes?")
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -51,7 +48,8 @@ public class CuadroDialogo_rpe extends DialogFragment{
                         Toast.makeText(getContext(), "Selecciona algún item" , Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        if(boton1.isChecked()) {listener.apply_rpe(1);}
+                        if(boton0.isChecked()){listener.apply_rpe(0);}
+                        else if(boton1.isChecked()) {listener.apply_rpe(1);}
                         else if(boton2.isChecked()){listener.apply_rpe(2);}
                         else if(boton3.isChecked()){listener.apply_rpe(3);}
                         else if(boton4.isChecked()){listener.apply_rpe(4);}
@@ -75,12 +73,9 @@ public class CuadroDialogo_rpe extends DialogFragment{
         return dialogo.create();
     }
 
-    public int getRadioButton(){
-        return rpe;
-    }
-
     public void enlazarVistas(View view){
         radioGroup = view.findViewById(R.id.radioGroup1);
+        boton0 = view.findViewById(R.id.radioButton0);
         boton1 = view.findViewById(R.id.radioButton1);
         boton2 = view.findViewById(R.id.radioButton2);
         boton3 = view.findViewById(R.id.radioButton3);

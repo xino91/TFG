@@ -14,21 +14,29 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.apprpe.Inicio_activity;
+import com.example.apprpe.MainActivity;
+import com.example.apprpe.Setting;
 import com.example.apprpe.R;
+import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoFragment;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.common.Feature;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
-import java.net.URI;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -47,6 +55,7 @@ public class PerfilFragment extends Fragment implements MenuProvider {
     String nacimiento;
     String path;
     CircleImageView imagen;
+    BottomNavigationView navView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -74,12 +83,30 @@ public class PerfilFragment extends Fragment implements MenuProvider {
 
     @Override
     public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        if(menuItem.getItemId() == android.R.id.home){
+            Log.i("ENTRADOPERFIL", "HOLA");
+            requireActivity().getSupportFragmentManager().popBackStack();
+            requireActivity().setContentView(R.layout.activity_main);
+            AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_perfil)
+                    .build();
+
+            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController((AppCompatActivity) requireActivity(), navController, appBarConfiguration);
+            NavigationUI.setupWithNavController(navView, navController);
+            return true;
+        }
+        if (menuItem.getItemId() == R.id.action_configuración) {
+            editarConfiguracion();
+            return true;
+        }
         if(menuItem.getItemId() == R.id.action_editar){
             editarPerfil();
             return true;
         }
         return false;
     }
+
 
     private void inicializarComponenetes(View root) {
         txtView_Usuario = root.findViewById(R.id.textView_Nombre);
@@ -89,6 +116,7 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         txtView_Email = root.findViewById(R.id.textView_Email);
         txtView_Nacimiento = root.findViewById(R.id.TextView_fecha);
         imagen = root.findViewById(R.id.profile_image);
+        navView = root.findViewById(R.id.nav_view);
     }
 
     private void obtenerDatosFicheroPreferencias() {
@@ -144,7 +172,6 @@ public class PerfilFragment extends Fragment implements MenuProvider {
             SharedPreferences.Editor editor = preferencias.edit();
             editor.putString("Path", uri.getEncodedPath());
             editor.apply();
-            //Log.e("Hola2", uri.getEncodedPath());
         }
     }
 
@@ -153,4 +180,27 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         startActivity(intent);
     }
 
+    private void editarConfiguracion() {
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new Setting())
+                .addToBackStack(null)
+                .commit();
+    }
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("ONRESUMEPERFIL", "sdjslf");
+        BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+        navView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("ONPAUSEPERFIL", "sdjslf");
+    }
 }

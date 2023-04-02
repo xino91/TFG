@@ -2,27 +2,27 @@ package com.example.apprpe;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Inicio_activity extends AppCompatActivity{
 
@@ -31,16 +31,13 @@ public class Inicio_activity extends AppCompatActivity{
     String estatura, peso = "";
     String nacimiento;
     TextInputEditText edt_Nombre;
-    RadioButton radbutton_masculino;
-    RadioButton radbutton_femenino;
-    EditText edt_Estatura;
-    EditText edt_Peso;
-    EditText edt_Mail;
-    EditText buttonfecha;
+    RadioButton radbutton_masculino, radbutton_femenino;
+    EditText edt_Estatura, edt_Peso, edt_Mail, buttonfecha;
     ImageButton imagebutton;
     Button buttonAvanzar;
-    String spinner_actividad;
     int dia,mes,ano;
+    private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +45,26 @@ public class Inicio_activity extends AppCompatActivity{
         setContentView(R.layout.inicio_activity);
         inicializarComponentes();
 
+        escuchadorCalendario();
+
+        buttonAvanzar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recogerDatos();
+                if(comprobarDatosCorrectosEditText()) {
+                    guardarPreferencias();
+                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+    }
+
+    /**
+     * Escuchador para el boton del calendario que abre un DatePickerDialog
+     */
+    public void escuchadorCalendario(){
         imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,27 +76,18 @@ public class Inicio_activity extends AppCompatActivity{
                 DatePickerDialog.OnDateSetListener setlistener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        buttonfecha.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        buttonfecha.setText(year + "-" + String.format("%02d",(month + 1)) + "-" + String.format("%02d",dayOfMonth));
                     }
                 };
                 DatePickerDialog datePickerDialog = new DatePickerDialog(Inicio_activity.this, setlistener, ano, mes, dia);
                 datePickerDialog.show();
             }
         });
-
-        buttonAvanzar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recogerDatos();
-                if(comprobarDatos()) {
-                    guardarPreferencias();
-                    Intent intent = new Intent(getApplication(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
     }
+
+    /**
+     * Vincula las vistas con las variables respectivas
+     */
     private void inicializarComponentes(){
         edt_Nombre = findViewById(R.id.Edit_nombre);
         radbutton_masculino = findViewById(R.id.radioButton_masculino);
@@ -100,7 +108,11 @@ public class Inicio_activity extends AppCompatActivity{
         nacimiento = buttonfecha.getText().toString();
     }
 
-    private boolean comprobarDatos(){
+    /**
+     * Comprueba que los datos introducidos por el usuario sean correctos y también que tengamos Editext vacíos
+     * @return true si todos los datos son correctos, false caso contrario
+     */
+    private boolean comprobarDatosCorrectosEditText(){
         if (nombreUsuario.isEmpty()) {
             edt_Nombre.setError("Campo obligatorio");
             return false;
@@ -114,13 +126,21 @@ public class Inicio_activity extends AppCompatActivity{
         } else if (edt_Peso.getText().length() < 2 || edt_Peso.getText().length() > 3) {
             edt_Peso.setError("Campo obligatorio, dos o tres caracteres");
             return false;
-        } else if (email.isEmpty()) {
-            edt_Mail.setError("Campo obligatorio");
-            return false;
         } else if (nacimiento.isEmpty()) {
             buttonfecha.setError("Campo obligatorio");
             return false;
-        } else {
+        } else if (!validarFecha(buttonfecha.getText().toString())) {
+            buttonfecha.setError("La fecha");
+            Toast.makeText(this, "La edad mínima es de 14 años", Toast.LENGTH_SHORT).show();
+            return false;
+        }  else if (email.isEmpty()) {
+            edt_Mail.setError("Campo obligatorio");
+            return false;
+        } else if (!validarCorreo(edt_Mail.getText().toString())){
+            edt_Mail.setError("Introduce un email válido");
+            return false;
+        }
+        else {
             if (radbutton_masculino.isChecked()) {
                 genero = "Masculino";
             } else if (radbutton_femenino.isChecked()) {
@@ -132,6 +152,9 @@ public class Inicio_activity extends AppCompatActivity{
         return true;
     }
 
+    /**
+     * Función que guardar los datos en el fichero de preferencias
+     */
     private void guardarPreferencias(){
         preferencias = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferencias.edit();
@@ -141,9 +164,20 @@ public class Inicio_activity extends AppCompatActivity{
         editor.putString("Estatura", estatura);
         editor.putString("Peso", peso);
         editor.putString("Email", email);
-        editor.putString("Actividad", spinner_actividad);
         editor.putString("Fecha", nacimiento);
         editor.apply();
     }
 
+    public  boolean validarFecha(String fechanacimiento) {
+        LocalDate fechaNacimiento = LocalDate.parse(fechanacimiento, DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDate fechaActual = LocalDate.now();
+
+        return fechaNacimiento.isBefore(fechaActual.minusYears(14));
+    }
+
+    public boolean validarCorreo(String correo){
+        Log.i("CORREO", correo);
+        Matcher matcher = EMAIL_PATTERN.matcher(correo);
+        return matcher.find();
+    }
 }

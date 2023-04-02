@@ -1,0 +1,24 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Tipo de Escala"/>
+
+        <ListPreference
+            app:key="escala"
+            app:title="Elegir escala RPE"
+            android:summary="Cambia entre tipos de escalas"
+            android:entries="@array/escala"
+            android:entryValues="@array/escala"
+            android:defaultValue="1"
+            app:icon="@drawable/ic_baseline_settings_24"/>
+
+    <PreferenceCategory
+        android:title="Ayuda"/>
+        <Preference
+            android:key="acerca_de"
+            android:title="Acerca de ..."
+            app:icon="@drawable/ic_about_icon" />
+
+
+</PreferenceScreen>
