@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:elevation="5dp"
+    android:focusable="true"
+    card_view:cardBackgroundColor="#FFFFFF"
+    card_view:cardCornerRadius="7dp"
+    card_view:cardElevation="5dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:layout_constraintEnd_toEndOf="parent"
+    card_view:layout_constraintStart_toStartOf="parent"
+    card_view:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/TextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:paddingHorizontal="3dp"
+            android:paddingVertical="3dp"
+            android:text="Date"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:paddingHorizontal="3dp"
+            android:paddingVertical="3dp"
+            android:paddingStart="10dp"
+            android:text="@string/nombre"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="4dp"
+            android:background="#FFFFFF"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="@+id/textView"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView"
+            card_view:srcCompat="@mipmap/ejercicio_fuerza" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/duracion2"
+            card_view:layout_constraintBottom_toBottomOf="@+id/imageView"
+            card_view:layout_constraintStart_toStartOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView_carga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carga"
+            android:textSize="18sp"
+            card_view:layout_constraintEnd_toEndOf="@+id/textView24"
+            card_view:layout_constraintStart_toStartOf="@+id/textView24"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rpe_percibido"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView19"
+            card_view:layout_constraintStart_toStartOf="@+id/textView17"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/rpe_objetivo2"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView"
+            card_view:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageView_satisfaccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/satisfacci_n"
+            android:src="@drawable/sat_risa5"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView_dolor"
+            card_view:layout_constraintEnd_toEndOf="@+id/TextDate"
+            card_view:layout_constraintTop_toBottomOf="@+id/TextDate" />
+
+        <TextView
+            android:id="@+id/textView_dolor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dolor"
+            card_view:layout_constraintBottom_toBottomOf="@+id/textView19"
+            card_view:layout_constraintEnd_toEndOf="@+id/imageView_satisfaccion" />
+
+        <TextView
+            android:id="@+id/textView_objetivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="TextView"
+            card_view:layout_constraintStart_toEndOf="@+id/textView17"
+            card_view:layout_constraintTop_toTopOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/textView_percibido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="TextView"
+            card_view:layout_constraintStart_toEndOf="@+id/textView18"
+            card_view:layout_constraintTop_toTopOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView_duracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="TextView"
+            card_view:layout_constraintStart_toEndOf="@+id/textView19"
+            card_view:layout_constraintTop_toTopOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/carga"
+            card_view:layout_constraintEnd_toStartOf="@+id/imageView_satisfaccion"
+            card_view:layout_constraintStart_toEndOf="@+id/textView_objetivo"
+            card_view:layout_constraintTop_toTopOf="@+id/textView_objetivo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

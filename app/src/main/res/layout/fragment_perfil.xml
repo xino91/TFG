@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/perfil_fragment"
+    tools:context=".ui.Perfil.PerfilFragment">
+
+    <TextView
+        android:id="@+id/textView_Estatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/estatura"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewp_estatura"
+        app:layout_constraintTop_toBottomOf="@+id/textViewp_estatura" />
+
+    <TextView
+        android:id="@+id/textView_Peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/peso"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewp_estatura2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewp_estatura2" />
+
+    <TextView
+        android:id="@+id/textView_Cm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="cm"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_Estatura"
+        app:layout_constraintStart_toEndOf="@+id/textView_Estatura"
+        app:layout_constraintTop_toTopOf="@+id/textView_Estatura" />
+
+    <TextView
+        android:id="@+id/textView_Kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Kg"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_Peso"
+        app:layout_constraintStart_toEndOf="@+id/textView_Peso"
+        app:layout_constraintTop_toTopOf="@+id/textView_Peso" />
+
+    <TextView
+        android:id="@+id/textViewp_estatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="45dp"
+        android:text="@string/estatura"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/textViewp_estatura2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="80dp"
+        android:text="@string/peso"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:background="@drawable/fondo_perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:maxLines="3"
+            android:minLines="1"
+            android:text="@string/email"
+            android:textColor="#FF000000"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@+id/TextView_fecha"
+            app:layout_constraintStart_toStartOf="@+id/TextView_fecha"
+            app:layout_constraintTop_toBottomOf="@+id/TextView_fecha" />
+
+        <TextView
+            android:id="@+id/TextView_fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/fecha_nacimiento"
+            android:textColor="#FF000000"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView_Nombre"
+            app:layout_constraintStart_toStartOf="@+id/textView_Nombre"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Nombre" />
+
+        <TextView
+            android:id="@+id/textView_Nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/nombre"
+            android:textColor="#FF000000"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image"
+            app:layout_constraintStart_toStartOf="@+id/profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+        <TextView
+            android:id="@+id/textView_Genero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/g_nero"
+            android:textColor="#FF000000"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView_Email"
+            app:layout_constraintStart_toStartOf="@+id/textView_Email"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Email" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_user_3_24dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

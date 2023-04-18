@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/por_d_as"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+        <RadioButton
+            android:id="@+id/radioButtonf7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:text="@string/ltimos_7_d_as"
+            android:textAlignment="textStart" />
+
+        <RadioButton
+            android:id="@+id/radioButtonf14"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ltimos_14_d_as"
+            android:textAlignment="textStart" />
+
+        <RadioButton
+            android:id="@+id/radioButtonf21"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ltimos_21_d_as"
+            android:textAlignment="textStart" />
+
+        <RadioButton
+            android:id="@+id/radioButtonf31"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ltimos_31_d_as"
+            android:textAlignment="textStart" />
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/InputLayout_Spinner"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup3"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3">
+
+        <AutoCompleteTextView
+            android:id="@+id/desplegable"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:inputType="none"
+            android:hint="@string/datos_a_mostrar"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup3"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

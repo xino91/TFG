@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGEead"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppRPE">
+        <activity
+            android:name=".infoentrenamientoRealizado"
+            android:exported="false"
+            android:label="@string/fin_entrenamiento" />
+        <activity
+            android:name=".ui.EntrenamientoNAV.InsertarNuevoEjercicio"
+            android:label="@string/InsertarNuevoEjercicio_activity" />
+        <activity
+            android:name=".EditarEjercicio"
+            android:label="@string/Editar_ejercicio_activity" />
+        <activity
+            android:name=".VistaEjerciciosActivity"
+            android:label="@string/title_activity_vista_ejercicio" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Inicio_activity"
+            android:label="@string/pantalla_configuraci_n" />
+        <activity
+            android:name=".ui.EntrenamientoNAV.InsertarEntrenamiento_activity"
+            android:label="@string/title_insertar_sesion_activity" />
+        <activity
+            android:name=".Iniciar_entrenamiento"
+            android:label="@string/iniciar_entrenamiento" />
+    </application>
+
+</manifest>

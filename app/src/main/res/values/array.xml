@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="escala">
+        <item name="1">Escala original (0-10)</item>
+        <item name="2">Escala EPinfant</item>
+    </array>
+
+</resources>
