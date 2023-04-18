@@ -1,6 +1,8 @@
 package com.example.apprpe.ui.EntrenamientoNAV;
 
+
 import android.app.Activity;
+
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -177,6 +180,7 @@ public class EntrenamientoFragment extends Fragment {
     /***
      * Recibe un entrenamiento de otra activity(InsertarEntrenamiento_activity) para realizar el insert en la BD
      */
+
     private final ActivityResultLauncher<Intent> insertSesionActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -193,6 +197,7 @@ public class EntrenamientoFragment extends Fragment {
                 }
             }
     );
+
 
     public void escuchadorBotonFlotante(){
         fab.setOnClickListener(new View.OnClickListener() {

@@ -26,12 +26,14 @@ public class Entrenamiento {
         Num_ejercicios = num_ejercicios;
         Rpe_Objetivo = rpe_Objetivo;
     }
+
     public Entrenamiento(String nombre_Entrenamiento, int num_ejercicios, int rpe_Objetivo, String tipo) {
         Nombre_Entrenamiento = nombre_Entrenamiento;
         Num_ejercicios = num_ejercicios;
         Rpe_Objetivo = rpe_Objetivo;
         Tipo = tipo;
     }
+
     public Entrenamiento(String nombre_Entrenamiento, int num_ejercicios, int rpe_Objetivo) {
         Nombre_Entrenamiento = nombre_Entrenamiento;
         Num_ejercicios = num_ejercicios;
