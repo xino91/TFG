@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.apprpe.EntrenamientoRepository;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
+import com.example.apprpe.modelo.Peso;
 
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,10 @@ public class EstadisticaViewModel extends AndroidViewModel {
 
     public LiveData<Map<String, Integer>> getEntrenamientosCount(){
         return mRepository.getEntrenamientosCount();
+    }
+
+    public LiveData<List<Peso>> getHistorialPesos(){
+        return mRepository.getHistorialPesos();
     }
 
 }

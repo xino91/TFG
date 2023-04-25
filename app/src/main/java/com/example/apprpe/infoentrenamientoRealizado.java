@@ -229,7 +229,6 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
     public void obtenerSharedPreference(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         key_escala = preferences.getString("escala", "");
-        Log.i("ESCALA", key_escala);
     }
 
 

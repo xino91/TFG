@@ -3,11 +3,10 @@ package com.example.apprpe.ui.EntrenamientoNAV;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -18,10 +17,11 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
-public class InsertarEntrenamiento_activity extends AppCompatActivity {
+public class InsertarEntrenamiento extends AppCompatActivity {
 
     TextInputEditText edt_titulo, edt_rpe;
     Button btn_insertar, btn_Cancelar;
+    @VisibleForTesting
     AutoCompleteTextView spinner_desplegable;
 
     @Override

@@ -23,6 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Ent_Realizado;
+import com.example.apprpe.modelo.Peso;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -56,6 +57,9 @@ public class EstadisticasFragment extends Fragment {
     ArrayList<String> arrayglineal = new ArrayList<>();
     ArrayList<String> arraygbar = new ArrayList<>();
     private List<Ent_Realizado> list = new ArrayList<>();
+
+    private List<Peso> listPesos = new ArrayList<>();
+    ArrayList<String> array = new ArrayList<>();
     private LineChart lineChart;
     private BarChart barChart;
     private PieChart pieChart;
@@ -88,6 +92,13 @@ public class EstadisticasFragment extends Fragment {
                 CallPieChart();
             }
         });
+        estadisticaViewModel.getHistorialPesos().observe(getViewLifecycleOwner(), new Observer<List<Peso>>() {
+            @Override
+            public void onChanged(List<Peso> pesos) {
+                listPesos.addAll(pesos);
+                Log.i("Peso", String.valueOf(listPesos.get(0).getPeso()));
+            }
+        });
         return root;
     }
 
@@ -110,7 +121,7 @@ public class EstadisticasFragment extends Fragment {
                 GDolorGlineal();
                 break;
             case "Peso":
-                //GPeso();
+                GPeso();
                 break;
         }
     }
@@ -134,7 +145,7 @@ public class EstadisticasFragment extends Fragment {
                 GDolorGbarras();
                 break;
             case "Peso":
-                //GPesoGbarras();
+                GPesoGbarras();
                 break;
         }
     }
@@ -181,7 +192,7 @@ public class EstadisticasFragment extends Fragment {
                         datoGlineal = String.valueOf(spinner_datos.getText());
                         if(!isDatoVacio(datoGlineal)){
                             getFiltroDiasYrpeGlineal();}
-                        else{Toast.makeText(getContext(), "Debe introducir un datoGlineal a mostrar", Toast.LENGTH_SHORT).show();}
+                        else{Toast.makeText(getContext(), "Debe introducir un dato a mostrar", Toast.LENGTH_SHORT).show();}
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -351,14 +362,11 @@ public class EstadisticasFragment extends Fragment {
 
         for(int i = 0; i< list.size(); i++){
             linevalues.add(new Entry(i, list.get(i).getCarga()));
-            //Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
         }
 
         for(int i = 0; i< list.size(); i++){
             arrayglineal.add(list.get(i).getFechaString());
-            //Log.i("ARRAY", String.valueOf(arrayglineal.get(i)));
         }
-        //Log.i("ARRAYTAM", String.valueOf(list.size()));
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "Carga");
         ConfigLineDataSet(lineDataSet);
@@ -372,7 +380,6 @@ public class EstadisticasFragment extends Fragment {
         ConfigAxis(axis, yaxis);
 
         LineData data = new LineData(dataset);
-        //data.setValueFormatter(new myFechaValueFormatter(array));
         lineChart.setData(data);
         ConfigLineChart(lineChart);
     }
@@ -404,18 +411,15 @@ public class EstadisticasFragment extends Fragment {
         lineChart.setData(data);
         ConfigLineChart(lineChart);
     }
-    /*public void GPeso(){
+    public void GPeso(){
         List<Entry> linevalues = new ArrayList<Entry>();
 
-        for(int i=0; i<list.size(); i++){
-            linevalues.add(new Entry(i, list.get(i).getCarga()));
-            Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
+        for(int i=0; i<listPesos.size(); i++){
+            linevalues.add(new Entry(i, (float) listPesos.get(i).getPeso()));
         }
 
-        for(int i=0; i<list.size(); i++){
-            array.add(list.get(i).getFechaString());
-            Log.i("ARRAYTAM", String.valueOf(list.size()));
-            Log.i("ARRAY", String.valueOf(array.get(i)));
+        for(int i=0; i<listPesos.size(); i++){
+            array.add(listPesos.get(i).getFecha_registro().toString());
         }
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "Peso");
@@ -432,7 +436,7 @@ public class EstadisticasFragment extends Fragment {
         //data.setValueFormatter(new myFechaValueFormatter(array));
         lineChart.setData(data);
         ConfigLineChart(lineChart);
-    }*/
+    }
 
     public void GRpeGbarras() {
         List<BarEntry> barvalues = new ArrayList<BarEntry>();
@@ -545,35 +549,35 @@ public class EstadisticasFragment extends Fragment {
         //barChart.setVisibleXRangeMinimum(list.size());
         ConfigBarChart(barChart);
     }
-    /*public void GPesoGbarras(){
-        List<Entry> linevalues = new ArrayList<Entry>();
+    public void GPesoGbarras(){
+        List<BarEntry> barvalues = new ArrayList<BarEntry>();
 
-        for(int i=0; i<list.size(); i++){
-            linevalues.add(new Entry(i, list.get(i).getCarga()));
-            Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
+        for(int i = 0; i< listPesos.size(); i++){
+            barvalues.add(new BarEntry(i, (float)listPesos.get(i).getPeso()));
         }
 
-        for(int i=0; i<list.size(); i++){
-            array.add(list.get(i).getFechaString());
-            Log.i("ARRAYTAM", String.valueOf(list.size()));
-            Log.i("ARRAY", String.valueOf(array.get(i)));
+        arraygbar.clear();
+        for(int i = 0; i< listPesos.size(); i++){
+            arraygbar.add(listPesos.get(i).getFecha_registro().toString());
         }
 
-        LineDataSet lineDataSet = new LineDataSet(linevalues, "Peso");
-        ConfigLineDataSet(lineDataSet);
+        BarDataSet barDataSet = new BarDataSet(barvalues, "Peso");
 
-        ArrayList<ILineDataSet> dataset = new ArrayList<>();
-        dataset.add(lineDataSet);
+        BarData barData = new BarData(barDataSet);
 
-        XAxis axis = lineChart.getXAxis();
-        YAxis yaxis = lineChart.getAxisLeft();
-        ConfigAxis(axis, yaxis);
+        XAxis xaxis = barChart.getXAxis();
+        YAxis yaxis = barChart.getAxisLeft();
+        yaxis.setValueFormatter(new myValueFormatter());
+        ConfigAxisBarras(xaxis, yaxis);
 
-        LineData data = new LineData(dataset);
-        //data.setValueFormatter(new myFechaValueFormatter(array));
-        lineChart.setData(data);
-        ConfigLineChart(lineChart);
-    }*/
+        barData.setValueTextSize(10f);
+        //barData.setValueTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+        //barData.setDrawValues(true); por defecto true
+
+        barChart.setData(barData);
+        //barChart.setVisibleXRangeMinimum(list.size());
+        ConfigBarChart(barChart);
+    }
 
     /**
      *Función que calcula el índice de monotonía y el índice de fatiga y modifica los TextView

@@ -1,7 +1,6 @@
 package com.example.apprpe.modelo.DB;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -14,18 +13,15 @@ import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.modelo.EntrenamientoDao;
+import com.example.apprpe.modelo.Peso;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.SimpleTimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class}, version = 1, exportSchema = false)
+@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class, Peso.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract  class RPERoomDatabase extends RoomDatabase {
 
@@ -64,6 +60,7 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
                 List<Entrenamiento> entrenamientos = CrearEntrenamientosEjemplo();
                 List<Ejercicio> ejercicios = CrearEjerciciosEjemplo();
                 List<Ent_Realizado> entrealizados = CrearEntRealizadosEjemplo();
+                List<Peso> historialPeso = CrearHistorialPeso();
 
                 for(int i=0; i<entrenamientos.size(); i++){
                     dao_entrenamiento.insert(entrenamientos.get(i));
@@ -73,6 +70,9 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
                 }
                 for(int i=0; i<entrealizados.size(); i++){
                     dao_entrenamiento.insert(entrealizados.get(i));
+                }
+                for(int i=0; i<historialPeso.size(); i++){
+                    dao_entrenamiento.insert(historialPeso.get(i));
                 }
             });
         }
@@ -160,5 +160,20 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
         entrealizados.add(new Ent_Realizado(53,"Entrenamiento Avanzado", date, 2400, "Fuerza", 324, "07:00", "07:40", 7, 7, 3, 0 ));
 
         return entrealizados;
+    }
+
+    public static List<Peso> CrearHistorialPeso(){
+        List<Peso> pesos = new ArrayList<Peso>();
+        long time = System.currentTimeMillis();
+        Date date = new Date(time);
+        pesos.add(new Peso(1,75.1,date));
+        pesos.add(new Peso(2,75.2,date));
+        pesos.add(new Peso(3,75.4,date));
+        pesos.add(new Peso(4,75.3,date));
+        pesos.add(new Peso(5,75.3,date));
+        pesos.add(new Peso(6,75.5,date));
+        pesos.add(new Peso(7,75.9,date));
+        pesos.add(new Peso(8,76.1,date));
+        return pesos;
     }
 }

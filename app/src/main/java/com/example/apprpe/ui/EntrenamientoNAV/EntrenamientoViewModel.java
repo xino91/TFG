@@ -66,4 +66,12 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     public void deleteEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteEntrenamiento(entrenamiento); }
     public void deleteAllEjerciciosEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
+
+    public LiveData<Float> getPesoMaximo(){
+        return mRepository.getPesoMaximo();
+    }
+
+    public LiveData<Float> getPesoMinimo(){
+        return mRepository.getPesoMinimo();
+    }
 }

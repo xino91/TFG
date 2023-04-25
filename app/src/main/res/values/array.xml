@@ -6,4 +6,8 @@
         <item name="2">Escala EPinfant</item>
     </array>
 
+    <array name="escala_values">
+        <item>1</item>
+        <item>2</item>
+    </array>
 </resources>

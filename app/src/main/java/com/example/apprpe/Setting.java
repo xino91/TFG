@@ -2,6 +2,7 @@ package com.example.apprpe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,6 +31,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Setting extends PreferenceFragmentCompat {
 
@@ -55,22 +57,32 @@ public class Setting extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferencias, rootKey);
+
         BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
         navView.setVisibility(View.GONE);
 
         ActionBar actionBar = ((MainActivity) requireActivity()).getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Ajustes");
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true); //botón atrás
 
         Preference mensajePreference = findPreference("acerca_de");
         assert mensajePreference != null;
         mensajePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public boolean onPreferenceClick(Preference preference) {
+            public boolean onPreferenceClick(@NonNull Preference preference) {
                 mostrarMensaje();
                 return true;}
         });
+
+        //Escala por defecto
+        Preference escalaPreference = findPreference("escala");
+        assert escalaPreference != null;
+        if(Objects.requireNonNull(escalaPreference.getSharedPreferences()).getString("escala", "").equals("1")){
+            SharedPreferences.Editor editor = escalaPreference.getSharedPreferences().edit();
+            editor.putString("escala", "1");
+            editor.apply();
+        }
 
         requireActivity().addMenuProvider(new MenuProvider() {
             @Override

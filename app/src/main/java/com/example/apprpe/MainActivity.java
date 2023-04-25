@@ -1,29 +1,16 @@
 package com.example.apprpe;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import com.example.apprpe.ui.Perfil.PerfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuProvider;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_perfil)
+                    R.id.navigation_home, R.id.navigation_progreso, R.id.navigation_estadisticas, R.id.navigation_perfil)
                     .build();
 
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -55,10 +42,5 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(navView, navController);
         }
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        Log.i("MAIN", "MAINNAVI");
-        return super.onSupportNavigateUp();
-    }
+    
 }

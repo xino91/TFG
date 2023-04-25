@@ -17,7 +17,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -178,7 +177,7 @@ public class EntrenamientoFragment extends Fragment {
     }
 
     /***
-     * Recibe un entrenamiento de otra activity(InsertarEntrenamiento_activity) para realizar el insert en la BD
+     * Recibe un entrenamiento de otra activity(InsertarEntrenamiento) para realizar el insert en la BD
      */
 
     private final ActivityResultLauncher<Intent> insertSesionActivityResultLauncher = registerForActivityResult(
@@ -203,7 +202,7 @@ public class EntrenamientoFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), InsertarEntrenamiento_activity.class);
+                Intent intent = new Intent(getActivity(), InsertarEntrenamiento.class);
                 startActivityForResult(intent, INSERT_SESION_ACTIVITY_CODE);
             }
         });
@@ -236,24 +235,4 @@ public class EntrenamientoFragment extends Fragment {
         textVacio.setVisibility(View.GONE);
     }
 
-
-    /*private void CambiarBackgroundBotonesFiltro(Button botonFuerza, Button botonAerobico, Button botonTodo, String botonPulsado) {
-        switch (botonPulsado){
-            case "Fuerza":
-                botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));
-                botonAerobico.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
-                botonTodo.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
-                break;
-            case "Aerobico":
-                botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
-                botonAerobico.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));
-                botonTodo.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
-                break;
-            case "Todo":
-                botonFuerza.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
-                botonAerobico.setBackground(getActivity().getDrawable(R.drawable.button_filter_home_off));
-                botonTodo.setBackground(getActivity().getDrawable(R.drawable.button_filter_home));
-                break;
-        }
-    }*/
 }

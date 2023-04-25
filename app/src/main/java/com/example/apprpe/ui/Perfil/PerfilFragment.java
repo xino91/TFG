@@ -15,24 +15,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.apprpe.Inicio_activity;
-import com.example.apprpe.MainActivity;
 import com.example.apprpe.Setting;
 import com.example.apprpe.R;
-import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoFragment;
+import com.example.apprpe.modelo.Peso;
+import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,19 +43,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PerfilFragment extends Fragment implements MenuProvider {
 
-    SharedPreferences preferencias;
-    TextView txtView_Usuario, txtView_Genero, txtView_Email;
-    TextView txtView_Estatura, txtView_Peso, txtView_Nacimiento;
-    String nombreUsuario;
-    String genero;
-    String estatura;
-    String peso;
-    String email;
-    String tipo_actividad;
-    String nacimiento;
-    String path;
-    CircleImageView imagen;
-    BottomNavigationView navView;
+    private SharedPreferences preferencias;
+    private TextView txtView_Usuario, txtView_Genero, txtView_Email;
+    private TextView txtView_Estatura, txtView_Peso, txtView_Nacimiento, txtView_peso_maximo, txtView_peso_minimo;
+    private String nombreUsuario, genero, estatura, peso, email, tipo_actividad, nacimiento;
+    private String path;
+    private CircleImageView imagen;
+    private BottomNavigationView navView;
+    private EntrenamientoViewModel entrenamientoViewModel;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -64,6 +61,9 @@ public class PerfilFragment extends Fragment implements MenuProvider {
 
         inicializarComponenetes(root);
         obtenerDatosFicheroPreferencias();
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
+        getPesoMaximo();
+        getPesoMinimo();
         vistas();
 
         imagen.setOnClickListener(new View.OnClickListener() {
@@ -84,11 +84,10 @@ public class PerfilFragment extends Fragment implements MenuProvider {
     @Override
     public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
         if(menuItem.getItemId() == android.R.id.home){
-            Log.i("ENTRADOPERFIL", "HOLA");
             requireActivity().getSupportFragmentManager().popBackStack();
             requireActivity().setContentView(R.layout.activity_main);
             AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_perfil)
+                    R.id.navigation_home, R.id.navigation_progreso, R.id.navigation_estadisticas, R.id.navigation_perfil)
                     .build();
 
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
@@ -115,6 +114,8 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         txtView_Peso = root.findViewById(R.id.textView_Peso);
         txtView_Email = root.findViewById(R.id.textView_Email);
         txtView_Nacimiento = root.findViewById(R.id.TextView_fecha);
+        txtView_peso_maximo = root.findViewById(R.id.View_pesomaximo);
+        txtView_peso_minimo = root.findViewById(R.id.View_pesominimo);
         imagen = root.findViewById(R.id.profile_image);
         navView = root.findViewById(R.id.nav_view);
     }
@@ -155,7 +156,6 @@ public class PerfilFragment extends Fragment implements MenuProvider {
 
     private void elegirImagen() {
         ImagePicker.Companion.with(this)
-                .galleryOnly()
                 .crop()
                 .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                 .start();
@@ -187,20 +187,29 @@ public class PerfilFragment extends Fragment implements MenuProvider {
                 .addToBackStack(null)
                 .commit();
     }
-
-
-
+    
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("ONRESUMEPERFIL", "sdjslf");
         BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
         navView.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.i("ONPAUSEPERFIL", "sdjslf");
+    public void getPesoMaximo(){
+        entrenamientoViewModel.getPesoMaximo().observe(getViewLifecycleOwner(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float pesoMax) {
+                txtView_peso_maximo.setText(String.valueOf(pesoMax));
+            }
+        });
+    }
+
+    public void getPesoMinimo(){
+        entrenamientoViewModel.getPesoMinimo().observe(getViewLifecycleOwner(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float pesoMin) {
+                txtView_peso_minimo.setText(String.valueOf(pesoMin));
+            }
+        });
     }
 }

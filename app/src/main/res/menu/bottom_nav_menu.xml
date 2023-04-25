@@ -8,12 +8,12 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_progreso"
         android:icon="@drawable/ic_comprobacion_de_lista"
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_estadisticas"
         android:icon="@drawable/ic_estadisticas"
         android:title="@string/title_notifications" />
 

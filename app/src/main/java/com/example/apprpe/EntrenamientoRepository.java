@@ -10,6 +10,7 @@ import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 import com.example.apprpe.modelo.EntrenamientoDao;
+import com.example.apprpe.modelo.Peso;
 
 import java.util.List;
 import java.util.Map;
@@ -180,5 +181,17 @@ public class EntrenamientoRepository {
                 entrenamientoDao.intercambiarId(id_posterior+1, id_anterior+1);
         });
 
+    }
+
+    public LiveData<List<Peso>> getHistorialPesos() {
+            return entrenamientoDao.getHistorialPesos();
+    }
+
+    public LiveData<Float> getPesoMaximo(){
+            return entrenamientoDao.getPesoMax();
+    }
+
+    public LiveData<Float> getPesoMinimo(){
+            return entrenamientoDao.getPesoMin();
     }
 }

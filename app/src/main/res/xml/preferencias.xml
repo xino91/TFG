@@ -10,7 +10,7 @@
             android:summary="Cambia entre tipos de escalas"
             android:entries="@array/escala"
             android:entryValues="@array/escala"
-            android:defaultValue="1"
+            android:defaultValue="Escala original (0-10)"
             app:icon="@drawable/ic_baseline_settings_24"/>
 
     <PreferenceCategory

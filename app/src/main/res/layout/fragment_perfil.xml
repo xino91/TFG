@@ -51,10 +51,32 @@
         app:layout_constraintTop_toTopOf="@+id/textView_Peso" />
 
     <TextView
+        android:id="@+id/textView_Kg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Kg"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_pesomaximo"
+        app:layout_constraintStart_toEndOf="@+id/View_pesomaximo"
+        app:layout_constraintTop_toTopOf="@+id/View_pesomaximo" />
+
+    <TextView
+        android:id="@+id/textView_Kg3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Kg"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_pesominimo"
+        app:layout_constraintStart_toEndOf="@+id/View_pesominimo"
+        app:layout_constraintTop_toTopOf="@+id/View_pesominimo" />
+
+    <TextView
         android:id="@+id/textViewp_estatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="45dp"
         android:text="@string/estatura"
         android:textSize="20sp"
@@ -148,6 +170,46 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView25_pesomaximo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Máximo peso registrado"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView_Estatura"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Estatura" />
+
+    <TextView
+        android:id="@+id/textView26_pesominimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Mínimo peso registrado"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView25_pesomaximo"
+        app:layout_constraintTop_toBottomOf="@+id/textView25_pesomaximo" />
+
+    <TextView
+        android:id="@+id/View_pesomaximo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/peso"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView25_pesomaximo"
+        app:layout_constraintStart_toStartOf="@+id/textView_Peso"
+        app:layout_constraintTop_toTopOf="@+id/textView25_pesomaximo" />
+
+    <TextView
+        android:id="@+id/View_pesominimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/peso"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView26_pesominimo"
+        app:layout_constraintStart_toStartOf="@+id/View_pesomaximo"
+        app:layout_constraintTop_toTopOf="@+id/textView26_pesominimo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

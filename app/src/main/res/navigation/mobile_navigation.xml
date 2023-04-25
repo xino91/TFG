@@ -12,13 +12,13 @@
         android:label="Entrenamientos" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_progreso"
         android:name="com.example.apprpe.ui.EntRealizadoNAV.EntRealizadoFragment"
         android:label="Entrenamientos Realizados"
         tools:layout="@layout/fragment_entrealizado" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_estadisticas"
         android:name="com.example.apprpe.ui.ProgresoNAV.EstadisticasFragment"
         android:label="Progreso"
         tools:layout="@layout/fragment_estadisticas" />

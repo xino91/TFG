@@ -1,5 +1,6 @@
 package com.example.apprpe;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.ui.EntrenamientoNAV.EntrenamientoViewModel;
 import com.example.apprpe.ui.EntrenamientoNAV.InsertarNuevoEjercicio;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -126,7 +129,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     private void insertarNuevoEjercicio() {
         Intent intent = new Intent(this, InsertarNuevoEjercicio.class);
         intent.putExtra("TIPO", entrenamiento.getTipo());
-        startActivityForResult(intent, INSERT_EJERCICIO_CODE);
+        insertarEjercicioActivityResultLauncher.launch(intent);
     }
 
     /**
@@ -141,36 +144,36 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     /**
      * Está función recoge los datos de un nuevo ejercicio (del activity insertar ejercicio), y procede a su insert en la BD
      */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==INSERT_EJERCICIO_CODE && resultCode == RESULT_EJERCICO_OK){
-            Ejercicio ejercicio = new Ejercicio();
-            assert data != null;
-            if(Objects.equals(entrenamiento.getTipo(), "Fuerza")){
-                ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
-                ejercicio.setSets(Integer.parseInt(data.getExtras().getString("Set")));
-                ejercicio.setRepeticiones(Integer.parseInt(data.getExtras().getString("Repeticiones")));
-                ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
-                ejercicio.setEntrenamiento_Id(Id_entrenamiento);
-                entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-                //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+    private final ActivityResultLauncher<Intent> insertarEjercicioActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    assert data != null;
+                    Ejercicio ejercicio = new Ejercicio();
+                    if(Objects.equals(entrenamiento.getTipo(), "Fuerza")){
+                        ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
+                        ejercicio.setSets(Integer.parseInt(data.getExtras().getString("Set")));
+                        ejercicio.setRepeticiones(Integer.parseInt(data.getExtras().getString("Repeticiones")));
+                        ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
+                        ejercicio.setEntrenamiento_Id(Id_entrenamiento);
+                        entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
+                        //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+                    }
+                    else{
+                        ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
+                        ejercicio.setSets(0);
+                        ejercicio.setRepeticiones(0);
+                        ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
+                        ejercicio.setEntrenamiento_Id(Id_entrenamiento);
+                        entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
+                        //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
+                    }
+                } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
+                    Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
+                }
             }
-            else{
-                ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
-                ejercicio.setSets(0);
-                ejercicio.setRepeticiones(0);
-                ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
-                ejercicio.setEntrenamiento_Id(Id_entrenamiento);
-                entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-                //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
-            }
-
-        }
-        else if(resultCode == RESULT_EJERCICIO_CANCELED){
-            Toast.makeText(getApplication(), "Cancelado", Toast.LENGTH_SHORT).show();
-        }
-    }
+    );
 
     /**
      * Esta función recoge el entrenamiento en una variable para su futura eliminación o edición

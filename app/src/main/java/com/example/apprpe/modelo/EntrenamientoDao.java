@@ -25,6 +25,9 @@ public interface EntrenamientoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Ent_Realizado ent_realizado);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(Peso peso);
+
     @Query("UPDATE Entrenamiento_table SET Num_ejercicios = Num_ejercicios +1 WHERE Id = :id")
     void update_NumEjerciciosMas(int id);
 
@@ -105,4 +108,12 @@ public interface EntrenamientoDao {
 
     @Query("UPDATE entrenamiento_table SET Id=:posterior WHERE Id=:anterior")
     void intercambiarId(int anterior, int posterior);
+
+    @Query("SELECT * FROM Pesos_table")
+    LiveData<List<Peso>> getHistorialPesos();
+    @Query("SELECT MAX(peso) FROM pesos_table")
+    LiveData<Float> getPesoMax();
+
+    @Query("SELECT MIN(peso) FROM pesos_table")
+    LiveData<Float> getPesoMin();
 }
