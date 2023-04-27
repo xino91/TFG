@@ -24,17 +24,17 @@
         </provider>
 
         <activity
-            android:name=".infoentrenamientoRealizado"
+            android:name=".view.infoentrenamientoRealizado"
             android:exported="false"
             android:label="@string/fin_entrenamiento" />
         <activity
-            android:name=".ui.EntrenamientoNAV.InsertarNuevoEjercicio"
+            android:name=".view.navBottom.EntrenamientoNAV.InsertarNuevoEjercicio"
             android:label="@string/InsertarNuevoEjercicio_activity" />
         <activity
-            android:name=".EditarEjercicio"
+            android:name=".view.EditarEjercicio"
             android:label="@string/Editar_ejercicio_activity" />
         <activity
-            android:name=".VistaEjerciciosActivity"
+            android:name=".view.VistaEjerciciosActivity"
             android:label="@string/title_activity_vista_ejercicio" />
         <activity
             android:name=".MainActivity"
@@ -45,13 +45,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Inicio_activity"
+            android:name=".view.Inicio_activity"
             android:label="@string/pantalla_configuraci_n" />
         <activity
-            android:name=".ui.EntrenamientoNAV.InsertarEntrenamiento"
+            android:name=".view.navBottom.EntrenamientoNAV.InsertarEntrenamiento"
             android:label="@string/title_insertar_sesion_activity" />
         <activity
-            android:name=".Iniciar_entrenamiento"
+            android:name=".view.Iniciar_entrenamiento"
             android:label="@string/iniciar_entrenamiento" />
     </application>
 

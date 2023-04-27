@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".infoentrenamientoRealizado">
+    tools:context=".view.infoentrenamientoRealizado">
 
     <TextView
         android:id="@+id/textView_title_datos"
