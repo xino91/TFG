@@ -3,6 +3,7 @@ package com.example.apprpe.ui.EntrenamientoNAV;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ public class InsertarNuevoEjercicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_ejercicio);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         getTipo();
         vincularView();

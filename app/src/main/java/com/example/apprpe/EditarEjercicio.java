@@ -1,6 +1,7 @@
 package com.example.apprpe;
 
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -36,6 +37,7 @@ public class EditarEjercicio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_editar_ejercicio);
 
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);

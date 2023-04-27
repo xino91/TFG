@@ -1,6 +1,7 @@
 package com.example.apprpe.ui.EntrenamientoNAV;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.VisibleForTesting;
@@ -27,6 +28,7 @@ public class InsertarEntrenamiento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.insertar_entrenamiento);
 
         VincularView();

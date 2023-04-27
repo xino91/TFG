@@ -2,6 +2,7 @@ package com.example.apprpe;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         preferencias = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
         nombre_Usuario = preferencias.getString("NombreUsuario", "");
 

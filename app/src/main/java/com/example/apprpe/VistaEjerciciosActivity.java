@@ -3,6 +3,7 @@ package com.example.apprpe;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.example.apprpe.modelo.Ejercicio;
@@ -47,6 +48,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_ejercicio_activity);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         VincularView();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
