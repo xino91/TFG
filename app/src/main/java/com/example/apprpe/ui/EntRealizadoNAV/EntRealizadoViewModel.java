@@ -37,4 +37,19 @@ public class EntRealizadoViewModel extends AndroidViewModel {
     public void deleteEnt_Realizado(Ent_Realizado entrealizado) {
         mRepository.deleteEnt_Realizado(entrealizado);
     }
+
+    public void deleteAllEntrenamientosRealizados(){
+        mRepository.deleteAllEntrenamientosRealizados();
+    }
+
+    public LiveData<String> getFechaMaxima(){
+        return mRepository.getFechaMaxima();
+    }
+
+    public LiveData<String> getFechaMinima(){
+        return mRepository.getFechaMinima();
+    }
+
+    public LiveData<Integer> getCountEntrenamientosRealizados(){ return mRepository.getCountEntrenamientosRealizados(); }
+
 }

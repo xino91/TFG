@@ -221,4 +221,12 @@
     <string name="configurar">Ajustes</string>
     <string name="duro">Duro</string>
     <string name="introduce_el_esfuerzo_percibido">Introduce el esfuerzo percibido</string>
+    <string name="exportar_datos_a_excel">Exportar datos a excel</string>
+    <string name="email_requerido_para_exportar_excel">Email, requerido para exportar datos</string>
+    <string name="n_entrenamientos_realizados">Nº Entrenamientos realizados</string>
+    <string name="m_nimo_peso_registrado">Mínimo peso registrado</string>
+    <string name="m_ximo_peso_registrado">Máximo peso registrado</string>
+    <string name="kg">Kg</string>
+    <string name="cm">cm</string>
+    <string name="eliminar_todo">Eliminar todo</string>
 </resources>

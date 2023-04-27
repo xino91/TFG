@@ -103,6 +103,9 @@ public interface EntrenamientoDao {
     @Query("DELETE FROM Entrenamiento_table")
     void deleteAll();
 
+    @Query("DELETE FROM entrealizado_table")
+    void deleteAllEntrenamientosRealizados();
+
     @Query("DELETE FROM ejercicio_table WHERE entrenamiento_Id = :Id_sesion")
     void deleteAllEjerciciosSesion(int Id_sesion);
 
@@ -113,7 +116,15 @@ public interface EntrenamientoDao {
     LiveData<List<Peso>> getHistorialPesos();
     @Query("SELECT MAX(peso) FROM pesos_table")
     LiveData<Float> getPesoMax();
-
     @Query("SELECT MIN(peso) FROM pesos_table")
     LiveData<Float> getPesoMin();
+
+    @Query("SELECT COUNT() FROM EntRealizado_table")
+    LiveData<Integer> getCountEntrenamientosRealizados();
+
+    @Query("SELECT MAX(FechaString) FROM EntRealizado_table")
+    LiveData<String> getFechaMaxima();
+
+    @Query("SELECT MIN(FechaString) FROM EntRealizado_table")
+    LiveData<String> getFechaMinima();
 }

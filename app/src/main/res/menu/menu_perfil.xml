@@ -9,9 +9,16 @@
         android:title="@string/editar_datos"
         app:showAsAction="never" />
      <item
-        android:id="@+id/action_configuración"
+        android:id="@+id/action_configuracion"
         android:orderInCategory="100"
         android:title="@string/configurar"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_exportar"
+        android:orderInCategory="100"
+        android:title="@string/exportar_datos_a_excel"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/xlsx_file_icon"/>
 
 </menu>

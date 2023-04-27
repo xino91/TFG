@@ -1,18 +1,29 @@
 package com.example.apprpe.ui.EntRealizadoNAV;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +39,7 @@ import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class EntRealizadoFragment extends Fragment {
+public class EntRealizadoFragment extends Fragment implements MenuProvider {
 
     private EntRealizadoViewModel entRealizadoViewModel;
     private RecyclerView recyclerView;
@@ -42,9 +53,10 @@ public class EntRealizadoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_entrealizado, container, false);
+        requireActivity().addMenuProvider(this, getViewLifecycleOwner());
+
         textVacio = root.findViewById(R.id.textView_vacio);
         enlazarVistas(root);
-
         recyclerView = root.findViewById(R.id.recyclerview_ent_realizado);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         entRealizadoViewModel = new ViewModelProvider(this).get(EntRealizadoViewModel.class);
@@ -152,6 +164,18 @@ public class EntRealizadoFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.menu_entrealizado, menu);
+    }
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_eliminar_todo) {
+            return ConfirmacionDialog();
+        }
+        return false;
+    }
+
     private void enlazarVistas(View root) {
         botonFuerza = root.findViewById(R.id.buttonFuerza);
         botonAerobico = root.findViewById(R.id.buttonAerobico);
@@ -168,4 +192,24 @@ public class EntRealizadoFragment extends Fragment {
         textVacio.setVisibility(View.GONE);
     }
 
+    public void eliminarTodosEntrenamientosRealizados(){
+        entRealizadoViewModel.deleteAllEntrenamientosRealizados();
+    }
+
+    public boolean ConfirmacionDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setMessage("¿Está seguro que desea eliminar todos los entrenamientos");
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                eliminarTodosEntrenamientosRealizados();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+        return true;
+    }
 }

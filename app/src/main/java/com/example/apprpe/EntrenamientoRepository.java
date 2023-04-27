@@ -148,6 +148,12 @@ public class EntrenamientoRepository {
             });
         }
 
+    public void deleteAllEntrenamientosRealizados() {
+        RPERoomDatabase.databaseWriteExecutor.execute(() -> {
+            entrenamientoDao.deleteAllEntrenamientosRealizados();
+        });
+    }
+
         public void deleteEjercicio(Ejercicio ejercicio) {
             RPERoomDatabase.databaseWriteExecutor.execute(()-> {
                 entrenamientoDao.deleteEjercicio(ejercicio);
@@ -194,4 +200,9 @@ public class EntrenamientoRepository {
     public LiveData<Float> getPesoMinimo(){
             return entrenamientoDao.getPesoMin();
     }
+
+    public LiveData<String> getFechaMaxima(){return entrenamientoDao.getFechaMaxima();}
+    public LiveData<String> getFechaMinima(){ return entrenamientoDao.getFechaMinima();}
+
+    public LiveData<Integer> getCountEntrenamientosRealizados(){ return entrenamientoDao.getCountEntrenamientosRealizados();}
 }

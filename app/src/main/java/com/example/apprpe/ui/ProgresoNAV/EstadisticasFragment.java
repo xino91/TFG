@@ -50,6 +50,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class EstadisticasFragment extends Fragment {
 
@@ -85,18 +86,17 @@ public class EstadisticasFragment extends Fragment {
         estadisticaViewModel.getEntrenamientosRealizadosFiltro(31).observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
             public void onChanged(List<Ent_Realizado> entrealizados) {
-                list.addAll(entrealizados);
-                Collections.reverse(list);
-                CallLineChart(datoGlineal);
-                CallBarChart(datoGbarras);
-                CallPieChart();
+                    list.addAll(entrealizados);
+                    Collections.reverse(list);
+                    CallLineChart(datoGlineal);
+                    CallBarChart(datoGbarras);
+                    CallPieChart();
             }
         });
         estadisticaViewModel.getHistorialPesos().observe(getViewLifecycleOwner(), new Observer<List<Peso>>() {
             @Override
             public void onChanged(List<Peso> pesos) {
                 listPesos.addAll(pesos);
-                Log.i("Peso", String.valueOf(listPesos.get(0).getPeso()));
             }
         });
         return root;
@@ -783,6 +783,7 @@ public class EstadisticasFragment extends Fragment {
     public void ConfigPieChart(PieData pieData){
         pieChart.setDrawHoleEnabled(false);
         pieChart.setData(pieData);
+        pieChart.setNoDataText("Sin datos que mostar");
         Description description = new Description();
         description.setText("Entrenamientos más usados");
         description.setTextSize(10f);
