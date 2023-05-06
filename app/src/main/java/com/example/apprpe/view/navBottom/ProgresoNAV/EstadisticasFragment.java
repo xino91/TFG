@@ -63,6 +63,7 @@ public class EstadisticasFragment extends Fragment {
     private PieChart pieChart;
     String[] valuesDolor;
     private TextView monotonia_line, monotonia_bar, fatiga_line, fatiga_bar;
+    private TextView txtmonotonia_line, txtmonotonia_bar, txtfatiga_line, txtfatiga_bar;
     private RadioButton radiobuttonf7, radiobuttonf14, radiobuttonf21, radiobuttonf31;
     String datoGlineal, datoGbarras, datoGpie;
 
@@ -105,19 +106,34 @@ public class EstadisticasFragment extends Fragment {
         assert root != null;
         vincularVistas(root);
         escuchadoresFiltrosGLineal();
-        Log.i("CONSULTALINECHART", dato_consulta);
         CalcularMonotoniaYFatiga(1);
         switch (dato_consulta) {
             case "Rpe":
+                txtmonotonia_line.setVisibility(View.VISIBLE);
+                txtfatiga_line.setVisibility(View.VISIBLE);
+                monotonia_line.setVisibility(View.VISIBLE);
+                fatiga_line.setVisibility(View.VISIBLE);
                 GRpeGlineal();
                 break;
             case "Carga":
+                txtmonotonia_line.setVisibility(View.VISIBLE);
+                txtfatiga_line.setVisibility(View.VISIBLE);
+                monotonia_line.setVisibility(View.VISIBLE);
+                fatiga_line.setVisibility(View.VISIBLE);
                 GCargaGlineal();
                 break;
             case "Dolor":
+                txtmonotonia_line.setVisibility(View.GONE);
+                txtfatiga_line.setVisibility(View.GONE);
+                monotonia_line.setVisibility(View.GONE);
+                fatiga_line.setVisibility(View.GONE);
                 GDolorGlineal();
                 break;
             case "Peso":
+                txtmonotonia_line.setVisibility(View.GONE);
+                txtfatiga_line.setVisibility(View.GONE);
+                monotonia_line.setVisibility(View.GONE);
+                fatiga_line.setVisibility(View.GONE);
                 GPeso();
                 break;
         }
@@ -130,18 +146,34 @@ public class EstadisticasFragment extends Fragment {
         vincularVistas(root);
         escuchadoresFiltrosGBar();
         CalcularMonotoniaYFatiga(2);
-        Log.i("CONSULTABAR", dato_consulta);
+
         switch (dato_consulta) {
             case "Rpe":
+                txtmonotonia_bar.setVisibility(View.VISIBLE);
+                txtfatiga_bar.setVisibility(View.VISIBLE);
+                monotonia_bar.setVisibility(View.VISIBLE);
+                fatiga_bar.setVisibility(View.VISIBLE);
                 GRpeGbarras();
                 break;
             case "Carga":
+                txtmonotonia_bar.setVisibility(View.VISIBLE);
+                txtfatiga_bar.setVisibility(View.VISIBLE);
+                monotonia_bar.setVisibility(View.VISIBLE);
+                fatiga_bar.setVisibility(View.VISIBLE);
                 GCargaGbarras();
                 break;
             case "Dolor":
+                txtmonotonia_bar.setVisibility(View.GONE);
+                txtfatiga_bar.setVisibility(View.GONE);
+                monotonia_bar.setVisibility(View.GONE);
+                fatiga_bar.setVisibility(View.GONE);
                 GDolorGbarras();
                 break;
             case "Peso":
+                txtmonotonia_bar.setVisibility(View.GONE);
+                txtfatiga_bar.setVisibility(View.GONE);
+                monotonia_bar.setVisibility(View.GONE);
+                fatiga_bar.setVisibility(View.GONE);
                 GPesoGbarras();
                 break;
         }
@@ -331,9 +363,7 @@ public class EstadisticasFragment extends Fragment {
 
         for (int i = 0; i < list.size(); i++) {
             arrayglineal.add(list.get(i).getFechaString());
-            //Log.i("ARRAY", String.valueOf(arrayglineal.get(i)));
         }
-        //Log.i("ARRAYTAM", String.valueOf(list.size()));
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "RPE Objetivo");
         LineDataSet lineDataSet2 = new LineDataSet(linevalues2, "RPE Percibido");
@@ -350,7 +380,6 @@ public class EstadisticasFragment extends Fragment {
         ConfigAxis(axis, yaxis);
 
         LineData data = new LineData(dataset);
-        //data.setValueFormatter(new myFechaValueFormatter(array));
         lineChart.setData(data);
         ConfigLineChart(lineChart);
     }
@@ -382,12 +411,9 @@ public class EstadisticasFragment extends Fragment {
     }
     public void GDolorGlineal(){
         List<Entry> linevalues = new ArrayList<Entry>();
-        //Log.i("LISTSIZE", String.valueOf(list.size()));
         for(int i = 0; i< list.size(); i++){
             linevalues.add(new Entry(i, list.get(i).getDolor()));
-            //Log.i("LINEVALUES", String.valueOf(linevalues.get(i).getY()));
         }
-        //Log.i("LINEVALUESSIZE", String.valueOf(linevalues.size()));
 
         LineDataSet lineDataSet = new LineDataSet(linevalues, "Dolor");
         ConfigLineDataSet(lineDataSet);
@@ -442,25 +468,19 @@ public class EstadisticasFragment extends Fragment {
         for(int i = 0; i< list.size(); i++){
             barvalues.add(new BarEntry(i, list.get(i).getRpe_objetivo()));
             barvalues2.add(new BarEntry(i, list.get(i).getRpe_subjetivo()));
-            //Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
-            //Log.i("BARVALUES2", String.valueOf(barvalues2.get(i).getY()));
         }
 
         arraygbar.clear();
         for(int i = 0; i< list.size(); i++){
             arraygbar.add(list.get(i).getFechaString());
             arraygbar.add(list.get(i).getFechaString());
-            //Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
         }
-        //Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
 
         BarDataSet barDataSet = new BarDataSet(barvalues, "RPE Objetivo");
         BarDataSet barDataSet2 = new BarDataSet(barvalues2, "RPE Percibido");
         barDataSet2.setColors(R.color.chart);
 
         BarData barData = new BarData(barDataSet, barDataSet2);
-        //barData.groupBars(0, 0.1f,0f);
-        //barData.setValueFormatter(new IndexAxisValueFormatter(arraygbar));
 
         XAxis xaxis = barChart.getXAxis();
         YAxis yaxis = barChart.getAxisLeft();
@@ -468,11 +488,8 @@ public class EstadisticasFragment extends Fragment {
         ConfigAxisBarras(xaxis, yaxis);
 
         barData.setValueTextSize(10f);
-        //barData.setValueTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-        //barData.setDrawValues(true); por defecto true
 
         barChart.setData(barData);
-        //barChart.setVisibleXRangeMinimum(list.size());
         ConfigBarChart(barChart);
     }
     public void GCargaGbarras(){
@@ -480,22 +497,17 @@ public class EstadisticasFragment extends Fragment {
 
         for(int i = 0; i< list.size(); i++){
             barvalues.add(new BarEntry(i, list.get(i).getCarga()));
-            //Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
         }
 
         arraygbar.clear();
         for(int i = 0; i< list.size(); i++){
             arraygbar.add(list.get(i).getFechaString());
             arraygbar.add(list.get(i).getFechaString());
-            //Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
         }
-        //Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
 
         BarDataSet barDataSet = new BarDataSet(barvalues, "Carga");
 
         BarData barData = new BarData(barDataSet);
-        //barData.groupBars(0, 0.1f,0f);
-        //barData.setValueFormatter(new IndexAxisValueFormatter(arraygbar));
 
         XAxis xaxis = barChart.getXAxis();
         YAxis yaxis = barChart.getAxisLeft();
@@ -503,11 +515,8 @@ public class EstadisticasFragment extends Fragment {
         ConfigAxisBarras(xaxis, yaxis);
 
         barData.setValueTextSize(10f);
-        //barData.setValueTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-        //barData.setDrawValues(true); por defecto true
 
         barChart.setData(barData);
-        //barChart.setVisibleXRangeMinimum(list.size());
         ConfigBarChart(barChart);
     }
     public void GDolorGbarras(){
@@ -515,16 +524,13 @@ public class EstadisticasFragment extends Fragment {
 
         for(int i = 0; i< list.size(); i++){
             barvalues.add(new BarEntry(i, list.get(i).getDolor()));
-            //Log.i("BARVALUES", String.valueOf(barvalues.get(i).getY()));
         }
 
         arraygbar.clear();
         for(int i = 0; i< list.size(); i++){
             arraygbar.add(list.get(i).getFechaString());
             arraygbar.add(list.get(i).getFechaString());
-            //Log.i("ARRAYBAR", String.valueOf(arraygbar.get(i)));
         }
-        //Log.i("ARRAYTAMBAR", String.valueOf(arraygbar.size()));
 
         BarDataSet barDataSet = new BarDataSet(barvalues, "Carga");
 
@@ -652,6 +658,10 @@ public class EstadisticasFragment extends Fragment {
         monotonia_bar = root.findViewById(R.id.textView_monotoniaBarchart);
         fatiga_line = root.findViewById(R.id.textView_fatigaLinechart);
         fatiga_bar = root.findViewById(R.id.textView_fatigaBarChart);
+        txtmonotonia_line = root.findViewById(R.id.textView22_monotonia);
+        txtfatiga_line = root.findViewById(R.id.textView22_fatiga);
+        txtmonotonia_bar = root.findViewById(R.id.textView27_monotonia);
+        txtfatiga_bar = root.findViewById(R.id.textView27_fatiga);
     }
 
     private boolean isDatoVacio(String dato) {

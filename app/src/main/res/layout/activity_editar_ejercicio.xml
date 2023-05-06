@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="18dp"
     android:background="@drawable/fondo_insert_edit"
-    tools:context=".view.navBottom.EntrenamientoNAV.InsertarNuevoEjercicio">
+    tools:context=".view.InsertarNuevoEjercicio">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_nombre"

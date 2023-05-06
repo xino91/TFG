@@ -9,19 +9,28 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.graphics.text.LineBreakConfig;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.core.view.MenuProvider;
@@ -33,6 +42,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.apprpe.modelo.Peso;
 import com.example.apprpe.view.Inicio_activity;
 import com.example.apprpe.view.Setting;
 import com.example.apprpe.R;
@@ -50,13 +60,18 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -82,11 +97,12 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         requireActivity().addMenuProvider(this, getViewLifecycleOwner());
 
         inicializarComponenetes(root);
-        obtenerDatosFicheroPreferencias();
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
         entRealizadoViewModel = new ViewModelProvider(this).get(EntRealizadoViewModel.class);
+        getPesoActual();
         getPesoMaximo();
         getPesoMinimo();
+        obtenerDatosFicheroPreferencias();
         getNumeroEntrenamientos();
         vistas();
 
@@ -127,6 +143,10 @@ public class PerfilFragment extends Fragment implements MenuProvider {
             editarPerfil();
             return true;
         }
+        if(menuItem.getItemId() == R.id.nuevo_peso){
+            nuevoPeso();
+            return true;
+        }
         if(menuItem.getItemId() == R.id.action_exportar){
             if(numero_ejercicios > 0) {
                 return AbrirDialog();
@@ -159,7 +179,6 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         nombreUsuario = preferencias.getString("NombreUsuario", "");
         genero = preferencias.getString("Genero", "");
         estatura = preferencias.getString("Estatura", "");
-        peso = preferencias.getString("Peso", "");
         email = preferencias.getString("Email", "");
         tipo_actividad = preferencias.getString("Actividad", "");
         nacimiento = preferencias.getString("Fecha", "");
@@ -246,6 +265,15 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         });
     }
 
+    public void getPesoActual(){
+        entrenamientoViewModel.getPesoActual().observe(getViewLifecycleOwner(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float pesoActual) {
+                txtView_Peso.setText(String.valueOf(pesoActual));
+            }
+        });
+    }
+
     public void getNumeroEntrenamientos(){
         entRealizadoViewModel.getCountEntrenamientosRealizados().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
@@ -286,7 +314,7 @@ public class PerfilFragment extends Fragment implements MenuProvider {
 
                 // Crear un objeto File para el archivo de destino
                 File file = new File(requireView().getContext().getExternalFilesDir(null),
-                        "Entrenamientos Realizados_"+FechaMinima+"/"+FechaMaxima+".xlsx");
+                        "Entrenamientos Realizados.xlsx");
                 // Crear un flujo de salida para el archivo
                 FileOutputStream fos = null;
                 try {fos = new FileOutputStream(file);} catch (FileNotFoundException e) {throw new RuntimeException(e);}
@@ -417,5 +445,45 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         });
         builder.show();
         return true;
+    }
+
+    public void nuevoPeso(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Introduce tu peso actual");
+
+        final EditText input = new EditText(requireContext());
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        input.setFilters(new InputFilter[] { new InputFilter.LengthFilter(5) });
+        builder.setView(input);
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                final String pesoStr = input.getText().toString().trim();
+                // Comprobamos que el valor tiene el formato correcto
+                Pattern pattern = Pattern.compile("\\d{2}\\.\\d");
+                Matcher matcher = pattern.matcher(pesoStr);
+                if (!matcher.matches()) {
+                    Toast.makeText(requireContext(), "El peso debe tener el formato xx.x", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // Convertimos el valor a un número decimal
+                final double pesodouble = Double.parseDouble(pesoStr);
+                // Comprobamos que el peso está dentro del rango de 0 a 150
+                if (pesodouble < 0 || pesodouble > 150) {
+                    Toast.makeText(requireContext(), "El peso debe estar entre 0 y 150", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Date date = new Date(Calendar.getInstance().getTimeInMillis());
+                Peso peso = new Peso(pesodouble, date);
+                entrenamientoViewModel.insert(peso);
+                Toast.makeText(requireContext(), "Peso guardado", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }

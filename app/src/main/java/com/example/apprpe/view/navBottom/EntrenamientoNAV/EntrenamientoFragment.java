@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Entrenamiento;
+import com.example.apprpe.view.InsertarEntrenamiento;
 import com.example.apprpe.view.VistaEjerciciosActivity;
 import com.example.apprpe.view.adapters.EntrenamientoListAdapter;
 import com.google.android.material.chip.Chip;
@@ -158,7 +158,6 @@ public class EntrenamientoFragment extends Fragment {
     }
 
     public void ObserverFUERZA(){
-        Log.i("FUERZA", "FUERZA");
         entrenamientoViewModel.getEntrenamientosFuerza().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -168,7 +167,6 @@ public class EntrenamientoFragment extends Fragment {
     }
 
     public void ObserverAEROBICO(){
-        Log.i("AEROBICO", "AEROBICO");
         entrenamientoViewModel.getEntrenamientosAerobico().observe(getViewLifecycleOwner(), new Observer<List<Entrenamiento>>() {
             @Override
             public void onChanged(List<Entrenamiento> entrenamientos) {
@@ -181,7 +179,7 @@ public class EntrenamientoFragment extends Fragment {
      * Recibe un entrenamiento de otra activity(InsertarEntrenamiento) para realizar el insert en la BD
      */
 
-    private final ActivityResultLauncher<Intent> insertSesionActivityResultLauncher = registerForActivityResult(
+    public final ActivityResultLauncher<Intent> insertSesionActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
@@ -219,7 +217,7 @@ public class EntrenamientoFragment extends Fragment {
      * Vincula las vistas con las variables
      * @param root (View root)
      */
-    private void enlazarVistas(View root) {
+    public void enlazarVistas(View root) {
         fab = root.findViewById(R.id.floatingActionButton);
         botonFuerza = root.findViewById(R.id.buttonFuerza);
         botonAerobico = root.findViewById(R.id.buttonAerobico);

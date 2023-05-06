@@ -105,7 +105,7 @@
                     android:id="@+id/Edit_peso"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number">
+                    android:inputType="numberDecimal">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>

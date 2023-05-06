@@ -25,6 +25,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/peso"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewp_estatura2"
         app:layout_constraintStart_toStartOf="@+id/textViewp_estatura2"
         app:layout_constraintTop_toBottomOf="@+id/textViewp_estatura2" />
 
@@ -77,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="25dp"
         android:text="@string/estatura"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -88,13 +89,12 @@
         android:id="@+id/textViewp_estatura2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="70dp"
         android:text="@string/peso"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toTopOf="@+id/textViewp_estatura" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -207,20 +207,20 @@
         android:id="@+id/View_pesomaximo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/peso"
+        android:text="@string/pesoo"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView25_pesomaximo"
-        app:layout_constraintStart_toStartOf="@+id/textView_Peso"
+        app:layout_constraintEnd_toEndOf="@+id/textView_Peso"
         app:layout_constraintTop_toTopOf="@+id/textView25_pesomaximo" />
 
     <TextView
         android:id="@+id/View_pesominimo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/peso"
+        android:text="@string/pesoo"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView26_pesominimo"
-        app:layout_constraintStart_toStartOf="@+id/View_pesomaximo"
+        app:layout_constraintEnd_toEndOf="@+id/textView_Peso"
         app:layout_constraintTop_toTopOf="@+id/textView26_pesominimo" />
 
     <TextView
@@ -230,7 +230,7 @@
         android:text="@string/num"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView_nent"
-        app:layout_constraintStart_toStartOf="@+id/View_pesominimo"
+        app:layout_constraintEnd_toEndOf="@+id/textView_Peso"
         app:layout_constraintTop_toTopOf="@+id/textView_nent" />
 
 

@@ -56,7 +56,7 @@
             </com.github.mikephil.charting.charts.LineChart>
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/textView22_monotonia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -68,15 +68,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/lineChart" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/textView22_fatiga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/ndice_de_fatiga"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textView22"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                app:layout_constraintStart_toStartOf="@+id/textView22_monotonia"
+                app:layout_constraintTop_toBottomOf="@+id/textView22_monotonia" />
 
                 <TextView
                     android:id="@+id/textView_monotoniaLineChart"
@@ -85,8 +85,8 @@
                     android:layout_marginStart="20dp"
                     android:text="TextView"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/textView22"
-                    app:layout_constraintTop_toTopOf="@+id/textView22" />
+                    app:layout_constraintStart_toEndOf="@+id/textView22_monotonia"
+                    app:layout_constraintTop_toTopOf="@+id/textView22_monotonia" />
 
                 <TextView
                     android:id="@+id/textView_fatigaLinechart"
@@ -95,7 +95,7 @@
                     android:text="TextView"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/textView_monotoniaLineChart"
-                    app:layout_constraintTop_toTopOf="@+id/textView23" />
+                    app:layout_constraintTop_toTopOf="@+id/textView22_fatiga" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -108,7 +108,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                app:layout_constraintTop_toBottomOf="@+id/textView22_fatiga" />
 
             <ImageButton
                 android:id="@+id/imageButton_filter_barchart"
@@ -133,7 +133,7 @@
             </com.github.mikephil.charting.charts.BarChart>
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/textView27_monotonia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -145,15 +145,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/BarChart" />
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/textView27_fatiga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/ndice_de_fatiga"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintStart_toStartOf="@+id/textView27_monotonia"
+                app:layout_constraintTop_toBottomOf="@+id/textView27_monotonia" />
 
             <TextView
                 android:id="@+id/textView_monotoniaBarchart"
@@ -162,8 +162,8 @@
                 android:layout_marginStart="20dp"
                 android:text="TextView"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/textView27"
-                app:layout_constraintTop_toTopOf="@+id/textView27" />
+                app:layout_constraintStart_toEndOf="@+id/textView27_monotonia"
+                app:layout_constraintTop_toTopOf="@+id/textView27_monotonia" />
 
                 <TextView
                     android:id="@+id/textView_fatigaBarChart"
@@ -172,7 +172,7 @@
                     android:layout_marginTop="4dp"
                     android:text="TextView"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintStart_toEndOf="@+id/textView27_fatiga"
                     app:layout_constraintStart_toStartOf="@+id/textView_monotoniaBarchart"
                     app:layout_constraintTop_toBottomOf="@+id/textView_monotoniaBarchart" />
 
@@ -188,7 +188,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView28" />
+                app:layout_constraintTop_toBottomOf="@+id/textView27_fatiga" />
 
             <ImageButton
                 android:id="@+id/imageButton_filter_piechart"

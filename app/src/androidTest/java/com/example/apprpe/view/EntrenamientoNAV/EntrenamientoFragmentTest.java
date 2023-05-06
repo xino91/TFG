@@ -2,6 +2,7 @@ package com.example.apprpe.view.EntrenamientoNAV;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -20,6 +21,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Test Activity EntrenamientoFragment, comprobamos un click en recyclerView
+ * Comprobamos el botón flotante y los botones de navegación
+ */
 @RunWith(AndroidJUnit4.class)
 public class EntrenamientoFragmentTest extends TestCase {
 
@@ -28,10 +33,17 @@ public class EntrenamientoFragmentTest extends TestCase {
 
     @Test
     public void clickItemRecyclerView() {
-        //Comprobamos que existe el recyclerView y luego que podemos hacer click en el elemento cuya posición=3
+        //Comprobamos que existe el recyclerView y luego que podemos hacer click en el elemento cuya posición=1
         onView(withId(R.id.recyclerview_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.recyclerview_id)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
+        onView(withId(R.id.recyclerview_id)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
     }
+    @Test
+    public void swipeItemRecyclerView() {
+        //Comprobamos que existe el recyclerView y luego que podemos hacer swipe en el elemento cuya posición=3
+        onView(withId(R.id.recyclerview_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.recyclerview_id)).perform(RecyclerViewActions.actionOnItemAtPosition(3, swipeLeft()));
+    }
+
 
     @Test
     public void clickFloatingActionButton_nuevoEntrenamiento(){

@@ -70,7 +70,6 @@ public class Ent_Realizado {
     public String getHora_inicio() { return hora_inicio; }
     public String getHora_finalizacion() { return hora_finalizacion; }
     public String getTipo() {return tipo;}
-    //public int getInd_fatiga() { return ind_fatiga; }
     public int getRpe_objetivo() {return rpe_objetivo;}
     public int getRpe_subjetivo() {return rpe_subjetivo;}
     public int getSatisfaccion() {return satisfaccion;}
@@ -85,7 +84,6 @@ public class Ent_Realizado {
     public void setCarga(int carga) { Carga = carga; }
     public void setHora_inicio(String hora_inicio) { this.hora_inicio = hora_inicio; }
     public void setHora_finalizacion(String hora_finalizacion) { this.hora_finalizacion = hora_finalizacion; }
-   // public void setInd_fatiga(int ind_fatiga) { this.ind_fatiga = ind_fatiga; }
     public void setRpe_objetivo(int rpe_objetivo) {this.rpe_objetivo = rpe_objetivo;}
     public void setRpe_subjetivo(int rpe_subjetivo) {this.rpe_subjetivo = rpe_subjetivo;}
     public void setDolor(int dolor) {this.dolor = dolor;}

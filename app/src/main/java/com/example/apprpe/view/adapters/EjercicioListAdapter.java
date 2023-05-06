@@ -55,7 +55,6 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<RecyclerView.View
                         holderFuerza.textViewTitulo.setText(current.getNombre());
                         holderFuerza.textviewSets.setText(String.valueOf(current.getSets()));
                         holderFuerza.textviewRepeticiones.setText(String.valueOf(current.getRepeticiones()));
-                        //holderFuerza.textviewRPE.setText(String.valueOf(current.getRpe()));
                         break;
                     case TIPO_AEROBICO:
                         EjercicioViewHolder_Aerobico holderAerobico = (EjercicioViewHolder_Aerobico) holder ;
@@ -109,7 +108,6 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<RecyclerView.View
             textViewTitulo = itemView.findViewById(R.id.nombre_titulo);
             textviewSets = itemView.findViewById(R.id.numero_sets);
             textviewRepeticiones = itemView.findViewById(R.id.numero_repeticiones);
-            //textviewRPE = itemView.findViewById(R.id.textView_num_RPE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

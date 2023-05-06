@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.Repository;
+import com.example.apprpe.modelo.Peso;
 
 
 import java.util.List;
@@ -18,8 +19,6 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     private Repository mRepository;
     private LiveData<List<Entrenamiento>> listEntrenamientos;
     private LiveData<List<Ejercicio>> listEjercicios;
-    private List<Ejercicio> listEjercicios2;
-    private LiveData<List<com.example.apprpe.modelo.EntrenamientoConEjercicios> > EntrenamientoConEjercicios;
 
     public EntrenamientoViewModel(@NonNull Application application) throws InterruptedException {
         super(application);
@@ -36,9 +35,8 @@ public class EntrenamientoViewModel extends AndroidViewModel {
         return listEjercicios;
     }
 
-    public List<Ejercicio> getListEntrenamientoConEjercicios(int id) throws InterruptedException {
-        listEjercicios2 = mRepository.getListEntrenamientoConEjercicios(id);
-        return listEjercicios2;
+    public List<Ejercicio> getListEntrenamientoConEjercicios(int id_entrenamiento) throws InterruptedException {
+        return mRepository.getListEntrenamientoConEjercicios(id_entrenamiento);
     }
 
     public Ejercicio getEjercicio(int id) throws InterruptedException {
@@ -53,12 +51,9 @@ public class EntrenamientoViewModel extends AndroidViewModel {
         return entrenamiento;
     }
 
-    public void intercambiarId(int id_anterior, int id_posterior){
-        mRepository.intercambiarId(id_anterior, id_posterior);
-    }
-
     public void insert(Entrenamiento entrenamiento) { mRepository.insert(entrenamiento); }
     public void insert(Ejercicio ejercicio) { mRepository.insert(ejercicio); }
+    public void insert(Peso peso) { mRepository.insert(peso); }
     public void updateEjercicio(Ejercicio ejercicio) { mRepository.updateEjercicio(ejercicio); }
     public void deleteEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteEntrenamiento(entrenamiento); }
     public void deleteAllEjerciciosEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
@@ -71,4 +66,9 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     public LiveData<Float> getPesoMinimo(){
         return mRepository.getPesoMinimo();
     }
+
+    public LiveData<Float> getPesoActual(){
+        return mRepository.getPesoActual();
+    }
+
 }

@@ -140,7 +140,6 @@ public class EntRealizadoFragment extends Fragment implements MenuProvider {
     }
 
     public void ObserverFUERZA(){
-        Log.i("FUERZA", "FUERZA");
         entRealizadoViewModel.getEntrenamientosFuerzaRealizados().observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
             public void onChanged(List<Ent_Realizado> entrenamientos) {
@@ -150,7 +149,7 @@ public class EntRealizadoFragment extends Fragment implements MenuProvider {
     }
 
     public void ObserverAEROBICO(){
-        Log.i("AEROBICO", "AEROBICO");
+
         entRealizadoViewModel.getEntrenamientosAerobicoRealizados().observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
             public void onChanged(List<Ent_Realizado> entrenamientos) {

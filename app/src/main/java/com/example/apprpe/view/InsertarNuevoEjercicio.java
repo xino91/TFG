@@ -1,4 +1,4 @@
-package com.example.apprpe.view.navBottom.EntrenamientoNAV;
+package com.example.apprpe.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 

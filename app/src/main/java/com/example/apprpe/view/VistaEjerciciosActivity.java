@@ -1,5 +1,6 @@
 package com.example.apprpe.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +12,6 @@ import com.example.apprpe.R;
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.view.navBottom.EntrenamientoNAV.EntrenamientoViewModel;
-import com.example.apprpe.view.navBottom.EntrenamientoNAV.InsertarNuevoEjercicio;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -34,17 +34,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class VistaEjerciciosActivity extends AppCompatActivity {
+    private EntrenamientoViewModel entrenamientoViewModel;
+    private RecyclerView recyclerView;
+    private int Id_entrenamiento;
+    private Entrenamiento entrenamiento;
+    private Button button_iniciar_entrenamiento;
+    private TextView textVacio;
 
-    private static final int INSERT_EJERCICIO_CODE = 1;
-    private static final int RESULT_EJERCICO_OK = -1;
-    private static final int RESULT_EJERCICIO_CANCELED = 0;
-    EntrenamientoViewModel entrenamientoViewModel;
-    RecyclerView recyclerView;
-    int Id_entrenamiento;
-    Entrenamiento entrenamiento;
-    Button button_iniciar_entrenamiento;
-    TextView textVacio;
-
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +126,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
      * Función que crea un Intent para el activity InsertarNuevoEjercicio y le pasa el Id_entrenamiento (ID_POSITION)
      * Llama al starActivityForResult
      */
-    private void insertarNuevoEjercicio() {
+    public void insertarNuevoEjercicio() {
         Intent intent = new Intent(this, InsertarNuevoEjercicio.class);
         intent.putExtra("TIPO", entrenamiento.getTipo());
         insertarEjercicioActivityResultLauncher.launch(intent);
@@ -138,7 +135,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     /**
      * Función que elimina el entrenamiento por completo, eliminará todos sus ejercicios
      */
-    private void eliminarEntrenamiento(){
+    public void eliminarEntrenamiento(){
         entrenamientoViewModel.deleteAllEjerciciosEntrenamiento(entrenamiento);
         entrenamientoViewModel.deleteEntrenamiento(entrenamiento);
         finish();
@@ -147,7 +144,7 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
     /**
      * Está función recoge los datos de un nuevo ejercicio (del activity insertar ejercicio), y procede a su insert en la BD
      */
-    private final ActivityResultLauncher<Intent> insertarEjercicioActivityResultLauncher = registerForActivityResult(
+    public final ActivityResultLauncher<Intent> insertarEjercicioActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
@@ -161,7 +158,6 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                         ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
                         ejercicio.setEntrenamiento_Id(Id_entrenamiento);
                         entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-                        //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
                     }
                     else{
                         ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
@@ -170,7 +166,6 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                         ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
                         ejercicio.setEntrenamiento_Id(Id_entrenamiento);
                         entrenamientoViewModel.insert(ejercicio); //INSERTAMOS
-                        //entrenamientoViewModel.update_NumEjerciciosMas(Id_entrenamiento); //ACTUALIZAMOS Numero Ejercicios de la Sesión
                     }
                 } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
                     Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();

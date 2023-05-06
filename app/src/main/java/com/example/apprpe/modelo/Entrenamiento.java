@@ -70,8 +70,6 @@ public class Entrenamiento {
     public void setId(int id) { Id = id; }
     public void setNombre_Entrenamiento(String nombre_Sesion) { Nombre_Entrenamiento = nombre_Sesion; }
     public void setNum_ejercicios(int num_ejercicios) { Num_ejercicios = num_ejercicios; }
-    //public void setList_Sesion(List<Ejercicio> list_Sesion) { this.list_Sesion = list_Sesion; }
-    //public void setList_Sesion(Ejercicio ejercicio) { this.list_Sesion.add(ejercicio); }
     public void setRpe_Objetivo(int rpe_Objetivo) { Rpe_Objetivo = rpe_Objetivo; }
     public void setTipo(String tipo) { Tipo = tipo; }
 }

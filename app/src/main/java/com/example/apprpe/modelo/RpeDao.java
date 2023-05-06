@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Dao
-public interface EntrenamientoDao {
+public interface RpeDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Entrenamiento entrenamiento);
@@ -118,6 +118,9 @@ public interface EntrenamientoDao {
     LiveData<Float> getPesoMax();
     @Query("SELECT MIN(peso) FROM pesos_table")
     LiveData<Float> getPesoMin();
+
+    @Query("SELECT peso FROM pesos_table WHERE fecha_registro = (SELECT MAX(fecha_registro) FROM pesos_table)")
+    LiveData<Float> getPesoActual();
 
     @Query("SELECT COUNT() FROM EntRealizado_table")
     LiveData<Integer> getCountEntrenamientosRealizados();

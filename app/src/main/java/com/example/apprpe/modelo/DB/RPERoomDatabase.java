@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.apprpe.modelo.Ejercicio;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
-import com.example.apprpe.modelo.EntrenamientoDao;
+import com.example.apprpe.modelo.RpeDao;
 import com.example.apprpe.modelo.Peso;
 
 import java.sql.Date;
@@ -28,7 +28,7 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
     private static volatile RPERoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
-    public abstract EntrenamientoDao entrenamientoDao();
+    public abstract RpeDao entrenamientoDao();
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static RPERoomDatabase getInstanceDatabase(final Context context) {
@@ -56,7 +56,7 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
 
-                EntrenamientoDao dao_entrenamiento = INSTANCE.entrenamientoDao();
+                RpeDao dao_entrenamiento = INSTANCE.entrenamientoDao();
                 List<Entrenamiento> entrenamientos = CrearEntrenamientosEjemplo();
                 List<Ejercicio> ejercicios = CrearEjerciciosEjemplo();
                 List<Ent_Realizado> entrealizados = CrearEntRealizadosEjemplo();

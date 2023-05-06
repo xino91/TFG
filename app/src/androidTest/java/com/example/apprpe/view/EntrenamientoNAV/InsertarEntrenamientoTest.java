@@ -5,7 +5,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.apprpe.R;
-import com.example.apprpe.view.navBottom.EntrenamientoNAV.InsertarEntrenamiento;
+import com.example.apprpe.view.InsertarEntrenamiento;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -21,6 +21,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Test activity insertarEntrenamiento
+ * InsertarEntrenamientoConDatosIncorrectos()
+ * InsertarEntrenamientoConDatosCorrectos()
+ * BotonCancelar()
+ */
 @RunWith(AndroidJUnit4.class)
 public class InsertarEntrenamientoTest {
 

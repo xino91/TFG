@@ -10,13 +10,19 @@
         app:showAsAction="never" />
      <item
         android:id="@+id/action_configuracion"
-        android:orderInCategory="100"
+        android:orderInCategory="400"
         android:title="@string/configurar"
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/nuevo_peso"
+        android:orderInCategory="200"
+        android:title="@string/nuevo_peso"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_exportar"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         android:title="@string/exportar_datos_a_excel"
         app:showAsAction="ifRoom"
         android:icon="@drawable/xlsx_file_icon"/>

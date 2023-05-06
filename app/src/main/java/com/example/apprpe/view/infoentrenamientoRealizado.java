@@ -96,7 +96,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
 
     /**
      * Cuadro dialogo para escala original 1-10
-     * @param dialogo
+     * @param dialogo de la clase CuadroDialogo_rpe
      */
     public void CuadroRpe(CuadroDialogo_rpe dialogo){
         dialogo.show(getSupportFragmentManager(), "Dialog_rpe");
@@ -110,12 +110,9 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
                 dialogo_sat.setStyle(DialogFragment.STYLE_NORMAL, R.style.AlertDialog_AppCompat);
                 dialogo_sat.setCancelable(false);
                 rpe_subjetivo = rpe;
-                Log.i("RPE_SUB", String.valueOf(rpe_subjetivo));
                 dialogo_sat.getSatisfaccion(new CuadroDialogo_satisfaccion.CuadroDialogo_listener() {
                     @Override
                     public void apply_Satisfaccion_Dolor(int satisfaccion, int dolor) {
-                        Log.i("SATISFACCION", String.valueOf(satisfaccion));
-                        Log.i("DOLOR", String.valueOf(dolor));
                         CalcularCarga();
                         entrenamiento_realizado = new Ent_Realizado(nombre_entrenamiento, date, duracion, tipo, carga, hora_inicio,
                                 hora_finalizacion, rpe_objetivo, rpe_subjetivo, satisfaccion, dolor );
@@ -131,7 +128,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
 
     /**
      * Cuadro dialogo para Infant
-     * @param dialogo
+     * @param dialogo de la clase CuadroDialogo_rpeInfant
      */
     public void CuadroRpeInfant(CuadroDialogo_rpeInfant dialogo){
         dialogo.show(getSupportFragmentManager(), "Dialog_rpe");
@@ -145,12 +142,9 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
                 dialogo_sat.setStyle(DialogFragment.STYLE_NORMAL, R.style.AlertDialog_AppCompat);
                 dialogo_sat.setCancelable(false);
                 rpe_subjetivo = rpe;
-                Log.i("RPE_SUB", String.valueOf(rpe_subjetivo));
                 dialogo_sat.getSatisfaccion(new CuadroDialogo_satisfaccion.CuadroDialogo_listener() {
                     @Override
                     public void apply_Satisfaccion_Dolor(int satisfaccion, int dolor) {
-                        Log.i("SATISFACCION", String.valueOf(satisfaccion));
-                        Log.i("DOLOR", String.valueOf(dolor));
                         CalcularCarga();
                         entrenamiento_realizado = new Ent_Realizado(nombre_entrenamiento, date, duracion, tipo, carga, hora_inicio,
                                 hora_finalizacion, rpe_objetivo, rpe_subjetivo, satisfaccion, dolor );
@@ -183,8 +177,6 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
     public void DuracionEnMinutos(){
         resto = (int)duracion % 60;
         cociente = (int)duracion / 60;
-        Log.i("RESTO", String.valueOf(resto));
-        Log.i("COCIENTE", String.valueOf(cociente));
         if(resto < 10 ) {
             duracion_string = String.valueOf(cociente) + ':' + String.valueOf(0) + String.valueOf(resto);
         }
@@ -197,8 +189,6 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
      * Función para mostrar los datos en View vinculados
      */
     void mostrarVistas() {
-        //Log.i("DURACION", String.valueOf(duracion));
-        //Log.i("DIA", String.valueOf(date.getDate()) + "/" + String.valueOf(date.getMonth()+1) + "/" + String.valueOf(date.getYear()));
         view_fecha.setText(date.toString());
         view_duracion.setText(duracion_string);
         view_h_inicio.setText(String.valueOf(hora_inicio));
@@ -232,8 +222,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
 
     public void obtenerSharedPreference(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        key_escala = preferences.getString("escala", "");
+        key_escala = preferences.getString("escala", "Escala original (0-10)");
     }
-
 
 }

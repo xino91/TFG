@@ -2,6 +2,7 @@ package com.example.apprpe.view;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -19,7 +20,11 @@ import android.widget.Toast;
 
 import com.example.apprpe.MainActivity;
 import com.example.apprpe.R;
+import com.example.apprpe.modelo.Peso;
+import com.example.apprpe.view.navBottom.EntrenamientoNAV.EntrenamientoViewModel;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -41,6 +46,9 @@ public class Inicio_activity extends AppCompatActivity{
     int dia,mes,ano;
     private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+    private EntrenamientoViewModel entrenamientoViewModel;
+
+    private Peso pesoAguardar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,8 @@ public class Inicio_activity extends AppCompatActivity{
         setContentView(R.layout.inicio_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         inicializarComponentes();
+
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
 
         escuchadorCalendario();
 
@@ -58,6 +68,7 @@ public class Inicio_activity extends AppCompatActivity{
                 if(comprobarDatosCorrectosEditText()) {
                     guardarPreferencias();
                     Intent intent = new Intent(getApplication(), MainActivity.class);
+                    entrenamientoViewModel.insert(pesoAguardar);
                     startActivity(intent);
                     finish();
                 }
@@ -127,8 +138,11 @@ public class Inicio_activity extends AppCompatActivity{
         } else if (edt_Estatura.getText().length() != 3) {
             edt_Estatura.setError("Campo obligatorio en cm, solo tres carácteres");
             return false;
-        } else if (edt_Peso.getText().length() < 2 || edt_Peso.getText().length() > 3) {
-            edt_Peso.setError("Campo obligatorio, dos o tres caracteres");
+        } else if (edt_Peso.getText().length() != 4) {
+            edt_Peso.setError("Campo obligatorio, el peso debe tener el formato xx.x\"");
+            return false;
+        } else if (!comprobarPeso()) {
+            edt_Peso.setError("Campo obligatorio, el peso debe tener el formato xx.x");
             return false;
         } else if (nacimiento.isEmpty()) {
             buttonfecha.setError("Campo obligatorio");
@@ -172,6 +186,11 @@ public class Inicio_activity extends AppCompatActivity{
         editor.apply();
     }
 
+    /**
+     * Esta función recibe una fechaNacimiento y comprueba que sea iniferior a la actual 14 años o más
+     * @param fechanacimiento String Fecha de nacimiento
+     * @return true, si la fechanacimiento es inferior, 14 o más años, false en caso contrario.
+     */
     public  boolean validarFecha(String fechanacimiento) {
         LocalDate fechaNacimiento = LocalDate.parse(fechanacimiento, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate fechaActual = LocalDate.now();
@@ -179,9 +198,32 @@ public class Inicio_activity extends AppCompatActivity{
         return fechaNacimiento.isBefore(fechaActual.minusYears(14));
     }
 
+    /**
+     * Valida un correo eléctronico mediante una expresión regular
+     * @param correo de tipo string
+     * @return true si cumple la expresión regular
+     */
     public boolean validarCorreo(String correo){
-        Log.i("CORREO", correo);
         Matcher matcher = EMAIL_PATTERN.matcher(correo);
         return matcher.find();
+    }
+
+    public boolean comprobarPeso(){
+        final String pesoStr = edt_Peso.getText().toString().trim();
+        // Comprobamos que el valor tiene el formato correcto
+        Pattern pattern = Pattern.compile("\\d{2}\\.\\d");
+        Matcher matcher = pattern.matcher(pesoStr);
+        if (!matcher.matches()) {
+            return false;
+        }
+        // Convertimos el valor a un número decimal
+        final double pesodouble = Double.parseDouble(pesoStr);
+        // Comprobamos que el peso está dentro del rango de 0 a 150
+        if (pesodouble < 0 || pesodouble > 150) {
+            return false;
+        }
+        Date date = new Date(Calendar.getInstance().getTimeInMillis());
+        pesoAguardar = new Peso(pesodouble, date);
+        return true;
     }
 }

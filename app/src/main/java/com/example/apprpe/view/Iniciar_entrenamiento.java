@@ -2,6 +2,7 @@ package com.example.apprpe.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -183,9 +184,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
             carga = carga / listEjercicios.size();
         }
         else{
-            Log.i("DURACIONINICIAR", String.valueOf(duracion_segundos));
             float duracion_minutos = (float) duracion_segundos / 60;
-            Log.i("DURACIONINICIAR2", String.valueOf(duracion_minutos));
             carga = carga + (int)(listEjercicios.get(num_ejercicio).getRpe() * duracion_minutos);
         }
     }

@@ -28,7 +28,7 @@
     <string name="fecha_nacimiento">Fecha Nacimiento</string>
     <string name="g_nero">Género</string>
     <string name="estatura">Estatura</string>
-    <string name="peso">Peso</string>
+    <string name="peso">Peso actual</string>
     <string name="email">Email</string>
     <string name="title_activity_inicio_">Inicio_Activity</string>
     <string name="nombre_inicio">Nombre:</string>
@@ -229,4 +229,6 @@
     <string name="kg">Kg</string>
     <string name="cm">cm</string>
     <string name="eliminar_todo">Eliminar todo</string>
+    <string name="nuevo_peso">Nuevo peso</string>
+    <string name="pesoo">peso</string>
 </resources>
