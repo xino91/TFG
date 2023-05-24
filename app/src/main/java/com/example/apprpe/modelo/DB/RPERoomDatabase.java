@@ -24,7 +24,6 @@ import java.util.concurrent.Executors;
 @Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class, Peso.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract  class RPERoomDatabase extends RoomDatabase {
-
     private static volatile RPERoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
@@ -45,7 +44,7 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    public static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
@@ -78,12 +77,23 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
         }
     };
 
+    public static void recreateDatabase(Context context) {
+        // Eliminar la instancia existente de la base de datos
+        INSTANCE = null;
+
+        // Borrar el archivo de la base de datos
+        context.deleteDatabase("AppRpe_database");
+    }
+
     public static List<Entrenamiento> CrearEntrenamientosEjemplo(){
         List<Entrenamiento> entrenamiento = new ArrayList<Entrenamiento>();
-        entrenamiento.add(new Entrenamiento(1,"Entrenamiento Básico", 2, 5, "Fuerza"));
-        entrenamiento.add(new Entrenamiento(2,"Entrenamiento Intermedio", 1,  6,"Fuerza"));
-        entrenamiento.add(new Entrenamiento(3,"Entrenamiento Avanzado", 3, 8,"Fuerza"));
-        entrenamiento.add(new Entrenamiento(4,"Entrenamiento Aeróbico", 2, 4, "Aeróbico"));
+        entrenamiento.add(new Entrenamiento(1,"Entrenamiento Lunes", 2, 6, "Fuerza"));
+        entrenamiento.add(new Entrenamiento(2,"Entrenamiento Martes", 1,  5,"Fuerza"));
+        entrenamiento.add(new Entrenamiento(3,"Entrenamiento Miércoles", 3, 8,"Fuerza"));
+        entrenamiento.add(new Entrenamiento(4,"Entrenamiento Jueves", 2, 0, "Aeróbico"));
+        entrenamiento.add(new Entrenamiento(5,"Entrenamiento Viernes", 0, 6, "Fuerza"));
+        entrenamiento.add(new Entrenamiento(6,"Entrenamiento Sábado", 0, 4, "Fuerza"));
+        entrenamiento.add(new Entrenamiento(7,"Entrenamiento Domingo", 0, 4, "Aeróbico"));
         return entrenamiento;
     }
 
@@ -105,60 +115,27 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
         Date date = new Date(time);
         List<Ent_Realizado> entrealizados = new ArrayList<>();
 
-        entrealizados.add(new Ent_Realizado(1,"Entrenamiento Avanzado", date, 2400, "Fuerza", 340, "07:00", "07:40", 5, 6, 4, 0 ));
-        entrealizados.add(new Ent_Realizado(2,"Entrenamiento Avanzado", date, 2400, "Fuerza", 255, "07:00", "07:40", 5, 5, 4, 0 ));
-        entrealizados.add(new Ent_Realizado(3,"Entrenamiento Intermedio", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(4,"Entrenamiento Intermedio", date, 2400, "Fuerza", 260, "07:00", "07:40", 5, 6, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(5,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 1 ));
-        entrealizados.add(new Ent_Realizado(6,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(7,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 8, 3, 1 ));
-        entrealizados.add(new Ent_Realizado(8,"Entrenamiento Básico", date, 2400, "Fuerza", 220, "07:00", "07:40", 5, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(9,"Entrenamiento Básico", date, 2400, "Fuerza", 180, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(10,"Entrenamiento Avanzado", date, 2400, "Fuerza", 310, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(11,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 4, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(12,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(13,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(14,"Entrenamiento Intermedio", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 6, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(15,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 8, 9, 3, 3 ));
-        entrealizados.add(new Ent_Realizado(16,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 5, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(17,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 6, 4, 0 ));
-        entrealizados.add(new Ent_Realizado(18,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 5, 4, 0 ));
-        entrealizados.add(new Ent_Realizado(19,"Entrenamiento Intermedio", date, 2400, "Fuerza", 250, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(20,"Entrenamiento Intermedio", date, 2400, "Fuerza", 278, "07:00", "07:40", 5, 6, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(21,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 1 ));
-        entrealizados.add(new Ent_Realizado(22,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(23,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 8, 3, 1 ));
-        entrealizados.add(new Ent_Realizado(24,"Entrenamiento Básico", date, 2400, "Fuerza", 245, "07:00", "07:40", 5, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(25,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(26,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(27,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 4, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(28,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(29,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(30,"Entrenamiento Intermedio", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 6, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(31,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(32,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 4, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(33,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(34,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(35,"Entrenamiento Avanzado", date, 2400, "Fuerza", 290, "07:00", "07:40", 8, 9, 3, 3 ));
-        entrealizados.add(new Ent_Realizado(36,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 5, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(37,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 6, 4, 0 ));
-        entrealizados.add(new Ent_Realizado(38,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 5, 4, 0 ));
-        entrealizados.add(new Ent_Realizado(39,"Entrenamiento Intermedio", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(40,"Entrenamiento Intermedio", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 6, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(41,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 1 ));
-        entrealizados.add(new Ent_Realizado(42,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(43,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 8, 3, 1 ));
-        entrealizados.add(new Ent_Realizado(44,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(45,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(46,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(47,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 240, "07:00", "07:40", 5, 4, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(48,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(49,"Entrenamiento Básico", date, 2400, "Fuerza", 240, "07:00", "07:40", 4, 5, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(50,"Entrenamiento Intermedio", date, 2400, "Fuerza", 240, "07:00", "07:40", 5, 6, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(51,"Entrenamiento Avanzado", date, 2400, "Fuerza", 240, "07:00", "07:40", 7, 7, 3, 0 ));
-        entrealizados.add(new Ent_Realizado(52,"Entrenamiento Aeróbico", date, 2400, "Aeróbico", 170, "07:00", "07:40", 5, 4, 5, 0 ));
-        entrealizados.add(new Ent_Realizado(53,"Entrenamiento Avanzado", date, 2400, "Fuerza", 324, "07:00", "07:40", 7, 7, 3, 0 ));
-
+        entrealizados.add(new Ent_Realizado(1,"Entrenamiento Lunes", date, 3000, "Fuerza", 280, "07:00", "07:50", 6, 7, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(2,"Entrenamiento Martes", date, 2400, "Fuerza", 180, "07:00", "07:40", 4, 4, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(3,"Entrenamiento Miércoles", date, 4200, "Fuerza", 360, "07:00", "08:10", 8, 9, 2, 1 ));
+        entrealizados.add(new Ent_Realizado(4,"Entrenamiento Jueves", date, 0, "Aeróbico", 0, "07:00", "07:00", 0, 0, 5, 0 ));
+        entrealizados.add(new Ent_Realizado(5,"Entrenamiento Viernes", date, 3000, "Fuerza", 260, "07:00", "07:50", 6, 6, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(6,"Entrenamiento Sábado", date, 2400, "Fuerza", 230, "07:00", "07:40", 4, 5, 3, 0 ));
+        entrealizados.add(new Ent_Realizado(7,"Entrenamiento Domingo", date, 1200, "Aeróbico", 150, "07:00", "07:20", 3, 3, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(8,"Entrenamiento Lunes", date, 3000, "Fuerza", 280, "07:00", "07:50", 6, 7, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(9,"Entrenamiento Martes", date, 2400, "Fuerza", 180, "07:00", "07:40", 4, 4, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(10,"Entrenamiento Miércoles", date, 4200, "Fuerza", 360, "07:00", "08:10", 8, 9, 2, 1 ));
+        entrealizados.add(new Ent_Realizado(11,"Entrenamiento Jueves", date, 0, "Aeróbico", 0, "07:00", "07:00", 0, 0, 5, 0 ));
+        entrealizados.add(new Ent_Realizado(12,"Entrenamiento Viernes", date, 3000, "Fuerza", 260, "07:00", "07:50", 6, 6, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(13,"Entrenamiento Sábado", date, 2400, "Fuerza", 230, "07:00", "07:40", 4, 5, 3, 0 ));
+        entrealizados.add(new Ent_Realizado(14,"Entrenamiento Domingo", date, 1200, "Aeróbico", 150, "07:00", "07:20", 3, 3, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(15,"Entrenamiento Lunes", date, 3000, "Fuerza", 280, "07:00", "07:50", 6, 7, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(16,"Entrenamiento Martes", date, 2400, "Fuerza", 180, "07:00", "07:40", 4, 4, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(17,"Entrenamiento Miércoles", date, 4200, "Fuerza", 360, "07:00", "08:10", 8, 8, 2, 1 ));
+        entrealizados.add(new Ent_Realizado(18,"Entrenamiento Jueves", date, 0, "Aeróbico", 0, "07:00", "07:00", 0, 0, 5, 0 ));
+        entrealizados.add(new Ent_Realizado(19,"Entrenamiento Viernes", date, 3000, "Fuerza", 260, "07:00", "07:50", 6, 6, 4, 0 ));
+        entrealizados.add(new Ent_Realizado(20,"Entrenamiento Sábado", date, 2400, "Fuerza", 230, "07:00", "07:40", 4, 5, 3, 0 ));
+        entrealizados.add(new Ent_Realizado(21,"Entrenamiento Domingo", date, 1200, "Aeróbico", 150, "07:00", "07:20", 3, 3, 4, 0 ));
         return entrealizados;
     }
 

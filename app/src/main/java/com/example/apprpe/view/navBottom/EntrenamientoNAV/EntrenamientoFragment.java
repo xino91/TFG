@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Entrenamiento;
+import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 import com.example.apprpe.view.InsertarEntrenamiento;
 import com.example.apprpe.view.VistaEjerciciosActivity;
 import com.example.apprpe.view.adapters.EntrenamientoListAdapter;
@@ -65,6 +67,7 @@ public class EntrenamientoFragment extends Fragment {
         adapter = new EntrenamientoListAdapter(getContext());
         recyclerView.setAdapter(adapter);
         //recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+
 
         ObserverTODO();
         chipGroup.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
@@ -202,7 +205,7 @@ public class EntrenamientoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), InsertarEntrenamiento.class);
-                startActivityForResult(intent, INSERT_SESION_ACTIVITY_CODE);
+                insertSesionActivityResultLauncher.launch(intent);
             }
         });
     }

@@ -1,9 +1,12 @@
 package com.example.apprpe.view.navBottom.EntRealizadoNAV;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.DashPathEffect;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +17,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StyleableRes;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.Pair;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -26,10 +31,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.view.adapters.EntRealizadoListAdapter;
+import com.example.apprpe.view.navBottom.EntrenamientoNAV.EntrenamientoViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -167,6 +179,9 @@ public class EntRealizadoFragment extends Fragment implements MenuProvider {
         if (menuItem.getItemId() == R.id.menu_eliminar_todo) {
             return ConfirmacionDialog();
         }
+        if (menuItem.getItemId() == R.id.menu_calendario) {
+            return SelectRangeDateDialog();
+        }
         return false;
     }
 
@@ -187,12 +202,12 @@ public class EntRealizadoFragment extends Fragment implements MenuProvider {
     }
 
     public void eliminarTodosEntrenamientosRealizados(){
-        entRealizadoViewModel.deleteAllEntrenamientosRealizados();
+        entRealizadoViewModel.deleteTableEntrenamientosRealizados();
     }
 
     public boolean ConfirmacionDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setMessage("¿Está seguro que desea eliminar todos los entrenamientos");
+        builder.setMessage("¿Está seguro que desea eliminar todos los entrenamientos?");
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 eliminarTodosEntrenamientosRealizados();
@@ -205,5 +220,41 @@ public class EntRealizadoFragment extends Fragment implements MenuProvider {
         });
         builder.show();
         return true;
+    }
+
+    public boolean SelectRangeDateDialog(){
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+        long today = MaterialDatePicker.todayInUtcMilliseconds();
+        Pair<Long, Long> todayPair = new Pair<>(today, today);
+
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        constraintsBuilder.setFirstDayOfWeek(Calendar.MONDAY); // Establecer el primer día de la semana como lunes (Calendar.MONDAY)
+        builder.setCalendarConstraints(constraintsBuilder.build());
+        builder.setTheme(R.style.MyMaterialCalendarTheme);
+        builder.setSelection(todayPair);
+        MaterialDatePicker<Pair<Long, Long>> materialDatePicker = builder.build();
+
+        materialDatePicker.show(getParentFragmentManager(), "Tag");
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
+            @Override
+            public void onPositiveButtonClick(Pair<Long, Long> selection) {
+                Date first = new Date(selection.first);
+                Date second = new Date(selection.second);
+                String datefirst = FormatearFecha(first);
+                String datesecond = FormatearFecha(second);
+                entRealizadoViewModel.getEntrenamientosRealizadosRange(datefirst,datesecond).observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
+                    @Override
+                    public void onChanged(List<Ent_Realizado> ent_realizados) {
+                        adapter.setEntrenamientosRealizados(ent_realizados);
+                    }
+                });
+            }
+        });
+        return true;
+    }
+
+    public String FormatearFecha(Date date){
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        return formato.format(date);
     }
 }

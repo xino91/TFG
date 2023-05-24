@@ -4,6 +4,7 @@ package com.example.apprpe.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,8 @@ import com.example.apprpe.view.navBottom.EntrenamientoNAV.EntrenamientoViewModel
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -36,7 +39,7 @@ public class Inicio_activity extends AppCompatActivity{
 
     SharedPreferences preferencias;
     String nombreUsuario, genero, email = "";
-    String estatura, peso = "";
+    String estatura, peso, pesoanterior = "";
     String nacimiento;
     TextInputEditText edt_Nombre;
     RadioButton radbutton_masculino, radbutton_femenino;
@@ -55,10 +58,11 @@ public class Inicio_activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        inicializarComponentes();
-
-        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
-
+        enlazaVistas();
+        if(comprobarExistePreferencias()){
+            recuperarDatosPreferencias();
+            rellenamosVistas();
+        }
         escuchadorCalendario();
 
         buttonAvanzar.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +72,7 @@ public class Inicio_activity extends AppCompatActivity{
                 if(comprobarDatosCorrectosEditText()) {
                     guardarPreferencias();
                     Intent intent = new Intent(getApplication(), MainActivity.class);
-                    entrenamientoViewModel.insert(pesoAguardar);
+                    guardarPeso();
                     startActivity(intent);
                     finish();
                 }
@@ -103,7 +107,7 @@ public class Inicio_activity extends AppCompatActivity{
     /**
      * Vincula las vistas con las variables respectivas
      */
-    private void inicializarComponentes(){
+    private void enlazaVistas(){
         edt_Nombre = findViewById(R.id.Edit_nombre);
         radbutton_masculino = findViewById(R.id.radioButton_masculino);
         radbutton_femenino = findViewById(R.id.radioButton_femenino);
@@ -148,8 +152,8 @@ public class Inicio_activity extends AppCompatActivity{
             buttonfecha.setError("Campo obligatorio");
             return false;
         } else if (!validarFecha(buttonfecha.getText().toString())) {
-            buttonfecha.setError("La fecha");
-            Toast.makeText(this, "La edad mínima es de 14 años", Toast.LENGTH_SHORT).show();
+            buttonfecha.setError("Año-Mes-Día-Formato: yyyy-mm-dd");
+            Toast.makeText(this, "Introduce una fecha correcta", Toast.LENGTH_SHORT).show();
             return false;
         }  else if (email.isEmpty()) {
             edt_Mail.setError("Campo obligatorio");
@@ -187,15 +191,56 @@ public class Inicio_activity extends AppCompatActivity{
     }
 
     /**
-     * Esta función recibe una fechaNacimiento y comprueba que sea iniferior a la actual 14 años o más
+     * Esta función recibe una fechaNacimiento y comprueba si es válida, su formato debe ser yyyy-MM-dd, edad mínima 14 años
+     * edad máxima 80 años, también comprueba que la fecha no sea superior a la actual
      * @param fechanacimiento String Fecha de nacimiento
      * @return true, si la fechanacimiento es inferior, 14 o más años, false en caso contrario.
      */
     public  boolean validarFecha(String fechanacimiento) {
-        LocalDate fechaNacimiento = LocalDate.parse(fechanacimiento, DateTimeFormatter.ISO_LOCAL_DATE);
-        LocalDate fechaActual = LocalDate.now();
 
-        return fechaNacimiento.isBefore(fechaActual.minusYears(14));
+        // Definir el formato de la fecha esperada
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        formatoFecha.setLenient(false); // No permitir fechas ambiguas
+
+        try {
+            // Intentar analizar la fecha ingresada
+            java.sql.Date fecha = new java.sql.Date(Objects.requireNonNull(formatoFecha.parse(fechanacimiento)).getTime());
+            String fechaFormateada = formatoFecha.format(fecha);
+            if (!fechaFormateada.equals(fechanacimiento)) {
+                Toast.makeText(getApplicationContext(), "La fecha no cumple el formato esperado", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            // Comprobar si la fecha es mayor que la actual
+            Calendar calendarioActual = Calendar.getInstance();
+            Calendar calendarioIngresado = Calendar.getInstance();
+            calendarioIngresado.setTime(fecha);
+
+            Calendar calendarioMinimaEdad = Calendar.getInstance();
+            calendarioMinimaEdad.add(Calendar.YEAR, -14); // Edad Mínima: 14 años
+            if(!calendarioIngresado.before(calendarioMinimaEdad)){
+                Toast.makeText(getApplicationContext(), "La edad mínima es de 14 años", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (calendarioIngresado.after(calendarioActual)) {
+                Toast.makeText(getApplicationContext(), "La fecha es mayor que la actual", Toast.LENGTH_SHORT).show();
+                return false;
+            } else {
+                // Comprobar si la fecha es muy antigua
+                Calendar calendarioLimite = Calendar.getInstance();
+                calendarioLimite.add(Calendar.YEAR, -80); // Fecha límite: hace 80 años
+
+                if (calendarioIngresado.before(calendarioLimite)) {
+                    Toast.makeText(getApplicationContext(), "La fecha es muy antigua, límite 80 años", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } catch (ParseException e) {
+            Toast.makeText(getApplicationContext(), "No se cumple el formato esperado", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     /**
@@ -225,5 +270,38 @@ public class Inicio_activity extends AppCompatActivity{
         Date date = new Date(Calendar.getInstance().getTimeInMillis());
         pesoAguardar = new Peso(pesodouble, date);
         return true;
+    }
+
+    public void guardarPeso(){
+        entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
+        if(!Objects.equals(pesoanterior, peso)){
+            entrenamientoViewModel.insert(pesoAguardar);
+        }
+    }
+
+    public boolean comprobarExistePreferencias(){
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
+        return sharedPreferences.contains("NombreUsuario");
+    }
+
+    public void recuperarDatosPreferencias(){
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
+        nombreUsuario = sharedPreferences.getString("NombreUsuario", "");
+        genero = sharedPreferences.getString("Genero", "");
+        estatura = sharedPreferences.getString("Estatura", "");
+        pesoanterior = sharedPreferences.getString("Peso", "");
+        peso = pesoanterior;
+        email = sharedPreferences.getString("Email", "");
+        nacimiento = sharedPreferences.getString("Fecha", "");
+    }
+
+    public void rellenamosVistas(){
+        edt_Nombre.setText(nombreUsuario);
+        if(Objects.equals(genero, "Masculino")){radbutton_masculino.setChecked(true);}
+        else{radbutton_femenino.setChecked(true);}
+        edt_Estatura.setText(estatura);
+        edt_Peso.setText(peso);
+        edt_Mail.setText(email);
+        buttonfecha.setText(nacimiento);
     }
 }

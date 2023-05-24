@@ -1,5 +1,7 @@
 package com.example.apprpe.modelo;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,7 +14,7 @@ public class Ejercicio {
     private int Repeticiones;
     private int Sets;
     private int Rpe;
-    private int entrenamiento_Id;
+    @NonNull private int entrenamiento_Id;
 
     public Ejercicio(String nombre, int repeticiones, int sets, int rpe, int entrenamientoId) {
         Nombre = nombre;

@@ -264,7 +264,6 @@ public class EstadisticasFragment extends Fragment {
                 .setCancelable(false)
                 .show();
     }
-
     public void getFiltroDiasYrpeGlineal() {
         if (radiobuttonf7.isChecked() && !isDatoVacio(datoGlineal)) {
             estadisticaViewModel.getEntrenamientosRealizadosFiltro(7).observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {

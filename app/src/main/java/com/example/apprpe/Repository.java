@@ -1,6 +1,7 @@
 package com.example.apprpe;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -48,6 +49,11 @@ public class Repository {
         }
 
         public LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados() { return listEntrenamietosRealizados; }
+
+        public LiveData<List<Ent_Realizado>> getEntrenamientosRealizadosRange(String first, String second){
+            return rpeDao.getEntrenamientosRealizadosRange(first, second);
+        }
+
         public LiveData<List<Ent_Realizado>> getEntrenamientosFuerzaRealizados() {
             return rpeDao.getEntrenamientosFuerzaRealizados();
         }
@@ -92,13 +98,13 @@ public class Repository {
             return _entrenamiento;
         }
 
-    public Ent_Realizado getEntRealizado(int id) throws InterruptedException {
-        RPERoomDatabase.databaseWriteExecutor.execute(() ->{
-            _entrealizado = rpeDao.getEntRealizado(id);
-        });
-        RPERoomDatabase.databaseWriteExecutor.awaitTermination(50000, TimeUnit.MICROSECONDS);
-        return _entrealizado;
-    }
+        public Ent_Realizado getEntRealizado(int id) throws InterruptedException {
+            RPERoomDatabase.databaseWriteExecutor.execute(() ->{
+                _entrealizado = rpeDao.getEntRealizado(id);
+            });
+            RPERoomDatabase.databaseWriteExecutor.awaitTermination(50000, TimeUnit.MICROSECONDS);
+            return _entrealizado;
+        }
 
         // You must call this on a non-UI thread or your app will throw an exception. Room ensures
         // that you're not doing any long running operations on the main thread, blocking the UI.
@@ -121,11 +127,11 @@ public class Repository {
             });
         }
 
-    public void insert(Peso peso) {
-        RPERoomDatabase.databaseWriteExecutor.execute(() ->{
+        public void insert(Peso peso) {
+            RPERoomDatabase.databaseWriteExecutor.execute(() ->{
             rpeDao.insert(peso);
-        });
-    }
+            });
+        }
 
         public void updateEjercicio(Ejercicio ejercicio) {
             RPERoomDatabase.databaseWriteExecutor.execute(() ->{
@@ -133,15 +139,21 @@ public class Repository {
             });
         }
 
-        public void deleteAll() {
+        public void deleteTableEntrenamiento() {
             RPERoomDatabase.databaseWriteExecutor.execute(() -> {
-                rpeDao.deleteAll();
+                rpeDao.deleteTableEntrenamiento();
             });
         }
 
-    public void deleteAllEntrenamientosRealizados() {
+    public void deleteTableEjercicios() {
         RPERoomDatabase.databaseWriteExecutor.execute(() -> {
-            rpeDao.deleteAllEntrenamientosRealizados();
+            rpeDao.deleteTableEjercicios();
+        });
+    }
+
+    public void deleteTableEntrenamientosRealizados() {
+        RPERoomDatabase.databaseWriteExecutor.execute(() -> {
+            rpeDao.deleteTableEntrenamientosRealizados();
         });
     }
 
@@ -161,7 +173,7 @@ public class Repository {
 
         public void deleteEntrenamiento(Entrenamiento entrenamiento) {
             RPERoomDatabase.databaseWriteExecutor.execute(()-> {
-                rpeDao.deleteSesion(entrenamiento);
+                rpeDao.deleteEntrenamiento(entrenamiento);
             });
         }
 
@@ -200,4 +212,24 @@ public class Repository {
     public LiveData<String> getFechaMinima(){ return rpeDao.getFechaMinima();}
 
     public LiveData<Integer> getCountEntrenamientosRealizados(){ return rpeDao.getCountEntrenamientosRealizados();}
+
+    public LiveData<List<EntrenamientoConEjercicios>> getAllSesionesConEjerciciosCross(){ return rpeDao.getAllSesionesConEjerciciosCross();}
+
+    public void resetDatosPorDefecto(List<Entrenamiento> entrenamientos, List<Ejercicio> ejercicios,
+                                     List<Ent_Realizado> entrealizados, List<Peso> historialPeso){
+        RPERoomDatabase.databaseWriteExecutor.execute(()-> {
+            for(int i=0; i<entrenamientos.size(); i++){
+                rpeDao.insert(entrenamientos.get(i));
+            }
+            for(int i=0; i<ejercicios.size(); i++){
+                rpeDao.insert(ejercicios.get(i));
+            }
+            for(int i=0; i<entrealizados.size(); i++){
+                rpeDao.insert(entrealizados.get(i));
+            }
+            for(int i=0; i<historialPeso.size(); i++){
+                rpeDao.insert(historialPeso.get(i));
+            }
+        });
+    }
 }

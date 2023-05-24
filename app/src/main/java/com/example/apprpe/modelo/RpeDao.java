@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Dao
 public interface RpeDao {
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Entrenamiento entrenamiento);
 
@@ -59,6 +58,9 @@ public interface RpeDao {
     @Query("SELECT * FROM entrealizado_table ORDER BY Fecha DESC")
     LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados();
 
+    @Query("SELECT * FROM entrealizado_table WHERE FechaString BETWEEN :first AND :second ORDER BY FechaString DESC")
+    LiveData<List<Ent_Realizado>> getEntrenamientosRealizadosRange(String first, String second);
+
     @Query("SELECT * FROM entrealizado_table ORDER BY Fecha ASC")
     LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizadosOrderAsc();
 
@@ -88,23 +90,26 @@ public interface RpeDao {
     LiveData<List<EntrenamientoConEjercicios>> getAllSesionesConEjercicios();
 
     @Transaction
-    @Query("SELECT * FROM Entrenamiento_table WHERE Id = :id")
-    LiveData<List<EntrenamientoConEjercicios>> getAllSesionesConEjerciciosId(int id);
+    @Query("SELECT * FROM Entrenamiento_table")
+    LiveData<List<EntrenamientoConEjercicios>> getAllSesionesConEjerciciosCross();
 
     @Delete
     void deleteEjercicio(Ejercicio ejercicio);
 
     @Delete
-    void deleteSesion(Entrenamiento entrenamiento);
+    void deleteEntrenamiento(Entrenamiento entrenamiento);
 
     @Delete
     void deleteEnt_Realizado(Ent_Realizado ent_realizado);
 
     @Query("DELETE FROM Entrenamiento_table")
-    void deleteAll();
+    void deleteTableEntrenamiento();
+
+    @Query("DELETE FROM Entrenamiento_table")
+    void deleteTableEjercicios();
 
     @Query("DELETE FROM entrealizado_table")
-    void deleteAllEntrenamientosRealizados();
+    void deleteTableEntrenamientosRealizados();
 
     @Query("DELETE FROM ejercicio_table WHERE entrenamiento_Id = :Id_sesion")
     void deleteAllEjerciciosSesion(int Id_sesion);

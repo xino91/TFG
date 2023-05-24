@@ -18,4 +18,6 @@
 
     <style name="DialogBasico" parent="Theme.Material3.DayNight.Dialog.Alert"> </style>
 
+    <style name="MyMaterialCalendarTheme" parent="ThemeOverlay.Material3.MaterialCalendar.Fullscreen"> </style>
+
 </resources>

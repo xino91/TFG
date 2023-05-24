@@ -5,7 +5,7 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-//Esta Clase sirve para especificar la relacion entre las dos tablas de la BD,
+//Esta Clase sirve para especificar la relacion entre las dos tablas de la BD (entrenamiento y ejercicio),
 //ya que por motivos del funcionamiento de Android y UI no se recomienda hacerlo como en SQL (Clave Foránea)
 public class EntrenamientoConEjercicios {
     @Embedded public Entrenamiento entrenamiento;

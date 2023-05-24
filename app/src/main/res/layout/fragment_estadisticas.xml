@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView4"
@@ -78,24 +78,24 @@
                 app:layout_constraintStart_toStartOf="@+id/textView22_monotonia"
                 app:layout_constraintTop_toBottomOf="@+id/textView22_monotonia" />
 
-                <TextView
-                    android:id="@+id/textView_monotoniaLineChart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="TextView"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/textView22_monotonia"
-                    app:layout_constraintTop_toTopOf="@+id/textView22_monotonia" />
+            <TextView
+                android:id="@+id/textView_monotoniaLineChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="TextView"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/textView22_monotonia"
+                app:layout_constraintTop_toTopOf="@+id/textView22_monotonia" />
 
-                <TextView
-                    android:id="@+id/textView_fatigaLinechart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView_monotoniaLineChart"
-                    app:layout_constraintTop_toTopOf="@+id/textView22_fatiga" />
+            <TextView
+                android:id="@+id/textView_fatigaLinechart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_monotoniaLineChart"
+                app:layout_constraintTop_toTopOf="@+id/textView22_fatiga" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -165,16 +165,16 @@
                 app:layout_constraintStart_toEndOf="@+id/textView27_monotonia"
                 app:layout_constraintTop_toTopOf="@+id/textView27_monotonia" />
 
-                <TextView
-                    android:id="@+id/textView_fatigaBarChart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="TextView"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/textView27_fatiga"
-                    app:layout_constraintStart_toStartOf="@+id/textView_monotoniaBarchart"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_monotoniaBarchart" />
+            <TextView
+                android:id="@+id/textView_fatigaBarChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/textView27_fatiga"
+                app:layout_constraintStart_toStartOf="@+id/textView_monotoniaBarchart"
+                app:layout_constraintTop_toBottomOf="@+id/textView_monotoniaBarchart" />
 
 
             <TextView
@@ -198,9 +198,9 @@
                 android:contentDescription="@string/filtro"
                 android:src="@drawable/ic_baseline_filter_list_30"
                 android:visibility="gone"
-                tools:ignore="TouchTargetSizeCheck"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BarChart" />
+                app:layout_constraintTop_toBottomOf="@+id/BarChart"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/PieChart"

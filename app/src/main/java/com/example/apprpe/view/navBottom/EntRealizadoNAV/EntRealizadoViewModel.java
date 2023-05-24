@@ -24,6 +24,11 @@ public class EntRealizadoViewModel extends AndroidViewModel {
     public void insert(Ent_Realizado ent_realizado) {mRepository.insert(ent_realizado);}
 
     public LiveData<List<Ent_Realizado>> getAllEntrenamientosRealizados() { return listEntrenamientosRealizados; }
+
+    public LiveData<List<Ent_Realizado>> getEntrenamientosRealizadosRange(String first, String second){
+        return mRepository.getEntrenamientosRealizadosRange(first, second);
+    }
+
     public LiveData<List<Ent_Realizado>> getEntrenamientosFuerzaRealizados() { return mRepository.getEntrenamientosFuerzaRealizados(); }
     public LiveData<List<Ent_Realizado>> getEntrenamientosAerobicoRealizados() { return mRepository.getEntrenamientosAerobicosRealizados(); }
 
@@ -37,8 +42,8 @@ public class EntRealizadoViewModel extends AndroidViewModel {
         mRepository.deleteEnt_Realizado(entrealizado);
     }
 
-    public void deleteAllEntrenamientosRealizados(){
-        mRepository.deleteAllEntrenamientosRealizados();
+    public void deleteTableEntrenamientosRealizados(){
+        mRepository.deleteTableEntrenamientosRealizados();
     }
 
     public LiveData<String> getFechaMaxima(){

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 import com.example.apprpe.view.adapters.EjercicioListAdapter;
 import com.example.apprpe.R;
 import com.example.apprpe.modelo.Ejercicio;
@@ -22,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -74,6 +76,18 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                 adapter.setEjercicio(ejercicios);
             }
         });
+
+        /*entrenamientoViewModel.getAllSesionesConEjerciciosCross().observe(this, new Observer<List<EntrenamientoConEjercicios>>() {
+            @Override
+            public void onChanged(List<EntrenamientoConEjercicios> entrenamientoConEjercicios) {
+                for(int i=0; i<entrenamientoConEjercicios.size(); i++){
+                    Log.i("FOR", String.valueOf(entrenamientoConEjercicios.get(i).entrenamiento.getNombre_Entrenamiento()));
+                    for(int j=0; j<entrenamientoConEjercicios.get(i).list_ejercicios.size(); j++){
+                        Log.i("FOR", String.valueOf(entrenamientoConEjercicios.get(i).list_ejercicios.get(j).getNombre()));
+                    }
+                }
+            }
+        });*/
 
     }
 

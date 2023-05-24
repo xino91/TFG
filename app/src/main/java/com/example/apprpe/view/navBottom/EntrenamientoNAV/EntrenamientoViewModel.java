@@ -7,8 +7,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.apprpe.modelo.Ejercicio;
+import com.example.apprpe.modelo.Ent_Realizado;
 import com.example.apprpe.modelo.Entrenamiento;
 import com.example.apprpe.Repository;
+import com.example.apprpe.modelo.EntrenamientoConEjercicios;
 import com.example.apprpe.modelo.Peso;
 
 
@@ -57,6 +59,8 @@ public class EntrenamientoViewModel extends AndroidViewModel {
     public void updateEjercicio(Ejercicio ejercicio) { mRepository.updateEjercicio(ejercicio); }
     public void deleteEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteEntrenamiento(entrenamiento); }
     public void deleteAllEjerciciosEntrenamiento(Entrenamiento entrenamiento) { mRepository.deleteAllEjerciciosSesion(entrenamiento);}
+    public void deleteTableEntrenamiento() { mRepository.deleteTableEntrenamiento();}
+    public void deleteTableEjercicios() { mRepository.deleteTableEjercicios();}
     public void deleteEjercicio(Ejercicio ejercicio) {mRepository.deleteEjercicio(ejercicio); }
 
     public LiveData<Float> getPesoMaximo(){
@@ -71,4 +75,10 @@ public class EntrenamientoViewModel extends AndroidViewModel {
         return mRepository.getPesoActual();
     }
 
+    public LiveData<List<EntrenamientoConEjercicios>> getAllSesionesConEjerciciosCross(){ return mRepository.getAllSesionesConEjerciciosCross();}
+
+    public void resetDatosPorDefecto(List<Entrenamiento> entrenamientos, List<Ejercicio> ejercicios,
+                                     List<Ent_Realizado> entrealizados, List<Peso> historialPeso){
+        mRepository.resetDatosPorDefecto(entrenamientos, ejercicios, entrealizados, historialPeso);
+    }
 }

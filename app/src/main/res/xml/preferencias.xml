@@ -16,6 +16,10 @@
     <PreferenceCategory
         android:title="Ayuda"/>
         <Preference
+            android:key="reset"
+            android:title="Resetear base de datos"
+            app:icon="@drawable/database_svgrepo_com" />
+        <Preference
             android:key="acerca_de"
             android:title="Acerca de ..."
             app:icon="@drawable/ic_about_icon" />

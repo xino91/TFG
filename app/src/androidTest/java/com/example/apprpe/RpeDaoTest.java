@@ -17,7 +17,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.util.List;
 
@@ -77,7 +76,7 @@ public class RpeDaoTest {
         rpeDao.insert(entrenamiento);
         List<Entrenamiento> lisEntrenamientos = LiveDataTestUtil.getOrAwaitValue(rpeDao.getAllSesiones());
         assertThat(lisEntrenamientos.size()).isEqualTo(1);
-        rpeDao.deleteSesion(entrenamiento);
+        rpeDao.deleteEntrenamiento(entrenamiento);
         lisEntrenamientos = LiveDataTestUtil.getOrAwaitValue(rpeDao.getAllSesiones());
         assertThat(lisEntrenamientos.size()).isEqualTo(0);
     }
@@ -89,7 +88,7 @@ public class RpeDaoTest {
         rpeDao.insert(entrenamiento2);
         List<Entrenamiento> lisEntrenamientos = LiveDataTestUtil.getOrAwaitValue(rpeDao.getAllSesiones());
         assertThat(lisEntrenamientos.size()).isEqualTo(2);
-        rpeDao.deleteAll();
+        rpeDao.deleteTableEntrenamiento();
         lisEntrenamientos = LiveDataTestUtil.getOrAwaitValue(rpeDao.getAllSesiones());
         assertThat(lisEntrenamientos.size()).isEqualTo(0);
     }

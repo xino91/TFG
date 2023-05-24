@@ -37,7 +37,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
     private long pauseoffset = 0;
     private FloatingActionButton fab_play, fab_stop;
     private Button button_siguiente;
-    private TextView nombre_ej, nset, nrepet, rpe, indicador_num_ejercicio;
+    private TextView nombre_ej, nset, nrepet, rpe, indicador_num_ejercicio, texto_nsets, texto_nrepet;
     private List<Ejercicio> listEjercicios;
     private int num_ejercicio = 0, pulsado = 0;
     private long duracion_segundos;
@@ -66,7 +66,7 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
     }
 
     /**
-     * Función que crea un Intent y llama a la avtivity infoentrenamientoRealizado.
+     * Función que crea un Intent y llama a la activity infoentrenamientoRealizado.
      * Esta función pasará a la siguiente activity la duración, hora comienzo y finalización del entrenamiento, nombre, tipo, carga
      */
     private void FinEntrenamiento() {
@@ -140,6 +140,8 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
      */
     public void enlazarVistas(){
         nombre_ej = findViewById(R.id.Nombre_ej);
+        texto_nsets = findViewById(R.id.text_sets);
+        texto_nrepet = findViewById(R.id.text_repet);
         nset = findViewById(R.id.textView_nset);
         nrepet = findViewById(R.id.textView_repet);
         rpe = findViewById(R.id.textView_ini_rpe);
@@ -154,11 +156,23 @@ public class Iniciar_entrenamiento extends AppCompatActivity {
      * Función que muestra los datos en los View vinculados
      */
     private void modificarVistas() {
+        if(Objects.equals(tipo, "Fuerza")) {
+            nset.setVisibility(View.VISIBLE);
+            nrepet.setVisibility(View.VISIBLE);
+            texto_nsets.setVisibility(View.VISIBLE);
+            texto_nrepet.setVisibility(View.VISIBLE);
+        }
+        else{
+            nset.setVisibility(View.GONE);
+            nrepet.setVisibility(View.GONE);
+            texto_nsets.setVisibility(View.GONE);
+            texto_nrepet.setVisibility(View.GONE);
+        }
         nombre_ej.setText(listEjercicios.get(num_ejercicio).getNombre());
         nset.setText(String.valueOf(listEjercicios.get(num_ejercicio).getSets()));
         nrepet.setText(String.valueOf(listEjercicios.get(num_ejercicio).getRepeticiones()));
         rpe.setText(String.valueOf(listEjercicios.get(num_ejercicio).getRpe()));
-        indicador_num_ejercicio.setText(num_ejercicio+1 +"/"+ listEjercicios.size());
+        indicador_num_ejercicio.setText(num_ejercicio + 1 + "/" + listEjercicios.size());
         CalcularCargaFuerza();
     }
 
