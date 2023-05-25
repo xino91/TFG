@@ -149,7 +149,7 @@ public class Inicio_activity extends AppCompatActivity{
             edt_Peso.setError("Campo obligatorio, el peso debe tener el formato xx.x");
             return false;
         } else if (nacimiento.isEmpty()) {
-            buttonfecha.setError("Campo obligatorio");
+            buttonfecha.setError("Año-Mes-Día-Formato: yyyy-mm-dd");
             return false;
         } else if (!validarFecha(buttonfecha.getText().toString())) {
             buttonfecha.setError("Año-Mes-Día-Formato: yyyy-mm-dd");

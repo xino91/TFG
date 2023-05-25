@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppRPE"
         android:screenOrientation="portrait"
-        android:roundIcon="@mipmap/ic_launcher_logo">
+        android:roundIcon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher">
 
         <provider
             android:name="androidx.core.content.FileProvider"
