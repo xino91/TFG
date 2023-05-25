@@ -12,6 +12,7 @@
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView4"
@@ -60,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/ndice_de_monoton_a"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -71,7 +72,7 @@
                 android:id="@+id/textView22_fatiga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/ndice_de_fatiga"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -84,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="TextView"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textView22_monotonia"
                 app:layout_constraintTop_toTopOf="@+id/textView22_monotonia" />
 
@@ -93,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textView_monotoniaLineChart"
                 app:layout_constraintTop_toTopOf="@+id/textView22_fatiga" />
 
@@ -137,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/ndice_de_monoton_a"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -148,7 +149,7 @@
                 android:id="@+id/textView27_fatiga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/ndice_de_fatiga"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -161,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="TextView"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textView27_monotonia"
                 app:layout_constraintTop_toTopOf="@+id/textView27_monotonia" />
 
@@ -169,12 +170,10 @@
                 android:id="@+id/textView_fatigaBarChart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:text="TextView"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/textView27_fatiga"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textView_monotoniaBarchart"
-                app:layout_constraintTop_toBottomOf="@+id/textView_monotoniaBarchart" />
+                app:layout_constraintTop_toTopOf="@+id/textView27_fatiga" />
 
 
             <TextView
