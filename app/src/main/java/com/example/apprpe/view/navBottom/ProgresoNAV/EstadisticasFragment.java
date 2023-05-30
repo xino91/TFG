@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -43,7 +41,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -81,7 +78,8 @@ public class EstadisticasFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_estadisticas, container, false);
         estadisticaViewModel = new ViewModelProvider(this).get(EstadisticaViewModel.class);
-        estadisticaViewModel.getEntrenamientosRealizadosFiltro(31).observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
+        estadisticaViewModel.getEntrenamientosRealizadosFiltro(31)
+                .observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
             public void onChanged(List<Ent_Realizado> entrealizados) {
                     list.addAll(entrealizados);

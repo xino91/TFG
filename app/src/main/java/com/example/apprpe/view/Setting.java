@@ -107,11 +107,6 @@ public class Setting extends PreferenceFragmentCompat {
     }
 
     public void resetearDatos() {
-        /*EntrenamientoViewModel entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
-        EntRealizadoViewModel entRealizado = new ViewModelProvider(this).get(EntRealizadoViewModel.class);
-        entRealizado.deleteTableEntrenamientosRealizados();
-        entrenamientoViewModel.deleteTableEjercicios();
-        entrenamientoViewModel.deleteTableEntrenamiento();*/
         RPERoomDatabase.recreateDatabase(requireContext());
         RPERoomDatabase.getInstanceDatabase(requireContext());
     }

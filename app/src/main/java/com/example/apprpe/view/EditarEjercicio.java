@@ -33,7 +33,6 @@ public class EditarEjercicio extends AppCompatActivity {
     EntrenamientoViewModel entrenamientoViewModel;
     String tipo;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +40,6 @@ public class EditarEjercicio extends AppCompatActivity {
         setContentView(R.layout.activity_editar_ejercicio);
 
         entrenamientoViewModel = new ViewModelProvider(this).get(EntrenamientoViewModel.class);
-
         VincularVistas();
         RecuperarDatos();
         SetVistas();

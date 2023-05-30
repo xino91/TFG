@@ -24,7 +24,6 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
     private EntRealizadoListAdapter.OnItemClickListener mlistener;
     private final int TIPO_FUERZA = 0;
     private final int TIPO_AEROBICO= 1;
-    private String charsToRetain = "0123456789MS";
 
     public EntRealizadoListAdapter(Context context) {this.mInflater = LayoutInflater.from(context);}
 
@@ -95,7 +94,6 @@ public class EntRealizadoListAdapter extends RecyclerView.Adapter<RecyclerView.V
                     default: holderAerobicoRealizado.satisfaccion.setImageResource(R.drawable.sat_silencioso3); break;
                 }
                 break;
-
         }
     }
 

@@ -43,9 +43,6 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 public class EntrenamientoFragment extends Fragment {
 
-    private static final int INSERT_SESION_ACTIVITY_CODE = 1;
-    private static final int RESULT_OK = -1;
-    private static final int RESULT_CANCELED = 0;
     private EntrenamientoViewModel entrenamientoViewModel;
     private RecyclerView recyclerView;
     private Chip botonFuerza;

@@ -80,8 +80,8 @@ public class InsertarEntrenamiento extends AppCompatActivity {
         if(TextUtils.isEmpty(edt_titulo.getText())) {
             edt_titulo.setError("Campo Obligatorio");
             return false;
-        } else if (TextUtils.isEmpty(edt_rpe.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_rpe.getText())).toString()) > 10) || (Integer.parseInt((edt_rpe.getText()).toString()) == 0)){
-            edt_rpe.setError("Campo Obligatorio, valor comprendido entre 1 y 10");
+        } else if (TextUtils.isEmpty(edt_rpe.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_rpe.getText())).toString()) > 10) || (Integer.parseInt((edt_rpe.getText()).toString()) < 0)){
+            edt_rpe.setError("Campo Obligatorio, valor comprendido entre 0 y 10");
             return false;
         } else if(TextUtils.isEmpty(spinner_desplegable.getText())){
             spinner_desplegable.setError("Campo Obligatorio");

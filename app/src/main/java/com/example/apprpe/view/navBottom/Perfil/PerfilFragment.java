@@ -86,10 +86,7 @@ public class PerfilFragment extends Fragment implements MenuProvider {
     private BottomNavigationView navView;
     private EntrenamientoViewModel entrenamientoViewModel;
     private EntRealizadoViewModel entRealizadoViewModel;
-    private String FechaMinima, FechaMaxima;
     private int numero_ejercicios;
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -290,8 +287,6 @@ public class PerfilFragment extends Fragment implements MenuProvider {
     private void exportarDatosExcel() {
         Workbook workbook = new XSSFWorkbook();
         Sheet hoja = workbook.createSheet("Entrenamientos Realizados");
-        getFechaMinimatable();
-        getFechaMaximatable();
         PrepararCabeceraExcel(workbook,hoja);
         entRealizadoViewModel.getAllEntrenamientosRealizados().observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
             @Override
@@ -407,7 +402,6 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         Uri archivoUri = FileProvider.getUriForFile(requireContext(), requireActivity().getPackageName() + ".provider", archivo);
         emailIntent.putExtra(Intent.EXTRA_STREAM, archivoUri);
 
-        // Asegurarse de que la aplicación de correo electrónico esté instalada en el dispositivo
         PackageManager packageManager = requireActivity().getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(emailIntent, 0);
         boolean isIntentSafe = activities.size() > 0;
@@ -416,19 +410,6 @@ public class PerfilFragment extends Fragment implements MenuProvider {
         }
     }
 
-    public void getFechaMinimatable(){
-        entRealizadoViewModel.getFechaMinima().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {FechaMinima = s;}
-        });
-    }
-
-    public void getFechaMaximatable(){
-        entRealizadoViewModel.getFechaMaxima().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {FechaMaxima = s;}
-        });
-    }
 
     public boolean AbrirDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());

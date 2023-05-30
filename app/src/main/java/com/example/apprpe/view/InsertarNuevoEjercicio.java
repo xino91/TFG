@@ -107,8 +107,8 @@ public class InsertarNuevoEjercicio extends AppCompatActivity {
             if (TextUtils.isEmpty(edtNombre.getText())) {
                 edtNombre.setError("Campo obligatorio");
                 return false;
-            } else if (TextUtils.isEmpty(edtRPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edtRPE.getText())).toString()) >= 10) || (Integer.parseInt((edtRPE.getText()).toString()) == 0)) {
-                edtRPE.setError("Campo Obligatorio, valor comprendido entre 1 y 10");
+            } else if (TextUtils.isEmpty(edtRPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edtRPE.getText())).toString()) >= 10) || (Integer.parseInt((edtRPE.getText()).toString()) < 0)) {
+                edtRPE.setError("Campo Obligatorio, valor comprendido entre 0 y 10");
                 return false;
             }
             return true;
