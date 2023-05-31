@@ -98,7 +98,9 @@ public class Setting extends PreferenceFragmentCompat {
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
                 if(menuItem.getItemId() == android.R.id.home){
                     Intent intent = new Intent(getContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    requireActivity().finish();
                 }
                 return true;
             }

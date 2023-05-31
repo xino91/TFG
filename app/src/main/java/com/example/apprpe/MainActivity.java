@@ -1,13 +1,19 @@
 package com.example.apprpe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.example.apprpe.view.Inicio_activity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferencias;
     String nombre_Usuario = null;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,5 +52,26 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(navView, navController);
         }
     }
-    
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            Log.i("ENTRADO", "ENTRADO");
+            finish();
+            super.onBackPressed(); // Cierra la aplicación
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Presiona nuevamente para salir", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 1500); // Establece el tiempo límite para pulsar dos veces seguidas (2 segundos en este ejemplo)
+    }
+
+
 }
