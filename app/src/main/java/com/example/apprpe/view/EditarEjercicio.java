@@ -55,7 +55,8 @@ public class EditarEjercicio extends AppCompatActivity {
         button_Editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Objects.equals(tipo, "Fuerza")){
+                if(comprobarDatos()){
+                    if(Objects.equals(tipo, "Fuerza")){
                     if(TextUtils.isEmpty(edt_Nombre.getText()) || TextUtils.isEmpty(edt_Repeticiones.getText()) ||
                             TextUtils.isEmpty(edt_Sets.getText()) || TextUtils.isEmpty(edt_RPE.getText())) {
                         Toast.makeText(getApplicationContext(), "Error, Ningún Campo puede ser vacío", Toast.LENGTH_SHORT).show();
@@ -84,7 +85,8 @@ public class EditarEjercicio extends AppCompatActivity {
                         entrenamientoViewModel.updateEjercicio(ejercicio);
                     }
                     finish();
-                }
+                }}
+
             }
         });
     }
@@ -126,7 +128,6 @@ public class EditarEjercicio extends AppCompatActivity {
         ejercicio.setSets(extras.getInt("Sets", 0));
         ejercicio.setRepeticiones(extras.getInt("Repeticiones", 0));
         ejercicio.setDuracion((extras.getInt("Duracion", 0)));
-        Log.i("DURACION", String.valueOf(ejercicio.getDuracion()));
         ejercicio.setRpe(extras.getInt("RPE", 0));
         ejercicio.setId_Ejercicio(extras.getInt("ID_EJERCICIO", 0));
         ejercicio.setEntrenamiento_Id(extras.getInt("ID_SESION", 0));
@@ -192,5 +193,40 @@ public class EditarEjercicio extends AppCompatActivity {
                 })
                 .setCancelable(false)
                 .show();
+    }
+
+    public boolean comprobarDatos() {
+        if(Objects.equals(tipo, "Fuerza")){
+            if (TextUtils.isEmpty(edt_Nombre.getText())) {
+                edt_Nombre.setError("Campo obligatorio");
+                return false;
+            } else if (TextUtils.isEmpty(edt_Sets.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_Sets.getText())).toString()) > 8) || (Integer.parseInt((Objects.requireNonNull(edt_Sets.getText().toString()))) == 0)){
+                edt_Sets.setError("Campo obligatorio, comprendido entre 1 y 8");
+                return false;
+            } else if(TextUtils.isEmpty(edt_Repeticiones.getText()) || (Integer.parseInt(Objects.requireNonNull(edt_Repeticiones.getText()).toString())) >=100 || (Integer.parseInt((Objects.requireNonNull(edt_Repeticiones.getText())).toString()) == 0)){
+                edt_Repeticiones.setError("Campo obligatorio, comprendido entre 1 y 100");
+                return false;
+            } else if (TextUtils.isEmpty(edt_RPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_RPE.getText())).toString()) > 10) || (Integer.parseInt((edt_RPE.getText()).toString()) < 0)) {
+                edt_RPE.setError("Campo Obligatorio, valor comprendido entre 0 y 10");
+                return false;
+            }
+            return true;
+        }
+        else{
+            if (TextUtils.isEmpty(edt_Nombre.getText())) {
+                edt_Nombre.setError("Campo obligatorio");
+                return false;
+            } else if (TextUtils.isEmpty(edt_Sets.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_Sets.getText())).toString()) > 8) || (Integer.parseInt((Objects.requireNonNull(edt_Sets.getText().toString()))) <= 0)) {
+                edt_Sets.setError("Campo obligatorio, comprendido entre 1 y 8");
+                return false;
+            } else if (TextUtils.isEmpty(edt_Repeticiones.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_Repeticiones.getText())).toString()) < 1) || (Integer.parseInt((Objects.requireNonNull(edt_Repeticiones.getText().toString()))) > 300)) {
+                edt_Repeticiones.setError("Campo obligatorio, comprendido entre 1 y 300");
+                return false;
+            } else if (TextUtils.isEmpty(edt_RPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edt_RPE.getText())).toString()) >= 10) || (Integer.parseInt((edt_RPE.getText()).toString()) < 0)) {
+                edt_RPE.setError("Campo Obligatorio, valor comprendido entre 0 y 10");
+                return false;
+            }
+            return true;
+        }
     }
 }
