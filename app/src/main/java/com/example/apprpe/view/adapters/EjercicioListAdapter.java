@@ -59,6 +59,8 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     case TIPO_AEROBICO:
                         EjercicioViewHolder_Aerobico holderAerobico = (EjercicioViewHolder_Aerobico) holder ;
                         holderAerobico.textViewTitulo.setText(current.getNombre());
+                        holderAerobico.textviewSets.setText(String.valueOf(current.getSets()));
+                        holderAerobico.textviewDuracion.setText(String.valueOf(current.getDuracion()));
                         break;
                 }
             }
@@ -125,10 +127,14 @@ public class EjercicioListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public class EjercicioViewHolder_Aerobico extends RecyclerView.ViewHolder{
         private final TextView textViewTitulo;
+        private final TextView textviewSets;
+        private final TextView textviewDuracion;
 
         public EjercicioViewHolder_Aerobico(View itemView, OnItemClickListenerEjercicio mlistener) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.nombre_titulo);
+            textviewSets = itemView.findViewById(R.id.numero_sets);
+            textviewDuracion = itemView.findViewById(R.id.numero_repeticiones);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

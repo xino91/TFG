@@ -44,6 +44,62 @@
             card_view:layout_constraintStart_toEndOf="@+id/textView_nombre_ejercicio"
             card_view:layout_constraintTop_toTopOf="@+id/textView_nombre_ejercicio" />
 
+        <TextView
+            android:id="@+id/numero_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/set"
+            android:textSize="15sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="@+id/textView_nombre_ejercicio"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView_nombre_ejercicio" />
+
+        <TextView
+            android:id="@+id/TextView_Sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/sets"
+            android:textSize="15sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/numero_sets"
+            card_view:layout_constraintStart_toEndOf="@+id/numero_sets"
+            card_view:layout_constraintTop_toTopOf="@+id/numero_sets" />
+
+        <TextView
+            android:id="@+id/id_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/de"
+            android:textSize="15sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/numero_sets"
+            card_view:layout_constraintStart_toEndOf="@+id/TextView_Sets"
+            card_view:layout_constraintTop_toTopOf="@+id/numero_sets"
+            card_view:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/numero_repeticiones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/rep"
+            android:textSize="15sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/id_de"
+            card_view:layout_constraintStart_toEndOf="@+id/id_de"
+            card_view:layout_constraintTop_toTopOf="@+id/id_de" />
+
+        <TextView
+            android:id="@+id/textView_Duracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/minutos"
+            card_view:layout_constraintBottom_toBottomOf="@+id/numero_repeticiones"
+            card_view:layout_constraintStart_toEndOf="@+id/numero_repeticiones"
+            card_view:layout_constraintTop_toTopOf="@+id/numero_repeticiones" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

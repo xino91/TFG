@@ -231,4 +231,5 @@
     <string name="eliminar_todo">Eliminar todo</string>
     <string name="nuevo_peso">Nuevo peso</string>
     <string name="pesoo">peso</string>
+    <string name="minutos">minutos</string>
 </resources>

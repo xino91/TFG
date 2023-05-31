@@ -14,6 +14,7 @@ public class Ejercicio {
     private int Repeticiones;
     private int Sets;
     private int Rpe;
+    private int Duracion;
     @NonNull private int entrenamiento_Id;
 
     public Ejercicio(String nombre, int repeticiones, int sets, int rpe, int entrenamientoId) {
@@ -21,6 +22,7 @@ public class Ejercicio {
         Repeticiones = repeticiones;
         Sets = sets;
         Rpe = rpe;
+        Duracion = 0;
         entrenamiento_Id = entrenamientoId;
     }
     public Ejercicio(int id, String nombre, int repeticiones, int sets, int rpe, int entrenamientoId) {
@@ -29,6 +31,16 @@ public class Ejercicio {
         Repeticiones = repeticiones;
         Sets = sets;
         Rpe = rpe;
+        Duracion = 0;
+        entrenamiento_Id = entrenamientoId;
+    }
+    public Ejercicio(int id, String nombre, int repeticiones, int sets, int rpe, int duracion, int entrenamientoId) {
+        Id_Ejercicio = id;
+        Nombre = nombre;
+        Repeticiones = repeticiones;
+        Sets = sets;
+        Rpe = rpe;
+        Duracion = duracion;
         entrenamiento_Id = entrenamientoId;
     }
 
@@ -40,6 +52,7 @@ public class Ejercicio {
         Repeticiones = ejercicio.getRepeticiones();
         Sets = ejercicio.getSets();
         Rpe = ejercicio.getRpe();
+        Duracion = ejercicio.getDuracion();
         entrenamiento_Id = ejercicio.getEntrenamiento_Id();
     }
 
@@ -60,4 +73,7 @@ public class Ejercicio {
 
     public int getRpe() { return Rpe; }
     public void setRpe(int rpe) { Rpe = rpe; }
+
+    public int getDuracion(){return Duracion;}
+    public void setDuracion(int duracion){Duracion = duracion;}
 }

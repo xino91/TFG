@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class, Peso.class}, version = 1, exportSchema = false)
+@Database(entities = {Ejercicio.class, Entrenamiento.class, Ent_Realizado.class, Peso.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract  class RPERoomDatabase extends RoomDatabase {
     private static volatile RPERoomDatabase INSTANCE;
@@ -99,14 +99,14 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
 
     public static List<Ejercicio> CrearEjerciciosEjemplo(){
         List<Ejercicio> ejercicio = new ArrayList<Ejercicio>();
-        ejercicio.add(new Ejercicio(1,"Flexiones",12 , 2, 5 ,1));
-        ejercicio.add(new Ejercicio(2,"Flexiones",20 , 2, 8 ,3));
-        ejercicio.add(new Ejercicio(3,"Abdominales",20 , 2, 4 ,1));
-        ejercicio.add(new Ejercicio(4,"Abdominales",20 , 3, 7 ,3));
-        ejercicio.add(new Ejercicio(5,"Muscle up",5 , 2, 6 ,2));
-        ejercicio.add(new Ejercicio(6,"Muscle up",20 , 3, 7 ,3));
-        ejercicio.add(new Ejercicio(7,"Footing",0 , 0, 4 ,4));
-        ejercicio.add(new Ejercicio(8,"Salto a la comba",0 , 0, 5 ,4));
+        ejercicio.add(new Ejercicio(1,"Flexiones",12 , 2, 5, 0 ,1));
+        ejercicio.add(new Ejercicio(2,"Flexiones",20 , 2, 8 ,0 ,3));
+        ejercicio.add(new Ejercicio(3,"Abdominales",20 , 2, 4 , 0 ,1));
+        ejercicio.add(new Ejercicio(4,"Abdominales",20 , 3, 7, 0 ,3));
+        ejercicio.add(new Ejercicio(5,"Muscle up",5 , 2, 6, 0 ,2));
+        ejercicio.add(new Ejercicio(6,"Muscle up",20 , 3, 7, 0 ,3));
+        ejercicio.add(new Ejercicio(7,"Footing",0 , 1, 4, 20 ,4));
+        ejercicio.add(new Ejercicio(8,"Salto a la comba",0 , 2, 5 , 12,4));
         return ejercicio;
     }
 

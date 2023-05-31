@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -76,7 +77,8 @@ public class EditarEjercicio extends AppCompatActivity {
                     } else{
                         Toast.makeText(getApplicationContext(), "Editado con éxito", Toast.LENGTH_SHORT).show();
                         ejercicio.setNombre(String.valueOf(edt_Nombre.getText()));
-                        ejercicio.setSets(0);
+                        ejercicio.setSets(Integer.parseInt(String.valueOf(edt_Sets.getText())));
+                        ejercicio.setDuracion(Integer.parseInt(String.valueOf(edt_Repeticiones.getText()))); //durancion
                         ejercicio.setRepeticiones(0);
                         ejercicio.setRpe(Integer.parseInt(String.valueOf(edt_RPE.getText())));
                         entrenamientoViewModel.updateEjercicio(ejercicio);
@@ -105,9 +107,10 @@ public class EditarEjercicio extends AppCompatActivity {
             edt_RPE.setText(String.valueOf(ejercicio.getRpe()));
         }
         else{
-            l_set.setVisibility(View.GONE);
-            l_rep.setVisibility(View.GONE);
+            l_rep.setHint("Duración en minutos");
             edt_Nombre.setText(ejercicio.getNombre());
+            edt_Sets.setText(String.valueOf(ejercicio.getSets()));
+            edt_Repeticiones.setText(String.valueOf(ejercicio.getDuracion())); //Duracion
             edt_RPE.setText(String.valueOf(ejercicio.getRpe()));
         }
     }
@@ -122,6 +125,8 @@ public class EditarEjercicio extends AppCompatActivity {
         ejercicio.setNombre(extras.getString("NombreEjercicio", ""));
         ejercicio.setSets(extras.getInt("Sets", 0));
         ejercicio.setRepeticiones(extras.getInt("Repeticiones", 0));
+        ejercicio.setDuracion((extras.getInt("Duracion", 0)));
+        Log.i("DURACION", String.valueOf(ejercicio.getDuracion()));
         ejercicio.setRpe(extras.getInt("RPE", 0));
         ejercicio.setId_Ejercicio(extras.getInt("ID_EJERCICIO", 0));
         ejercicio.setEntrenamiento_Id(extras.getInt("ID_SESION", 0));

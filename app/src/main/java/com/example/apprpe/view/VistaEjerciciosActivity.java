@@ -77,17 +77,18 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             }
         });
 
-        /*entrenamientoViewModel.getAllSesionesConEjerciciosCross().observe(this, new Observer<List<EntrenamientoConEjercicios>>() {
+        entrenamientoViewModel.getAllSesionesConEjerciciosCross().observe(this, new Observer<List<EntrenamientoConEjercicios>>() {
             @Override
             public void onChanged(List<EntrenamientoConEjercicios> entrenamientoConEjercicios) {
                 for(int i=0; i<entrenamientoConEjercicios.size(); i++){
                     Log.i("FOR", String.valueOf(entrenamientoConEjercicios.get(i).entrenamiento.getNombre_Entrenamiento()));
                     for(int j=0; j<entrenamientoConEjercicios.get(i).list_ejercicios.size(); j++){
                         Log.i("FOR", String.valueOf(entrenamientoConEjercicios.get(i).list_ejercicios.get(j).getNombre()));
+                        Log.i("FOR", String.valueOf(entrenamientoConEjercicios.get(i).list_ejercicios.get(j).getDuracion()));
                     }
                 }
             }
-        });*/
+        });
 
     }
 
@@ -101,13 +102,16 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position, int Id_ejercicio) throws InterruptedException {
 
-                Intent i = new Intent(getApplication(), EditarEjercicio.class);
                 Ejercicio ejercicio = new Ejercicio(entrenamientoViewModel.getEjercicio(Id_ejercicio));
+                Intent i = new Intent(getApplication(), EditarEjercicio.class);
 
                 i.putExtra("NombreEjercicio", ejercicio.getNombre());
                 i.putExtra("Sets", ejercicio.getSets());
                 i.putExtra("Repeticiones", ejercicio.getRepeticiones());
                 i.putExtra("RPE", ejercicio.getRpe());
+                Log.e("VISTA DURACION", String.valueOf(ejercicio.getDuracion()));
+                i.putExtra("Duracion", ejercicio.getDuracion());
+                Log.e("VISTA DURACION", String.valueOf(ejercicio.getDuracion()));
                 i.putExtra("ID_EJERCICIO", ejercicio.getId_Ejercicio());
                 i.putExtra("ID_SESION", ejercicio.getEntrenamiento_Id());
                 i.putExtra("TIPO", entrenamiento.getTipo());
@@ -175,7 +179,8 @@ public class VistaEjerciciosActivity extends AppCompatActivity {
                     }
                     else{
                         ejercicio.setNombre(Objects.requireNonNull(data.getExtras()).getString("Ejercicio_nombre"));
-                        ejercicio.setSets(0);
+                        ejercicio.setSets(Integer.parseInt(data.getExtras().getString("Set")));
+                        ejercicio.setDuracion(Integer.parseInt(data.getExtras().getString("Duracion")));
                         ejercicio.setRepeticiones(0);
                         ejercicio.setRpe(Integer.parseInt(data.getExtras().getString("RPE")));
                         ejercicio.setEntrenamiento_Id(Id_entrenamiento);
