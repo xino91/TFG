@@ -1,5 +1,6 @@
 package com.example.apprpe.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -34,6 +36,7 @@ public class InsertarEntrenamiento extends AppCompatActivity {
         VincularView();
         listener_botonCancelar();
         listener_botonInsertar();
+        listener_botonSpinner();
     }
 
     /**
@@ -68,6 +71,20 @@ public class InsertarEntrenamiento extends AppCompatActivity {
                     setResult(RESULT_OK, intent);
                     finish();
                 }
+            }
+        });
+    }
+
+    /**
+     * escuchador al pulsar sobre el botón spinner.
+     * Está función oculta el teclado al pulsar sobre el Spinner
+     */
+    public void listener_botonSpinner(){
+        spinner_desplegable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(spinner_desplegable.getWindowToken(), 0);
             }
         });
     }

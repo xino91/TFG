@@ -97,11 +97,11 @@ public class InsertarNuevoEjercicio extends AppCompatActivity {
             if (TextUtils.isEmpty(edtNombre.getText())) {
                 edtNombre.setError("Campo obligatorio");
                 return false;
-            } else if (TextUtils.isEmpty(edtSet.getText()) || (Integer.parseInt((Objects.requireNonNull(edtSet.getText())).toString()) > 8) || (Integer.parseInt((Objects.requireNonNull(edtSet.getText().toString()))) == 0)){
-                edtSet.setError("Campo obligatorio, comprendido entre 1 y 8");
+            } else if (TextUtils.isEmpty(edtSet.getText())  || (Integer.parseInt((Objects.requireNonNull(edtSet.getText().toString()))) == 0)){
+                edtSet.setError("Campo obligatorio, mayor de 0");
                 return false;
-            } else if(TextUtils.isEmpty(edtRepeticiones.getText()) || (Integer.parseInt(Objects.requireNonNull(edtRepeticiones.getText()).toString())) >=100 || (Integer.parseInt((Objects.requireNonNull(edtRepeticiones.getText())).toString()) == 0)){
-                edtRepeticiones.setError("Campo obligatorio, comprendido entre 1 y 100");
+            } else if(TextUtils.isEmpty(edtRepeticiones.getText()) || (Integer.parseInt(Objects.requireNonNull(edtRepeticiones.getText()).toString())) >=150 || (Integer.parseInt((Objects.requireNonNull(edtRepeticiones.getText())).toString()) == 0)){
+                edtRepeticiones.setError("Campo obligatorio, comprendido entre 1 y 150");
                 return false;
             } else if (TextUtils.isEmpty(edtRPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edtRPE.getText())).toString()) > 10) || (Integer.parseInt((edtRPE.getText()).toString()) < 0)) {
                 edtRPE.setError("Campo Obligatorio, valor comprendido entre 0 y 10");
@@ -113,13 +113,13 @@ public class InsertarNuevoEjercicio extends AppCompatActivity {
             if (TextUtils.isEmpty(edtNombre.getText())) {
                 edtNombre.setError("Campo obligatorio");
                 return false;
-            } else if (TextUtils.isEmpty(edtSet.getText()) || (Integer.parseInt((Objects.requireNonNull(edtSet.getText())).toString()) > 8) || (Integer.parseInt((Objects.requireNonNull(edtSet.getText().toString()))) == 0)) {
-                edtSet.setError("Campo obligatorio, comprendido entre 1 y 8");
+            } else if (TextUtils.isEmpty(edtSet.getText()) || (Integer.parseInt((Objects.requireNonNull(edtSet.getText().toString()))) == 0)) {
+                edtSet.setError("Campo obligatorio, mayor a 0");
                 return false;
-            } else if (TextUtils.isEmpty(edtDuracion.getText()) || (Integer.parseInt((Objects.requireNonNull(edtDuracion.getText())).toString()) < 1) || (Integer.parseInt((Objects.requireNonNull(edtDuracion.getText().toString()))) > 300)) {
-                edtDuracion.setError("Campo obligatorio, comprendido entre 1 y 300");
+            } else if (TextUtils.isEmpty(edtDuracion.getText()) || (Integer.parseInt((Objects.requireNonNull(edtDuracion.getText())).toString()) < 1) || (Integer.parseInt((Objects.requireNonNull(edtDuracion.getText().toString()))) > 1000)) {
+                edtDuracion.setError("Campo obligatorio, mayor a 0");
                 return false;
-            } else if (TextUtils.isEmpty(edtRPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edtRPE.getText())).toString()) >= 10) || (Integer.parseInt((edtRPE.getText()).toString()) < 0)) {
+            } else if (TextUtils.isEmpty(edtRPE.getText()) || (Integer.parseInt((Objects.requireNonNull(edtRPE.getText())).toString()) > 10) || (Integer.parseInt((edtRPE.getText()).toString()) < 0)) {
                 edtRPE.setError("Campo Obligatorio, valor comprendido entre 0 y 10");
                 return false;
             }

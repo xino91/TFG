@@ -394,7 +394,7 @@ public class PerfilFragment extends Fragment implements MenuProvider {
     private void enviarEmailConArchivoAdjunto(File archivo) {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"antonio_aariza@hotmail.com"});
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Entrenamientos Realizados");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Cuerpo del correo");
 
@@ -443,8 +443,10 @@ public class PerfilFragment extends Fragment implements MenuProvider {
                 // Comprobamos que el valor tiene el formato correcto
                 Pattern pattern = Pattern.compile("\\d{2}\\.\\d");
                 Matcher matcher = pattern.matcher(pesoStr);
-                if (!matcher.matches()) {
-                    Toast.makeText(requireContext(), "El peso debe tener el formato xx.x", Toast.LENGTH_LONG).show();
+                Pattern pattern2 = Pattern.compile("\\d{2}");
+                Matcher matcher2 = pattern2.matcher(pesoStr);
+                if (!matcher.matches() && !matcher2.matches()) {
+                    Toast.makeText(requireContext(), "Error, peso no válido. Formato xx.x o xx", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // Convertimos el valor a un número decimal

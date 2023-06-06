@@ -142,9 +142,6 @@ public class Inicio_activity extends AppCompatActivity{
         } else if (edt_Estatura.getText().length() != 3) {
             edt_Estatura.setError("Campo obligatorio en cm, solo tres carácteres");
             return false;
-        } else if (edt_Peso.getText().length() != 4) {
-            edt_Peso.setError("Campo obligatorio, el peso debe tener el formato xx.x\"");
-            return false;
         } else if (!comprobarPeso()) {
             edt_Peso.setError("Campo obligatorio, el peso debe tener el formato xx.x");
             return false;
@@ -216,12 +213,12 @@ public class Inicio_activity extends AppCompatActivity{
             Calendar calendarioIngresado = Calendar.getInstance();
             calendarioIngresado.setTime(fecha);
 
-            Calendar calendarioMinimaEdad = Calendar.getInstance();
+            /*Calendar calendarioMinimaEdad = Calendar.getInstance();
             calendarioMinimaEdad.add(Calendar.YEAR, -14); // Edad Mínima: 14 años
             if(!calendarioIngresado.before(calendarioMinimaEdad)){
                 Toast.makeText(getApplicationContext(), "La edad mínima es de 14 años", Toast.LENGTH_SHORT).show();
                 return false;
-            }
+            }*/
             if (calendarioIngresado.after(calendarioActual)) {
                 Toast.makeText(getApplicationContext(), "La fecha es mayor que la actual", Toast.LENGTH_SHORT).show();
                 return false;
@@ -257,19 +254,21 @@ public class Inicio_activity extends AppCompatActivity{
         final String pesoStr = edt_Peso.getText().toString().trim();
         // Comprobamos que el valor tiene el formato correcto
         Pattern pattern = Pattern.compile("\\d{2}\\.\\d");
+        Pattern pattern2 = Pattern.compile("\\d{2}");
         Matcher matcher = pattern.matcher(pesoStr);
-        if (!matcher.matches()) {
-            return false;
+        Matcher matcher2 = pattern2.matcher(pesoStr);
+        if (matcher.matches() || matcher2.matches()){
+            // Convertimos el valor a un número decimal
+            final double pesodouble = Double.parseDouble(pesoStr);
+            // Comprobamos que el peso está dentro del rango de 0 a 150
+            if (pesodouble < 0 || pesodouble > 150) {
+                return false;
+            }
+            Date date = new Date(Calendar.getInstance().getTimeInMillis());
+            pesoAguardar = new Peso(pesodouble, date);
+            return true;
         }
-        // Convertimos el valor a un número decimal
-        final double pesodouble = Double.parseDouble(pesoStr);
-        // Comprobamos que el peso está dentro del rango de 0 a 150
-        if (pesodouble < 0 || pesodouble > 150) {
-            return false;
-        }
-        Date date = new Date(Calendar.getInstance().getTimeInMillis());
-        pesoAguardar = new Peso(pesodouble, date);
-        return true;
+        return false;
     }
 
     public void guardarPeso(){

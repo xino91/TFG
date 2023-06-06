@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.example.apprpe.modelo.RpeDao;
 import com.example.apprpe.view.Inicio_activity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            Log.i("ENTRADO", "ENTRADO");
             finish();
             super.onBackPressed(); // Cierra la aplicación
             return;
@@ -72,6 +72,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 1500); // Establece el tiempo límite para pulsar dos veces seguidas (2 segundos en este ejemplo)
     }
-
 
 }

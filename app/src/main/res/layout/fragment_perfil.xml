@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/estatura"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textViewp_estatura"
         app:layout_constraintTop_toBottomOf="@+id/textViewp_estatura" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/peso"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/textViewp_estatura2"
         app:layout_constraintStart_toStartOf="@+id/textViewp_estatura2"
         app:layout_constraintTop_toBottomOf="@+id/textViewp_estatura2" />
@@ -77,8 +77,8 @@
         android:id="@+id/textViewp_estatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/estatura"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -89,7 +89,7 @@
         android:id="@+id/textViewp_estatura2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/peso"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -177,7 +177,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/m_ximo_peso_registrado"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView_Estatura"
         app:layout_constraintTop_toBottomOf="@+id/textView_Estatura" />
 
@@ -187,7 +187,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/m_nimo_peso_registrado"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView25_pesomaximo"
         app:layout_constraintTop_toBottomOf="@+id/textView25_pesomaximo" />
 
@@ -199,7 +199,7 @@
         android:maxEms="8"
         android:minLines="2"
         android:text="@string/n_entrenamientos_realizados"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView26_pesominimo"
         app:layout_constraintTop_toBottomOf="@+id/textView26_pesominimo" />
 

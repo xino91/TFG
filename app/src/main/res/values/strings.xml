@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">AppRPE</string>
+    <string name="app_name">MyRPE Assistant</string>
     <string name="title_home">Entrenamientos</string>
-    <string name="title_dashboard">Progreso</string>
+    <string name="title_dashboard">Estadísticas</string>
     <string name="title_notifications">Estadísticas</string>
     <string name="title_perfil">Perfil</string>
     <string name="todo">TODO</string>
@@ -233,4 +233,5 @@
     <string name="pesoo">peso</string>
     <string name="minutos">minutos</string>
     <string name="duraci_n_en_minutos">Duración en minutos</string>
+    <string name="ejem_2001_09_18">Ejemplo: 2001–09–18</string>
 </resources>

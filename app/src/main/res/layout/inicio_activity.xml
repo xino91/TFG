@@ -131,26 +131,6 @@
                 app:layout_constraintStart_toStartOf="@+id/textView2_fechanacimiento"
                 app:layout_constraintTop_toBottomOf="@+id/textView2_fechanacimiento">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/InputLayout_fecha"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="true"
-                    android:hint="@string/Fecha"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/Edit_fecha"
-                        android:layout_width="147dp"
-                        android:layout_height="wrap_content"
-                        android:enabled="true"
-                        android:inputType="date">
-
-                    </com.google.android.material.textfield.TextInputEditText>
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <ImageButton
                     android:id="@+id/imageButton_fecha"
                     style="@style/ThemeOverlay.Material3.Button"
@@ -160,6 +140,27 @@
                     android:contentDescription="@string/calendario"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout"
                     app:srcCompat="@drawable/ic_baseline_calendar_month_24" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/InputLayout_fecha"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:hint="@string/ejem_2001_09_18"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Edit_fecha"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:inputType="date">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
 
             </LinearLayout>
 

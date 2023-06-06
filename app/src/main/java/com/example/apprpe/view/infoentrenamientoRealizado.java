@@ -5,6 +5,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -118,6 +120,7 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
                                 hora_finalizacion, rpe_objetivo, rpe_subjetivo, satisfaccion, dolor );
                         entrealizadoViewModel.insert(entrenamiento_realizado);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         Toast.makeText(getApplicationContext(), "Entrenamiento Guardado", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                     }
@@ -201,9 +204,22 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        Toast.makeText(this, "Cancelado, datos no guardados", Toast.LENGTH_LONG).show();
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Se perderán los datos de este entrenamiento, se necesita " +
+                "continuar para seleccionar el esfuerzo percibido");
+        builder.setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("Salir y no guardar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                Salir();
+            }
+        });
+        builder.show();
+
     }
 
     /**
@@ -212,6 +228,10 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
      */
     public void CalcularCarga(){
         if(Objects.equals(tipo, "Fuerza")) {
+            if (rpe_objetivo == 0) {
+                rpe_objetivo = 1;
+                carga = 0;
+            }
             carga = (carga / rpe_objetivo) * rpe_subjetivo;
         }
         else{
@@ -223,6 +243,13 @@ public class infoentrenamientoRealizado extends AppCompatActivity {
     public void obtenerSharedPreference(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         key_escala = preferences.getString("escala", "Escala original (0-10)");
+    }
+
+    public void Salir(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Toast.makeText(this, "Datos no guardados", Toast.LENGTH_LONG).show();
+        startActivity(intent);
     }
 
 }

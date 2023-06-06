@@ -8,4 +8,5 @@
     <dimen name="min_height">48dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="bottom_navigation_view">70dp</dimen>
 </resources>
