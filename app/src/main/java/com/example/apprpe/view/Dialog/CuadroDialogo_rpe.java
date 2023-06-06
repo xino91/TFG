@@ -1,15 +1,10 @@
 package com.example.apprpe.view.Dialog;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,18 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.apprpe.R;
-
-import java.util.Objects;
 
 public class CuadroDialogo_rpe extends DialogFragment{
 
     private RadioGroup radioGroup;
     private RadioButton boton0, boton1, boton2, boton3, boton4, boton5, boton6, boton7, boton8, boton9, boton10;
     private CuadroDialogo_listener listener;
+    private ImageButton imageinfo;
 
     @NonNull
     @Override
@@ -72,6 +65,13 @@ public class CuadroDialogo_rpe extends DialogFragment{
                 }
             }).setNegativeButtonIcon(requireActivity().getDrawable(R.drawable.ic_baseline_close_24));
 
+        imageinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarInfo();
+            }
+        });
+
         return dialogo.create();
     }
 
@@ -88,6 +88,7 @@ public class CuadroDialogo_rpe extends DialogFragment{
         boton8 = view.findViewById(R.id.radioButton8);
         boton9 = view.findViewById(R.id.radioButton9);
         boton10 = view.findViewById(R.id.radioButton10);
+        imageinfo = view.findViewById(R.id.image_info);
     }
 
     @Override
@@ -101,5 +102,17 @@ public class CuadroDialogo_rpe extends DialogFragment{
 
     public interface CuadroDialogo_listener{
         void apply_rpe(int rpe);
+    }
+
+    public void mostrarInfo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Escala de Esfuerzo Percibido (RPE)");
+        builder.setMessage("Es una medida subjetiva utilizada en el ámbito del deporte y la actividad " +
+                "física para evaluar la intensidad percibida del esfuerzo durante el ejercicio." +
+                "Se utiliza comúnmente en programas de entrenamiento, tanto para deportistas profesionales " +
+                        "como para personas que realizan ejercicio regularmente, como una forma de autoregulación " +
+                        "y control de la intensidad del entrenamiento.");
+        builder.setPositiveButton("OK", null);
+        builder.show();
     }
 }

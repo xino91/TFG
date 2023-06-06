@@ -79,6 +79,16 @@ public class Setting extends PreferenceFragmentCompat {
             }
         });
 
+        Preference infolegal = findPreference("informacion_legal");
+        assert  infolegal != null;
+        infolegal.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(@NonNull Preference preference) {
+                MostrarDialogoInfo();
+                return false;
+            }
+        });
+
         //Escala por defecto
         Preference escalaPreference = findPreference("escala");
         assert escalaPreference != null;
@@ -130,12 +140,27 @@ public class Setting extends PreferenceFragmentCompat {
         builder.show();
     }
 
-    private void mostrarMensaje() {
+    public void mostrarMensaje() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle("Acerca de ...");
         builder.setMessage("Esta aplicación ha sido creada como Trabajo de Fin de Grado (TFG) " +
                 "para obtener el título de Grado en Ingeniería Informática, desarrollado por Antonio Ariza García y dirigido por " +
                 "Dr. Manuel Jesús Marín Jiménez y Dr. Nuria Marín Jiménez ");
+        builder.setPositiveButton("OK", null);
+        builder.show();
+    }
+
+    public void MostrarDialogoInfo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setTitle("Información legal");
+        builder.setMessage("Los datos recopilamos a través de esta aplicación se utilizan " +
+                    "únicamente con fines internos y no son compartidos con terceros.\n\n" +
+                "Los datos se almacenan en tu dispositivo móvil y no se envían ni se " +
+                    "guardan en ningún otro lugar externo.\n\n" +
+                "Nunca solicitaremos en el futuro ni por correo ni por ningún otro medio, tu documento de identidad, " +
+                    "número de seguro social u otra información personal sensible.\n\n" +
+                "No nos hacemos responsables de cualquier pérdida o daño derivado del uso de esta aplicación");
+
         builder.setPositiveButton("OK", null);
         builder.show();
     }

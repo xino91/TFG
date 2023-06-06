@@ -4,7 +4,14 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -46,7 +54,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class EstadisticasFragment extends Fragment {
+public class EstadisticasFragment extends Fragment implements MenuProvider {
 
     private EstadisticaViewModel estadisticaViewModel;
     ArrayList<String> arrayglineal = new ArrayList<>();
@@ -77,6 +85,7 @@ public class EstadisticasFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_estadisticas, container, false);
+        requireActivity().addMenuProvider(this, getViewLifecycleOwner());
         estadisticaViewModel = new ViewModelProvider(this).get(EstadisticaViewModel.class);
         estadisticaViewModel.getEntrenamientosRealizadosFiltro(31)
                 .observe(getViewLifecycleOwner(), new Observer<List<Ent_Realizado>>() {
@@ -97,6 +106,39 @@ public class EstadisticasFragment extends Fragment {
         });
         return root;
     }
+
+    @Override
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.menu_estadisticas, menu);
+    }
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_info) {
+            return DialogoInfo();
+        }
+        return false;
+    }
+
+    public boolean DialogoInfo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        LayoutInflater inflater = getLayoutInflater();
+
+        View dialogView = inflater.inflate(R.layout.cuadrodialogo_info, null);
+        builder.setView(dialogView);
+
+        TextView textMessage = dialogView.findViewById(R.id.text_message);
+        SpannableString spannableString = new SpannableString("Para más información consultar " +
+                "https://www.efdeportes.com/efd106/monitorizacion-del-entrenamiento-en-deportes-de-equipo.htm");
+        Linkify.addLinks(spannableString, Linkify.WEB_URLS);
+        textMessage.setText(spannableString);
+        textMessage.setMovementMethod(LinkMovementMethod.getInstance());
+
+        builder.setPositiveButton(android.R.string.ok, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        return true;
+    }
+
 
     /*********************** LINE CHART **************************/
     private void CallLineChart(String dato_consulta) {
@@ -692,7 +734,7 @@ public class EstadisticasFragment extends Fragment {
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
         axis.setDrawGridLines(true);
         axis.setCenterAxisLabels(true);
-        axis.setLabelRotationAngle(-23);
+        axis.setLabelRotationAngle(-20);
         axis.setGranularity(1f);
         axis.setTextSize(10);
         axis.setValueFormatter(new IndexAxisValueFormatter(arrayglineal));
@@ -714,6 +756,8 @@ public class EstadisticasFragment extends Fragment {
         lineChart.setNoDataTextColor(Color.rgb(0,0,0));
         lineChart.setNoDataTextTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
         lineChart.getAxisRight().setEnabled(false);
+        lineChart.canResolveTextAlignment();
+        //lineChart.
         //lineChart.getAxisLeft().setEnabled(false);
         //lineChart.getTransformer(YAxis.AxisDependency.LEFT);
         lineChart.setDrawBorders(true);
@@ -739,7 +783,7 @@ public class EstadisticasFragment extends Fragment {
         xaxis.setAvoidFirstLastClipping(true);
         xaxis.setDrawGridLines(true);
         xaxis.setCenterAxisLabels(true);
-        xaxis.setLabelRotationAngle(-25);
+        xaxis.setLabelRotationAngle(-20);
         xaxis.setGranularity(1);
         xaxis.setGranularityEnabled(true);
         xaxis.setValueFormatter(new IndexAxisValueFormatter(arraygbar));

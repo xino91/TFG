@@ -14,6 +14,14 @@
             app:icon="@drawable/ic_baseline_settings_24"/>
 
     <PreferenceCategory
+        android:title="Privacidad"/>
+    <Preference
+        android:key="informacion_legal"
+        android:title="Información legal"
+        android:icon="@drawable/privacy_svgrepo_com"/>
+
+
+    <PreferenceCategory
         android:title="Ayuda"/>
         <Preference
             android:key="reset"

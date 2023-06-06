@@ -234,4 +234,23 @@
     <string name="minutos">minutos</string>
     <string name="duraci_n_en_minutos">Duración en minutos</string>
     <string name="ejem_2001_09_18">Ejemplo: 2001–09–18</string>
+    <string name="informaci_n">Información</string>
+    <string name="para_m_s_informaci_n">Para más información <a href="https://www.google.com">nuestra página web</a>.</string>
+
+    <string name="indice_de_monoton_a">El índice de monotonía es una medida de la variabilidad diaria del entrenamiento
+        que se ha comprobado que está relacionada con el inicio o la aparición de síntomas de sobreentrenamiento
+        cuando un entrenamiento con un alto índice de monotonía es combinado con altas cargas de entrenamiento (Foster, 1998).
+        El índice de monotonía del entrenamiento se calcula dividiendo la media de la carga de entrenamiento de
+        los días de la semana con respecto a la desviación estandar de la carga de entrenamiento de esa semana.</string>
+
+    <string name="el_ndice_de_fatiga">El índice de "Fatiga", está relacionado con el sobreentrenamiento
+        y la aparición de problemas físicos en atletas de élite (Foster, 1998), puede ser calculado
+        mediante el producto de la carga de entrenamiento y el índice de monotonía</string>
+
+    <string name="en_resumen">En resumen, podremos adquirir un mejor conocimiento del stress fisiológico que
+        soportamos. Lograremos conocer la tolerancia y adaptación a las cargas, seremos capaces de aplicar cargas
+        más adecuadas y conseguiremos una mejora del rendimiento, se disminuye la posibilidad de
+        sobreentrenamiento y lesiones.</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="escala_epinfant">Escala EPInfant</string>
 </resources>

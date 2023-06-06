@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp">
@@ -17,7 +16,8 @@
                 android:id="@+id/image_rpeinfant"
                 android:layout_width="wrap_content"
                 android:layout_height="374dp"
-                android:src="@drawable/epinfant" />
+                android:src="@drawable/epinfant"
+                android:contentDescription="@string/escala_epinfant" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -30,7 +30,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_rpe"
                 android:minEms="5"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
@@ -42,6 +42,19 @@
                     android:ems="5"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/imageinfant_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/ayuda"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroup1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_question_mark_24" />
 
         </LinearLayout>
 

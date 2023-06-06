@@ -5,6 +5,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,6 +26,7 @@ public class CuadroDialogo_rpeInfant extends DialogFragment{
         private TextInputEditText rpe;
         private ImageView imageView;
         private CuadroDialogoInfant_listener listener;
+        private ImageButton imageInfantButton;
 
         @NonNull
         @Override
@@ -35,6 +37,13 @@ public class CuadroDialogo_rpeInfant extends DialogFragment{
             LayoutInflater inflater = requireActivity().getLayoutInflater();
             View view = inflater.inflate(R.layout.cuadrodialogo_rpeinfant, null);
             enlazarVistas(view);
+
+            imageInfantButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostrarInfo();
+                }
+            });
 
             dialogo.setView(view).
                     setCancelable(false)
@@ -70,6 +79,7 @@ public class CuadroDialogo_rpeInfant extends DialogFragment{
         public void enlazarVistas(View view){
             imageView = view.findViewById(R.id.image_rpeinfant);
             rpe = view.findViewById(R.id.rpe);
+            imageInfantButton = view.findViewById(R.id.imageinfant_info);
         }
 
         @Override
@@ -84,4 +94,29 @@ public class CuadroDialogo_rpeInfant extends DialogFragment{
         public interface CuadroDialogoInfant_listener{
             void apply_rpeinfant(int rpe);
         }
+
+    public void mostrarInfo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Escala de Esfuerzo Percibido Infantil");
+        builder.setMessage("La escala EPInfant es un instrumento desarrollado para  cuantificar  el  " +
+                "esfuerzo  percibido  general  en la  población  infantil  con  base  en  un  " +
+                "protocolo  de elaboración y validación de contenido.\n" +
+                "Debe hacerse una inducción antes del inicio del ejercicio físico, explicándola en " +
+                "términos sencillos apropiados para la edad cognitiva del sujeto." +
+                "Si el niño o niña no sabe leer, se sugiere dar instrucciones para la interpretación " +
+                "del esfuerzo percibido mediante las ilustraciones de niños haciendo ejercicio" + "A continuación se da un " +
+                        "ejemplo de instrucción apropiada:\n\n" +
+                "1- Antes, durante y después del ejercicio, te preguntaré cuán cansado te encuentras.\n\n" +
+                "2- Debes utilizar los números, las palabras o los niños para indicarme tu nivel de " +
+                "cansancio durante la actividad.\n\n" +
+                "3- Observa al niño que se encuentra al inicio de la escala, si te sientes como él, significa que no te encuentras cansado.\n\n" +
+                "4- Observa a los niños que se encuentran en el centro de la escala (niveles 5 y 6), si te sientes como ellos, significa que " +
+                "te encuentras cansado pero puedes seguir haciendo ejercicio.\n\n" +
+                "5- Observa al niño que se encuentra al final de la escala, si te sientes como él, significa que " +
+                "te encuentras muy cansado y no puedes seguir haciendo ejercicio.\n\n" +
+                "6- Puedes utilizar cualquiera de los números, frases o imágenes de niños de la escala, para decirme cuán " +
+                "cansado te sientes. No existe una respuesta correcta o incorrecta");
+        builder.setPositiveButton("OK", null);
+        builder.show();
+    }
 }
