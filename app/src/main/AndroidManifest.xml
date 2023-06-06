@@ -26,20 +26,20 @@
         </provider>
 
         <activity
-            android:name=".view.infoentrenamientoRealizado"
+            android:name="com.AntArDev.MyRpe_Assistant.view.infoentrenamientoRealizado"
             android:exported="false"
             android:label="@string/fin_entrenamiento" />
         <activity
-            android:name=".view.InsertarNuevoEjercicio"
+            android:name="com.AntArDev.MyRpe_Assistant.view.InsertarNuevoEjercicio"
             android:label="@string/InsertarNuevoEjercicio_activity" />
         <activity
-            android:name=".view.EditarEjercicio"
+            android:name="com.AntArDev.MyRpe_Assistant.view.EditarEjercicio"
             android:label="@string/Editar_ejercicio_activity" />
         <activity
-            android:name=".view.VistaEjerciciosActivity"
+            android:name="com.AntArDev.MyRpe_Assistant.view.VistaEjerciciosActivity"
             android:label="@string/title_activity_vista_ejercicio" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.AntArDev.MyRpe_Assistant.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,13 +47,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.Inicio_activity"
+            android:name="com.AntArDev.MyRpe_Assistant.view.Inicio_activity"
             android:label="@string/pantalla_configuraci_n" />
         <activity
-            android:name=".view.InsertarEntrenamiento"
+            android:name="com.AntArDev.MyRpe_Assistant.view.InsertarEntrenamiento"
             android:label="@string/title_insertar_sesion_activity" />
         <activity
-            android:name=".view.Iniciar_entrenamiento"
+            android:name="com.AntArDev.MyRpe_Assistant.view.Iniciar_entrenamiento"
             android:label="@string/iniciar_entrenamiento" />
     </application>
 

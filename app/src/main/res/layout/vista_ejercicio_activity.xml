@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/fondo_insert_edit"
-    tools:context=".view.VistaEjerciciosActivity">
+    tools:context="com.AntArDev.MyRpe_Assistant.view.VistaEjerciciosActivity">
     <!---
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

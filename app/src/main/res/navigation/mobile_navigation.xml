@@ -8,24 +8,24 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.apprpe.view.navBottom.EntrenamientoNAV.EntrenamientoFragment"
+        android:name="com.AntArDev.MyRpe_Assistant.view.navBottom.EntrenamientoNAV.EntrenamientoFragment"
         android:label="Entrenamientos" />
 
     <fragment
         android:id="@+id/navigation_progreso"
-        android:name="com.example.apprpe.view.navBottom.EntRealizadoNAV.EntRealizadoFragment"
+        android:name="com.AntArDev.MyRpe_Assistant.view.navBottom.EntRealizadoNAV.EntRealizadoFragment"
         android:label="Entrenamientos Realizados"
         tools:layout="@layout/fragment_entrealizado" />
 
     <fragment
         android:id="@+id/navigation_estadisticas"
-        android:name="com.example.apprpe.view.navBottom.ProgresoNAV.EstadisticasFragment"
+        android:name="com.AntArDev.MyRpe_Assistant.view.navBottom.ProgresoNAV.EstadisticasFragment"
         android:label="Progreso"
         tools:layout="@layout/fragment_estadisticas" />
 
     <fragment
         android:id="@+id/navigation_perfil"
-        android:name="com.example.apprpe.view.navBottom.Perfil.PerfilFragment"
+        android:name="com.AntArDev.MyRpe_Assistant.view.navBottom.Perfil.PerfilFragment"
         android:label="@string/title_perfil"
         tools:layout="@layout/fragment_estadisticas" />
 </navigation>

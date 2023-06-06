@@ -7,7 +7,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.example.apprpe"
+        applicationId "com.AntArDev.MyRpe_Assistant"
         minSdkVersion 29
 
         targetSdkVersion 33

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_insert_edit"
-    tools:context=".view.navBottom.EntRealizadoNAV.EntRealizadoFragment">
+    tools:context="com.AntArDev.MyRpe_Assistant.view.navBottom.EntRealizadoNAV.EntRealizadoFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_ent_realizado"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/perfil_fragment"
-    tools:context=".view.navBottom.Perfil.PerfilFragment">
+    tools:context="com.AntArDev.MyRpe_Assistant.view.navBottom.Perfil.PerfilFragment">
 
     <TextView
         android:id="@+id/textView_Estatura"
