@@ -69,6 +69,7 @@ public class Inicio_activity extends AppCompatActivity{
                 if(comprobarDatosCorrectosEditText()) {
                     guardarPreferencias();
                     Intent intent = new Intent(getApplication(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     guardarPeso();
                     startActivity(intent);
                     finish();

@@ -4,6 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,7 +88,7 @@ public class Setting extends PreferenceFragmentCompat {
         infolegal.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(@NonNull Preference preference) {
-                MostrarDialogoInfo();
+                MostrarDialogoTerminosYCondiciones();
                 return false;
             }
         });
@@ -150,16 +154,19 @@ public class Setting extends PreferenceFragmentCompat {
         builder.show();
     }
 
-    public void MostrarDialogoInfo(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        builder.setTitle("Información legal");
-        builder.setMessage("Los datos recopilamos a través de esta aplicación se utilizan " +
-                    "únicamente con fines internos y no son compartidos con terceros.\n\n" +
-                "Los datos se almacenan en tu dispositivo móvil y no se envían ni se " +
-                    "guardan en ningún otro lugar externo.\n\n" +
-                "Nunca solicitaremos en el futuro ni por correo ni por ningún otro medio, tu documento de identidad, " +
-                    "número de seguro social u otra información personal sensible.\n\n" +
-                "No nos hacemos responsables de cualquier pérdida o daño derivado del uso de esta aplicación");
+    public void MostrarDialogoTerminosYCondiciones(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        LayoutInflater inflater = getLayoutInflater();
+
+        View dialogView = inflater.inflate(R.layout.cuadrodialogo_terminos_privacidad, null);
+        builder.setView(dialogView);
+
+        TextView textMessage = dialogView.findViewById(R.id.message_privacidad);
+        SpannableString spannableString = new SpannableString("Consultar Términos y Condiciones de políticas y privacidad " +
+                "https://produccionesantardev.blogspot.com/2023/06/politica-de-privacidad-el-presente.html");
+        Linkify.addLinks(spannableString, Linkify.WEB_URLS);
+        textMessage.setText(spannableString);
+        textMessage.setMovementMethod(LinkMovementMethod.getInstance());
 
         builder.setPositiveButton("OK", null);
         builder.show();
