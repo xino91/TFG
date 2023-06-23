@@ -17,7 +17,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.apprpe.provider"
+            android:authorities="com.AntArDev.MyRpe_Assistant.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
