@@ -16,3 +16,6 @@ Aplicación disponible en la tienda de Google Play Store.
 [![entrenamientos.png](https://i.postimg.cc/HxPQ2G9J/entrenamientos.png)](https://postimg.cc/XGdGjzh3)
 [![cronometro.png](https://i.postimg.cc/76L30P08/cronometro.png)](https://postimg.cc/Mchf8S9d)
 [![graficas.png](https://i.postimg.cc/XvLKrBZk/graficas.png)](https://postimg.cc/xkkN7C3X)
+[![cronometro.png](https://i.postimg.cc/76L30P08/cronometro.png)](https://postimg.cc/Mchf8S9d)
+[![cronometro.png](https://i.postimg.cc/76L30P08/cronometro.png)](https://postimg.cc/Mchf8S9d)
+[![pasoapaso14.png](https://i.postimg.cc/PxYCLP55/pasoapaso14.png)](https://postimg.cc/1nRm2RFk)
