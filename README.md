@@ -11,3 +11,5 @@ Características destacadas:
 - Utiliza la información sobre tu esfuerzo percibido para ajustar tu entrenamiento y optimizar tu progreso.
 
 Aplicación disponible en la tienda de Google Play Store.
+[Google Play Store](https://play.google.com/store/apps/details?id=com.AntArDev.MyRpe_Assistant)
+![Entrenamientos](https://raw.githubusercontent.com/xino91/TFG/tree/master/asset/pasoapaso3.jpg)
