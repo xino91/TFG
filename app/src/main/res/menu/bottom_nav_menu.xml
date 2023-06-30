@@ -10,7 +10,7 @@
     <item
         android:id="@+id/navigation_progreso"
         android:icon="@drawable/ic_comprobacion_de_lista"
-        android:title="@string/title_dashboard" />
+        android:title="@string/progreso" />
 
     <item
         android:id="@+id/navigation_estadisticas"

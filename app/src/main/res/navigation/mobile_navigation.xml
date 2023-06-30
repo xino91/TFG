@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/navigation_estadisticas"
         android:name="com.AntArDev.MyRpe_Assistant.view.navBottom.ProgresoNAV.EstadisticasFragment"
-        android:label="Progreso"
+        android:label="Estadísticas"
         tools:layout="@layout/fragment_estadisticas" />
 
     <fragment

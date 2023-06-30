@@ -101,7 +101,7 @@ public class CuadroDialogo_rpeInfant extends DialogFragment{
                 "Debe hacerse una inducción antes del inicio del ejercicio físico, explicándola en " +
                 "términos sencillos apropiados para la edad cognitiva del sujeto." +
                 "Si el niño o niña no sabe leer, se sugiere dar instrucciones para la interpretación " +
-                "del esfuerzo percibido mediante las ilustraciones de niños haciendo ejercicio" + "A continuación se da un " +
+                "del esfuerzo percibido mediante las ilustraciones de niños haciendo ejercicio. " + "A continuación se da un " +
                         "ejemplo de instrucción apropiada:\n\n" +
                 "1- Antes, durante y después del ejercicio, te preguntaré cuán cansado te encuentras.\n\n" +
                 "2- Debes utilizar los números, las palabras o los niños para indicarme tu nivel de " +
