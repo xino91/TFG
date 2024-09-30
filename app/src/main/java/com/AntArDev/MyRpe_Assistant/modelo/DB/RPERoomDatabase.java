@@ -1,6 +1,9 @@
 package com.AntArDev.MyRpe_Assistant.modelo.DB;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -19,6 +22,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,11 +41,12 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             RPERoomDatabase.class, "AppRpe_database")
-                            .addCallback(sRoomDatabaseCallback)
+                            //.addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
+        Log.e(TAG, "getInstanceDatabase: ENTRADO");
         return INSTANCE;
     }
 
@@ -57,23 +62,24 @@ public abstract  class RPERoomDatabase extends RoomDatabase {
                 // If you want to start with more words, just add them.
 
                 RpeDao dao_entrenamiento = INSTANCE.entrenamientoDao();
-                List<Entrenamiento> entrenamientos = CrearEntrenamientosEjemplo();
-                List<Ejercicio> ejercicios = CrearEjerciciosEjemplo();
-                List<Ent_Realizado> entrealizados = CrearEntRealizadosEjemplo();
-                //List<Peso> historialPeso = CrearHistorialPeso();
+                    List<Entrenamiento> entrenamientos = CrearEntrenamientosEjemplo();
+                    List<Ejercicio> ejercicios = CrearEjerciciosEjemplo();
+                    List<Ent_Realizado> entrealizados = CrearEntRealizadosEjemplo();
+                    //List<Peso> historialPeso = CrearHistorialPeso();
 
-                for(int i=0; i<entrenamientos.size(); i++){
-                    dao_entrenamiento.insert(entrenamientos.get(i));
-                }
-                for(int i=0; i<ejercicios.size(); i++){
-                    dao_entrenamiento.insert(ejercicios.get(i));
-                }
-                for(int i=0; i<entrealizados.size(); i++){
-                    dao_entrenamiento.insert(entrealizados.get(i));
-                }
+                    for(int i=0; i<entrenamientos.size(); i++){
+                        dao_entrenamiento.insert(entrenamientos.get(i));
+                    }
+                    for(int i=0; i<ejercicios.size(); i++){
+                        dao_entrenamiento.insert(ejercicios.get(i));
+                    }
+                    for(int i=0; i<entrealizados.size(); i++){
+                        dao_entrenamiento.insert(entrealizados.get(i));
+                    }
                 /*for(int i=0; i<historialPeso.size(); i++){
                     dao_entrenamiento.insert(historialPeso.get(i));
                 }*/
+
             });
         }
     };

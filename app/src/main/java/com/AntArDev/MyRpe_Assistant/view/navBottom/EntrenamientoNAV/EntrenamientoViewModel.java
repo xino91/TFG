@@ -6,13 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.AntArDev.MyRpe_Assistant.modelo.Ent_Realizado;
-import com.AntArDev.MyRpe_Assistant.modelo.Peso;
-import com.AntArDev.MyRpe_Assistant.modelo.Ejercicio;
-import com.AntArDev.MyRpe_Assistant.modelo.Entrenamiento;
 import com.AntArDev.MyRpe_Assistant.Repository;
+import com.AntArDev.MyRpe_Assistant.modelo.Ejercicio;
+import com.AntArDev.MyRpe_Assistant.modelo.Ent_Realizado;
+import com.AntArDev.MyRpe_Assistant.modelo.Entrenamiento;
 import com.AntArDev.MyRpe_Assistant.modelo.EntrenamientoConEjercicios;
-
+import com.AntArDev.MyRpe_Assistant.modelo.Peso;
 
 import java.util.List;
 
